@@ -42,13 +42,13 @@ func _pressed():
 	drySample = get_parent().get_node("Controls3").text.unicode_at(0)-65.0
 	wetSample = get_parent().get_node("Controls4").text.unicode_at(0)-65.0
 	for t: int in range(0,arraySize):
-		adjustRed[t] = (drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize)))
+		adjustRed[t] = ((drySample*(1.0-(float(t)/float(arraySize))))+(wetSample*(float(t)/float(arraySize))))*(3125.0/sqrt(arraySize))
 	var adjustBlue: PackedFloat32Array
 	adjustBlue.resize(arraySize)
 	drySample = get_parent().get_node("Controls5").text.unicode_at(0)-65.0
 	wetSample = get_parent().get_node("Controls6").text.unicode_at(0)-65.0
 	for t: int in range(0,arraySize):
-		adjustBlue[t] = (drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize)))
+		adjustBlue[t] = ((drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize))))
 	
 	var delays: PackedInt32Array
 	delays.resize(26)
@@ -278,6 +278,7 @@ func _pressed():
 								dispDelays[total] += brightness
 								most += (dispDelays[total]*dispDelays[total]*adjustGreen[total])
 								#green is how much the stacked echoes stack
+		greenAmt = most
 		#now, do another array in which we're measuring spacings between
 		#the active taps of the first delay. We want these spacings to
 		#be as irregular as possible, so just like stacking up delay taps
@@ -301,6 +302,7 @@ func _pressed():
 		#These have spacings of TWO because we are using prime numbers for everything: only odd.
 		for t: int in range(3,arraySize-1,2):
 			most += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
+		redAmt = most - greenAmt
 		#now, do a third array for the blue channel that just checks whether
 		#the angle has changed, which will be active when there's dense delay
 		#returns like in a 5x5. Will be about the same for a 3x3
@@ -308,6 +310,7 @@ func _pressed():
 		for t: int in range(3,arraySize-1,2):
 			angleChange[t] = (dispDelays[t] - dispDelays[t-2]) * (dispDelays[t] - dispDelays[t-2])
 			most += (angleChange[t]*adjustBlue[t])
+		blueAmt = most - (greenAmt+redAmt)
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
@@ -375,6 +378,16 @@ func _pressed():
 				var b: float = sqrt(angleChange[t] / maxBlue) * 256.0
 				display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 				display.set_pixel((t%512)+1,(t/512),Color.from_rgba8(r,g,b))
+			#that has drawn the reverb on the display, now for the chart
+			greenAmt = (greenAmt/most)*512.0
+			redAmt = (redAmt/most)*512.0
+			blueAmt = (blueAmt/most)*512.0
+			for t: int in range(0,greenAmt):
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,40,0))
+			for t: int in range(greenAmt,greenAmt+redAmt):
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(80,0,0))
+			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,100))
 			since = 0
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
