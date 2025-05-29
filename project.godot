@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="IntoTheMatrix"
+run/main_scene="res://BasicRoot.tscn"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/use_filter=false
+boot_splash/image="res://IntoTheMatrix.png"
+config/icon="res://IntoTheMatrix.png"
+config/macos_native_icon="res://IntoTheMatrix.icns"
+
+[display]
+
+window/size/viewport_width=1240
+window/size/viewport_height=280
+window/size/resizable=false
+
+[dotnet]
+
+project/assembly_name="IntoTheMatrix"
+
+[gui]
+
+timers/tooltip_delay_sec=5.0
+timers/button_shortcut_feedback_highlight_time=10.0
+timers/text_edit_idle_detect_sec=10.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true

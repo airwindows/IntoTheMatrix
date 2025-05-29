@@ -1,0 +1,519 @@
+[gd_scene load_steps=10 format=3 uid="uid://b48yh5bsuxijs"]
+
+[ext_resource type="Script" uid="uid://dvlog024ejgpo" path="res://Seats.gd" id="1_yjg6u"]
+[ext_resource type="Script" uid="uid://d2q2ksdv5x3q3" path="res://search6.gd" id="2_h5e0k"]
+[ext_resource type="Script" uid="uid://dsxaie32gy6o8" path="res://search5.gd" id="2_upf03"]
+[ext_resource type="Script" uid="uid://ctgl16wkwduj" path="res://halt6.gd" id="3_dwka6"]
+[ext_resource type="Script" uid="uid://yhsmdrvxgb0h" path="res://halt5.gd" id="3_h5e0k"]
+[ext_resource type="Script" uid="uid://b662vwxf7ltt0" path="res://search4.gd" id="4_dwka6"]
+[ext_resource type="Script" uid="uid://lq48jx7afq6s" path="res://halt4.gd" id="5_dpy4t"]
+[ext_resource type="Script" uid="uid://dkn016n61cmbw" path="res://search3.gd" id="6_56rdx"]
+[ext_resource type="Script" uid="uid://c12gycs4hrji" path="res://halt3.gd" id="7_4gl0g"]
+
+[node name="BasicRoot" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -7.0
+offset_top = -6.0
+offset_right = 1245.0
+offset_bottom = 286.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 521.0
+offset_bottom = 128.0
+
+[node name="TextEdit1" type="TextEdit" parent="."]
+offset_left = 584.0
+offset_top = 325.0
+offset_right = 630.0
+offset_bottom = 351.0
+text = "5003"
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 584.0
+offset_top = 354.0
+offset_right = 630.0
+offset_bottom = 380.0
+text = "4349"
+
+[node name="TextEdit3" type="TextEdit" parent="."]
+offset_left = 584.0
+offset_top = 383.0
+offset_right = 630.0
+offset_bottom = 409.0
+text = "3323"
+
+[node name="TextEdit4" type="TextEdit" parent="."]
+offset_left = 584.0
+offset_top = 412.0
+offset_right = 630.0
+offset_bottom = 438.0
+text = "2141"
+
+[node name="TextEdit5" type="TextEdit" parent="."]
+offset_left = 584.0
+offset_top = 441.0
+offset_right = 630.0
+offset_bottom = 467.0
+text = "677"
+
+[node name="TextEdit6" type="TextEdit" parent="."]
+offset_left = 584.0
+offset_top = 470.0
+offset_right = 630.0
+offset_bottom = 496.0
+text = "4951"
+
+[node name="TextEdit7" type="TextEdit" parent="."]
+offset_left = 638.0
+offset_top = 325.0
+offset_right = 684.0
+offset_bottom = 351.0
+text = "4157"
+
+[node name="TextEdit8" type="TextEdit" parent="."]
+offset_left = 638.0
+offset_top = 354.0
+offset_right = 684.0
+offset_bottom = 380.0
+text = "2791"
+
+[node name="TextEdit9" type="TextEdit" parent="."]
+offset_left = 638.0
+offset_top = 383.0
+offset_right = 684.0
+offset_bottom = 409.0
+text = "1811"
+
+[node name="TextEdit10" type="TextEdit" parent="."]
+offset_left = 638.0
+offset_top = 412.0
+offset_right = 684.0
+offset_bottom = 438.0
+text = "643"
+
+[node name="TextEdit11" type="TextEdit" parent="."]
+offset_left = 638.0
+offset_top = 441.0
+offset_right = 684.0
+offset_bottom = 467.0
+text = "4919"
+
+[node name="TextEdit12" type="TextEdit" parent="."]
+offset_left = 638.0
+offset_top = 470.0
+offset_right = 684.0
+offset_bottom = 496.0
+text = "3929"
+
+[node name="TextEdit13" type="TextEdit" parent="."]
+offset_left = 692.0
+offset_top = 325.0
+offset_right = 738.0
+offset_bottom = 351.0
+text = "2767"
+
+[node name="TextEdit14" type="TextEdit" parent="."]
+offset_left = 692.0
+offset_top = 354.0
+offset_right = 738.0
+offset_bottom = 380.0
+text = "1733"
+
+[node name="TextEdit15" type="TextEdit" parent="."]
+offset_left = 692.0
+offset_top = 383.0
+offset_right = 738.0
+offset_bottom = 409.0
+text = "439"
+
+[node name="TextEdit16" type="TextEdit" parent="."]
+offset_left = 692.0
+offset_top = 412.0
+offset_right = 738.0
+offset_bottom = 438.0
+text = "4799"
+
+[node name="TextEdit17" type="TextEdit" parent="."]
+offset_left = 692.0
+offset_top = 441.0
+offset_right = 738.0
+offset_bottom = 467.0
+text = "3529"
+
+[node name="TextEdit18" type="TextEdit" parent="."]
+offset_left = 692.0
+offset_top = 470.0
+offset_right = 738.0
+offset_bottom = 496.0
+text = "2389"
+
+[node name="TextEdit19" type="TextEdit" parent="."]
+offset_left = 746.0
+offset_top = 325.0
+offset_right = 792.0
+offset_bottom = 351.0
+text = "1171"
+
+[node name="TextEdit20" type="TextEdit" parent="."]
+offset_left = 746.0
+offset_top = 354.0
+offset_right = 792.0
+offset_bottom = 380.0
+text = "349"
+
+[node name="TextEdit21" type="TextEdit" parent="."]
+offset_left = 746.0
+offset_top = 383.0
+offset_right = 792.0
+offset_bottom = 409.0
+text = "4751"
+
+[node name="TextEdit22" type="TextEdit" parent="."]
+offset_left = 746.0
+offset_top = 412.0
+offset_right = 792.0
+offset_bottom = 438.0
+text = "3329"
+
+[node name="TextEdit23" type="TextEdit" parent="."]
+offset_left = 746.0
+offset_top = 441.0
+offset_right = 792.0
+offset_bottom = 467.0
+text = "2347"
+
+[node name="TextEdit24" type="TextEdit" parent="."]
+offset_left = 746.0
+offset_top = 470.0
+offset_right = 792.0
+offset_bottom = 496.0
+text = "787"
+
+[node name="TextEdit25" type="TextEdit" parent="."]
+offset_left = 801.0
+offset_top = 325.0
+offset_right = 847.0
+offset_bottom = 351.0
+text = "281"
+
+[node name="TextEdit26" type="TextEdit" parent="."]
+offset_left = 801.0
+offset_top = 353.0
+offset_right = 847.0
+offset_bottom = 379.0
+text = "281"
+
+[node name="TextEdit27" type="TextEdit" parent="."]
+offset_left = 801.0
+offset_top = 382.0
+offset_right = 847.0
+offset_bottom = 408.0
+text = "281"
+
+[node name="TextEdit28" type="TextEdit" parent="."]
+offset_left = 801.0
+offset_top = 411.0
+offset_right = 847.0
+offset_bottom = 437.0
+text = "281"
+
+[node name="TextEdit29" type="TextEdit" parent="."]
+offset_left = 801.0
+offset_top = 440.0
+offset_right = 847.0
+offset_bottom = 466.0
+text = "281"
+
+[node name="TextEdit30" type="TextEdit" parent="."]
+offset_left = 801.0
+offset_top = 469.0
+offset_right = 847.0
+offset_bottom = 495.0
+text = "281"
+
+[node name="TextEdit31" type="TextEdit" parent="."]
+offset_left = 855.0
+offset_top = 325.0
+offset_right = 901.0
+offset_bottom = 351.0
+text = "281"
+
+[node name="TextEdit32" type="TextEdit" parent="."]
+offset_left = 855.0
+offset_top = 353.0
+offset_right = 901.0
+offset_bottom = 379.0
+text = "281"
+
+[node name="TextEdit33" type="TextEdit" parent="."]
+offset_left = 855.0
+offset_top = 382.0
+offset_right = 901.0
+offset_bottom = 408.0
+text = "281"
+
+[node name="TextEdit34" type="TextEdit" parent="."]
+offset_left = 855.0
+offset_top = 411.0
+offset_right = 901.0
+offset_bottom = 437.0
+text = "281"
+
+[node name="TextEdit35" type="TextEdit" parent="."]
+offset_left = 855.0
+offset_top = 440.0
+offset_right = 901.0
+offset_bottom = 466.0
+text = "281"
+
+[node name="TextEdit36" type="TextEdit" parent="."]
+offset_left = 855.0
+offset_top = 469.0
+offset_right = 901.0
+offset_bottom = 495.0
+text = "281"
+
+[node name="targetSeats" type="TextEdit" parent="."]
+offset_left = 14.0
+offset_top = 132.0
+offset_right = 70.0
+offset_bottom = 170.0
+text = "200"
+
+[node name="Iterations" type="TextEdit" parent="."]
+offset_left = 28.0
+offset_top = 368.0
+offset_right = 80.0
+offset_bottom = 408.0
+text = "20"
+placeholder_text = "iter"
+
+[node name="iterationsLabel" type="RichTextLabel" parent="."]
+offset_left = 257.0
+offset_top = 368.0
+offset_right = 345.0
+offset_bottom = 392.0
+text = "iterations"
+
+[node name="MatrixName" type="TextEdit" parent="."]
+offset_left = 12.0
+offset_top = 196.0
+offset_right = 134.0
+offset_bottom = 236.0
+placeholder_text = "Title"
+
+[node name="Seats" type="TextEdit" parent="."]
+offset_left = 27.0
+offset_top = 310.0
+offset_right = 100.0
+offset_bottom = 346.0
+text = "600"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+autowrap_mode = 1
+script = ExtResource("1_yjg6u")
+
+[node name="Code" type="TextEdit" parent="."]
+offset_left = 536.0
+offset_top = 10.0
+offset_right = 1232.0
+offset_bottom = 272.0
+wrap_mode = 1
+
+[node name="search6" type="Button" parent="."]
+offset_left = 11.0
+offset_top = 241.0
+offset_right = 61.0
+offset_bottom = 272.0
+text = "6x6"
+script = ExtResource("2_h5e0k")
+
+[node name="halt6" type="Button" parent="."]
+offset_left = 267.0
+offset_top = 316.0
+offset_right = 315.0
+offset_bottom = 347.0
+text = "stop"
+script = ExtResource("3_dwka6")
+
+[node name="search5" type="Button" parent="."]
+offset_left = 71.0
+offset_top = 241.0
+offset_right = 121.0
+offset_bottom = 272.0
+text = "5x5"
+script = ExtResource("2_upf03")
+
+[node name="halt5" type="Button" parent="."]
+offset_left = 323.0
+offset_top = 316.0
+offset_right = 371.0
+offset_bottom = 347.0
+text = "stop"
+script = ExtResource("3_h5e0k")
+
+[node name="search4" type="Button" parent="."]
+offset_left = 131.0
+offset_top = 242.0
+offset_right = 181.0
+offset_bottom = 273.0
+text = "4x4"
+script = ExtResource("4_dwka6")
+
+[node name="halt4" type="Button" parent="."]
+offset_left = 382.0
+offset_top = 315.0
+offset_right = 430.0
+offset_bottom = 346.0
+text = "stop"
+script = ExtResource("5_dpy4t")
+
+[node name="search3" type="Button" parent="."]
+offset_left = 190.0
+offset_top = 241.0
+offset_right = 240.0
+offset_bottom = 272.0
+text = "3x3"
+script = ExtResource("6_56rdx")
+
+[node name="halt3" type="Button" parent="."]
+offset_left = 440.0
+offset_top = 316.0
+offset_right = 488.0
+offset_bottom = 347.0
+text = "stop"
+script = ExtResource("7_4gl0g")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 17.0
+offset_top = 170.0
+offset_right = 262.0
+offset_bottom = 194.0
+text = "0 ms"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="prevScoreSave" type="RichTextLabel" parent="."]
+offset_left = 122.0
+offset_top = 374.0
+offset_right = 173.0
+offset_bottom = 398.0
+text = "score:"
+scroll_active = false
+
+[node name="prevScoreTwo" type="RichTextLabel" parent="."]
+offset_left = 176.0
+offset_top = 139.0
+offset_right = 233.0
+offset_bottom = 163.0
+text = "999999999999.9"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="totalIterations" type="RichTextLabel" parent="."]
+offset_left = 157.0
+offset_top = 190.0
+offset_right = 256.0
+offset_bottom = 214.0
+text = "0"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="sinceIterations" type="RichTextLabel" parent="."]
+offset_left = 157.0
+offset_top = 214.0
+offset_right = 256.0
+offset_bottom = 238.0
+text = "0"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="."]
+offset_left = 73.0
+offset_top = 138.0
+offset_right = 167.0
+offset_bottom = 162.0
+text = "seats, score"
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="."]
+offset_left = 267.0
+offset_top = 151.0
+offset_right = 524.0
+offset_bottom = 175.0
+text = "G: bloom, space, sustain, density"
+horizontal_alignment = 3
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="."]
+offset_left = 267.0
+offset_top = 194.0
+offset_right = 526.0
+offset_bottom = 218.0
+text = "R: naturalness, spacing, evenness"
+horizontal_alignment = 3
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="."]
+offset_left = 266.0
+offset_top = 239.0
+offset_right = 524.0
+offset_bottom = 263.0
+text = "B: darkness, slew control, depth"
+horizontal_alignment = 3
+
+[node name="Generating" type="CheckButton" parent="."]
+offset_left = 127.0
+offset_top = 311.0
+offset_right = 244.0
+offset_bottom = 342.0
+focus_mode = 0
+button_pressed = true
+text = "continue"
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 0.001
+
+[node name="Timer4" type="Timer" parent="."]
+wait_time = 0.001
+
+[node name="Timer5" type="Timer" parent="."]
+wait_time = 0.001
+
+[node name="Timer6" type="Timer" parent="."]
+wait_time = 0.001
+
+[node name="Timer1" type="Timer" parent="."]
+one_shot = true
+ignore_time_scale = true
+
+[node name="greenSlider" type="HSlider" parent="."]
+offset_left = 258.0
+offset_top = 136.0
+offset_right = 526.0
+offset_bottom = 152.0
+value = 100.0
+
+[node name="redSlider" type="HSlider" parent="."]
+offset_left = 259.0
+offset_top = 179.0
+offset_right = 527.0
+offset_bottom = 195.0
+value = 100.0
+
+[node name="blueSlider" type="HSlider" parent="."]
+offset_left = 260.0
+offset_top = 224.0
+offset_right = 528.0
+offset_bottom = 240.0
+value = 100.0
+
+[connection signal="text_changed" from="targetSeats" to="Seats" method="targetSeatsUpdated"]
+[connection signal="timeout" from="Timer3" to="search3" method="_pressed"]
+[connection signal="timeout" from="Timer4" to="search4" method="_pressed"]
+[connection signal="timeout" from="Timer5" to="search5" method="_pressed"]
+[connection signal="timeout" from="Timer6" to="search6" method="_pressed"]
