@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b48yh5bsuxijs"]
+[gd_scene load_steps=11 format=3 uid="uid://b48yh5bsuxijs"]
 
+[ext_resource type="Script" uid="uid://b8uh4bsrok1si" path="res://controls.gd" id="1_dwka6"]
 [ext_resource type="Script" uid="uid://dvlog024ejgpo" path="res://Seats.gd" id="1_yjg6u"]
 [ext_resource type="Script" uid="uid://d2q2ksdv5x3q3" path="res://search6.gd" id="2_h5e0k"]
 [ext_resource type="Script" uid="uid://dsxaie32gy6o8" path="res://search5.gd" id="2_upf03"]
@@ -278,6 +279,66 @@ offset_right = 901.0
 offset_bottom = 495.0
 text = "281"
 
+[node name="Controls1" type="TextEdit" parent="."]
+offset_left = 270.0
+offset_top = 137.0
+offset_right = 299.0
+offset_bottom = 175.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls2" type="TextEdit" parent="."]
+offset_left = 504.0
+offset_top = 137.0
+offset_right = 533.0
+offset_bottom = 175.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls3" type="TextEdit" parent="."]
+offset_left = 270.0
+offset_top = 180.0
+offset_right = 299.0
+offset_bottom = 218.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls4" type="TextEdit" parent="."]
+offset_left = 504.0
+offset_top = 181.0
+offset_right = 533.0
+offset_bottom = 219.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls5" type="TextEdit" parent="."]
+offset_left = 270.0
+offset_top = 225.0
+offset_right = 299.0
+offset_bottom = 263.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls6" type="TextEdit" parent="."]
+offset_left = 505.0
+offset_top = 225.0
+offset_right = 534.0
+offset_bottom = 263.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
 [node name="targetSeats" type="TextEdit" parent="."]
 offset_left = 14.0
 offset_top = 132.0
@@ -292,13 +353,6 @@ offset_right = 80.0
 offset_bottom = 408.0
 text = "20"
 placeholder_text = "iter"
-
-[node name="iterationsLabel" type="RichTextLabel" parent="."]
-offset_left = 257.0
-offset_top = 368.0
-offset_right = 345.0
-offset_bottom = 392.0
-text = "iterations"
 
 [node name="MatrixName" type="TextEdit" parent="."]
 offset_left = 12.0
@@ -325,6 +379,15 @@ offset_left = 536.0
 offset_top = 10.0
 offset_right = 1232.0
 offset_bottom = 272.0
+placeholder_text = "How To Use This Crazy Thing: G, R and B are separate fitness functions.
+Each one has a text box to the left, and to the right. A-Z (they say 'M' at startup)
+They measure something bad about the reverb: G 'density', R 'spacing', B 'bright'.
+To the left means the START of the verb tail, to the right is the END of the verb tail.
+Making G/Density at the START, 'Z' means 'LESS sound up front, all in the tail like a hall'
+Making G/Density at the END 'Z' means 'early sound OK but have it cut off like a plate'
+More R/Spacing in either place will make stuff more natural and distant and realistic.
+Making G/Bright at the START, 'Z' means 'LESS brightness up front for a darker effect'
+Making G/Bright at the END, 'Z' means 'make the reverb tail get darker with time'"
 wrap_mode = 1
 
 [node name="search6" type="Button" parent="."]
@@ -400,14 +463,6 @@ text = "0 ms"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="prevScoreSave" type="RichTextLabel" parent="."]
-offset_left = 122.0
-offset_top = 374.0
-offset_right = 173.0
-offset_bottom = 398.0
-text = "score:"
-scroll_active = false
-
 [node name="prevScoreTwo" type="RichTextLabel" parent="."]
 offset_left = 176.0
 offset_top = 139.0
@@ -443,27 +498,27 @@ offset_bottom = 162.0
 text = "seats, score"
 
 [node name="RichTextLabel8" type="RichTextLabel" parent="."]
-offset_left = 267.0
-offset_top = 151.0
-offset_right = 524.0
-offset_bottom = 175.0
-text = "G: bloom, space, sustain, density"
+offset_left = 306.0
+offset_top = 143.0
+offset_right = 495.0
+offset_bottom = 167.0
+text = "G: bloom, space, sustain"
 horizontal_alignment = 3
 
 [node name="RichTextLabel9" type="RichTextLabel" parent="."]
-offset_left = 267.0
-offset_top = 194.0
-offset_right = 526.0
-offset_bottom = 218.0
-text = "R: naturalness, spacing, evenness"
+offset_left = 311.0
+offset_top = 186.0
+offset_right = 493.0
+offset_bottom = 210.0
+text = "R: naturalness, spacing"
 horizontal_alignment = 3
 
 [node name="RichTextLabel10" type="RichTextLabel" parent="."]
-offset_left = 266.0
-offset_top = 239.0
-offset_right = 524.0
-offset_bottom = 263.0
-text = "B: darkness, slew control, depth"
+offset_left = 323.0
+offset_top = 231.0
+offset_right = 474.0
+offset_bottom = 255.0
+text = "B: darkness, depth"
 horizontal_alignment = 3
 
 [node name="Generating" type="CheckButton" parent="."]
@@ -491,27 +546,12 @@ wait_time = 0.001
 one_shot = true
 ignore_time_scale = true
 
-[node name="greenSlider" type="HSlider" parent="."]
-offset_left = 258.0
-offset_top = 136.0
-offset_right = 526.0
-offset_bottom = 152.0
-value = 100.0
-
-[node name="redSlider" type="HSlider" parent="."]
-offset_left = 259.0
-offset_top = 179.0
-offset_right = 527.0
-offset_bottom = 195.0
-value = 100.0
-
-[node name="blueSlider" type="HSlider" parent="."]
-offset_left = 260.0
-offset_top = 224.0
-offset_right = 528.0
-offset_bottom = 240.0
-value = 100.0
-
+[connection signal="text_changed" from="Controls1" to="Controls1" method="_text_changed"]
+[connection signal="text_changed" from="Controls2" to="Controls2" method="_text_changed"]
+[connection signal="text_changed" from="Controls3" to="Controls3" method="_text_changed"]
+[connection signal="text_changed" from="Controls4" to="Controls4" method="_text_changed"]
+[connection signal="text_changed" from="Controls5" to="Controls5" method="_text_changed"]
+[connection signal="text_changed" from="Controls6" to="Controls6" method="_text_changed"]
 [connection signal="text_changed" from="targetSeats" to="Seats" method="targetSeatsUpdated"]
 [connection signal="timeout" from="Timer3" to="search3" method="_pressed"]
 [connection signal="timeout" from="Timer4" to="search4" method="_pressed"]

@@ -29,17 +29,26 @@ func _pressed():
 	angleChange.resize(arraySize)
 	angleChange.fill(0.0)
 	
-	
+	var drySample: float = 0.0
+	var wetSample: float = 0.0
 	var adjustGreen: PackedFloat32Array
 	adjustGreen.resize(arraySize)
-	adjustGreen.fill(get_parent().get_node("greenSlider").value)
+	drySample = get_parent().get_node("Controls1").text.unicode_at(0)-65.0
+	wetSample = get_parent().get_node("Controls2").text.unicode_at(0)-65.0
+	for t: int in range(0,arraySize):
+		adjustGreen[t] = (drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize)))
 	var adjustRed: PackedFloat32Array
 	adjustRed.resize(arraySize)
-	adjustRed.fill(get_parent().get_node("redSlider").value)
+	drySample = get_parent().get_node("Controls3").text.unicode_at(0)-65.0
+	wetSample = get_parent().get_node("Controls4").text.unicode_at(0)-65.0
+	for t: int in range(0,arraySize):
+		adjustRed[t] = (drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize)))
 	var adjustBlue: PackedFloat32Array
 	adjustBlue.resize(arraySize)
-	adjustBlue.fill(get_parent().get_node("blueSlider").value)
-	
+	drySample = get_parent().get_node("Controls5").text.unicode_at(0)-65.0
+	wetSample = get_parent().get_node("Controls6").text.unicode_at(0)-65.0
+	for t: int in range(0,arraySize):
+		adjustBlue[t] = (drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize)))
 	
 	var delays: PackedInt32Array
 	delays.resize(37)
@@ -58,6 +67,9 @@ func _pressed():
 		var roomsize: float = sqrt(get_parent().get_node("Seats").text.to_float())/24.0 #seats, in K
 		if (roomsize > 4.31):
 			roomsize = 4.31
+		var greenAmt: float = 0.0
+		var redAmt: float = 0.0
+		var blueAmt: float = 0.0
 		var dupes: int = 99 #always start by re-randomizing at least once
 		while (dupes > 38 || dupes < 38): #move on if no dupes
 			delays.resize(0)
@@ -309,10 +321,15 @@ func _pressed():
 		#is bad, having 'em all spaced the same distance is bad.
 		spacings.fill(0.0)
 		var zeroRun: int = 0
+		var echoRun: int = 0
 		for t: int in range(2,arraySize-1,2):
 			if (dispDelays[t] == 0.0):
 				zeroRun += 1
+				spacings[echoRun] += brightness
+				spacings[echoRun] *= (sqrt(echoRun*0.5))
+				echoRun = 0
 			if (dispDelays[t] > 0.0):
+				echoRun += 1
 				spacings[zeroRun] += brightness
 				spacings[zeroRun] *= (sqrt(zeroRun*0.5))
 				zeroRun = 0
@@ -321,6 +338,8 @@ func _pressed():
 		#These have spacings of TWO because we are using prime numbers for everything: only odd.
 		for t: int in range(2,arraySize-1,2):
 			most += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
+			
+			
 		#now, do a third array for the blue channel that just checks whether
 		#the angle has changed, which will be active when there's dense delay
 		#returns like in a 5x5. Will be about the same for a 3x3
@@ -388,7 +407,7 @@ func _pressed():
 				if (maxBlue < angleChange[t]):
 					maxBlue = angleChange[t]
 			for t: int in range(1,arraySize-1,2):
-				var r: float = 256-spacings[t]*16*sqrt(t)*t
+				var r: float = 256-spacings[t]
 				if (spacings[t] == 0.0):
 					r = 0.0
 				var g: float = sqrt(dispDelays[t+1] / maxGreen) * 256.0

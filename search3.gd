@@ -58,9 +58,9 @@ func _pressed():
 		var roomsize: float = sqrt(get_parent().get_node("Seats").text.to_float())/24.0 #seats, in K
 		if (roomsize > 4.31):
 			roomsize = 4.31
-		var greenAmt: float = get_parent().get_node("greenSlider").value
-		var redAmt: float = get_parent().get_node("redSlider").value
-		var blueAmt: float = get_parent().get_node("blueSlider").value
+		var greenAmt: float = 0.0
+		var redAmt: float = 0.0
+		var blueAmt: float = 0.0
 		var dupes: int = 99 #always start by re-randomizing at least once
 		while (dupes > 11 || dupes < 11): #move on if no dupes
 			delays.resize(0)
@@ -185,7 +185,7 @@ func _pressed():
 						shortest = dA+dB+dC #now we have the final delay time
 					var x: int = dA+dB+dC
 					dispDelays[x] += brightness
-					most += (dispDelays[x]*dispDelays[x]*greenAmt)
+					most += (dispDelays[x]*dispDelays[x]*adjustGreen[x])
 					#green is how much the stacked echoes stack
 		#rotate
 		rotated[1] = delays[7]
@@ -211,7 +211,7 @@ func _pressed():
 					var x: int = dA+dB+dC
 					if (x < arraySize):
 						dispDelays[x] += brightness
-						most += (dispDelays[x]*dispDelays[x]*greenAmt)
+						most += (dispDelays[x]*dispDelays[x]*adjustGreen[x])
 						#green is how much the stacked echoes stack
 		#now, do another array in which we're measuring spacings between
 		#the active taps of the first delay. We want these spacings to
@@ -219,25 +219,30 @@ func _pressed():
 		#is bad, having 'em all spaced the same distance is bad.
 		spacings.fill(0.0)
 		var zeroRun: int = 0
+		var echoRun: int = 0
 		for t: int in range(3,arraySize-1,2):
 			if (dispDelays[t] == 0.0):
 				zeroRun += 1
+				spacings[echoRun] += brightness
+				spacings[echoRun] *= (sqrt(echoRun*0.5))
+				echoRun = 0
 			if (dispDelays[t] > 0.0):
+				echoRun += 1
 				spacings[zeroRun] += brightness
-				spacings[zeroRun] *= (sqrt(zeroRun*0.125))
+				spacings[zeroRun] *= (sqrt(zeroRun*0.5))
 				zeroRun = 0
 		#here's the thing though: what we should do is measure every departure from the previous
 		#spacings, in a 'slew measuring' way, because the evenest distribution will be best.
 		#These have spacings of TWO because we are using prime numbers for everything: only odd.
 		for t: int in range(3,arraySize-1,2):
-			most += (abs(spacings[t]-spacings[t-2])*redAmt)
+			most += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
 		#now, do a third array for the blue channel that just checks whether
 		#the angle has changed, which will be active when there's dense delay
 		#returns like in a 5x5. Will be about the same for a 3x3
 		angleChange.fill(0.0)
 		for t: int in range(3,arraySize-1,2):
 			angleChange[t] = (dispDelays[t] - dispDelays[t-2]) * (dispDelays[t] - dispDelays[t-2])
-			most += (angleChange[t]*blueAmt)
+			most += (angleChange[t]*adjustBlue[t])
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
@@ -298,7 +303,7 @@ func _pressed():
 				if (maxBlue < angleChange[t]):
 					maxBlue = angleChange[t]
 			for t: int in range(1,arraySize-1,2):
-				var r: float = 256-spacings[t]*16*sqrt(t)*t
+				var r: float = 256-spacings[t]
 				if (spacings[t] == 0.0):
 					r = 0.0
 				var g: float = sqrt(dispDelays[t] / maxGreen) * 256.0

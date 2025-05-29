@@ -80,7 +80,11 @@ func _pressed():
 		venue = "stadium"
 	get_parent().get_node("RichTextLabel2").text = str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue
 	var current_date_time = Time.get_datetime_dict_from_system()
-	var suffix: String = " galacticized %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
+	var suffix: String = ""
+	suffix = suffix + "-" + get_parent().get_node("Controls1").text + get_parent().get_node("Controls2").text
+	suffix = suffix + "-" + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
+	suffix = suffix + "-" + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
+	suffix = suffix + " %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int shortA = "+str(delaysB[1])+"; "
 	taps = taps+"const int shortB = "+str(delaysB[2])+"; "
 	taps = taps+"const int shortC = "+str(delaysB[3])+"; "

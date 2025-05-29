@@ -109,9 +109,11 @@ func _pressed():
 		venue = "stadium"
 	get_parent().get_node("RichTextLabel2").text = str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue
 	var current_date_time = Time.get_datetime_dict_from_system()
-	var suffix: String = " %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
-	#var mb: int = ((sqrt(sqrt(sqrt(seats)))*5.75)+(11.9-float(10.0/seats)))*1000000
-	#suffix = suffix + " rated incompressible if filesize larger than " + format_number(mb) + " bytes"
+	var suffix: String = ""
+	suffix = suffix + "-" + get_parent().get_node("Controls1").text + get_parent().get_node("Controls2").text
+	suffix = suffix + "-" + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
+	suffix = suffix + "-" + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
+	suffix = suffix + " %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int delayA = "+str(delaysB[1])+"; "
 	taps = taps+"const int delayB = "+str(delaysB[2])+"; "
 	taps = taps+"const int delayC = "+str(delaysB[3])+"; "
