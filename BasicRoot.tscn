@@ -284,7 +284,7 @@ offset_left = 270.0
 offset_top = 137.0
 offset_right = 299.0
 offset_bottom = 175.0
-text = "M"
+text = "J"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -294,7 +294,7 @@ offset_left = 504.0
 offset_top = 137.0
 offset_right = 533.0
 offset_bottom = 175.0
-text = "M"
+text = "J"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -304,7 +304,7 @@ offset_left = 270.0
 offset_top = 180.0
 offset_right = 299.0
 offset_bottom = 218.0
-text = "M"
+text = "K"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -314,7 +314,7 @@ offset_left = 504.0
 offset_top = 181.0
 offset_right = 533.0
 offset_bottom = 219.0
-text = "M"
+text = "K"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -324,7 +324,7 @@ offset_left = 270.0
 offset_top = 225.0
 offset_right = 299.0
 offset_bottom = 263.0
-text = "M"
+text = "L"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -334,7 +334,7 @@ offset_left = 505.0
 offset_top = 225.0
 offset_right = 534.0
 offset_bottom = 263.0
-text = "M"
+text = "L"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -383,11 +383,23 @@ placeholder_text = "How To Use This Crazy Thing: G, R and B are separate fitness
 Each one has a text box to the left, and to the right. A-Z (they say 'M' at startup)
 They measure something bad about the reverb: G 'density', R 'spacing', B 'bright'.
 To the left means the START of the verb tail, to the right is the END of the verb tail.
+
 Making G/Density at the START, 'Z' means 'LESS sound up front, all in the tail like a hall'
 Making G/Density at the END 'Z' means 'early sound OK but have it cut off like a plate'
-More R/Spacing in either place will make stuff more natural and distant and realistic.
-Making G/Bright at the START, 'Z' means 'LESS brightness up front for a darker effect'
-Making G/Bright at the END, 'Z' means 'make the reverb tail get darker with time'"
+
+More R/Spacing in either place will make stuff more natural and distant and subdued.
+
+Making B/Bright at the START, 'Z' means 'LESS brightness up front for a darker effect'
+Making B/Bright at the END, 'Z' means 'make the reverb tail get darker with time'
+
+Most verbs won't actually go very near the END settings as they'll be quiet by then
+so the bulk of most verbs go from START to about halfway. START does more.
+
+The bars of color at the bottom show how much each quality affects the result:
+for instance if Bright is hard at work verbs will be dark and the blue bar's wider.
+It seems like having any R or B produces a strong effect: originally, all this ran
+using only the Green channel, and only measured delay loudnesses. That means
+it's possible to get the result you want, showing only Green."
 wrap_mode = 1
 
 [node name="search6" type="Button" parent="."]

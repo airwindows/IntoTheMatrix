@@ -36,19 +36,25 @@ func _pressed():
 	drySample = get_parent().get_node("Controls1").text.unicode_at(0)-65.0
 	wetSample = get_parent().get_node("Controls2").text.unicode_at(0)-65.0
 	for t: int in range(0,arraySize):
-		adjustGreen[t] = (drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize)))
+		var x: float = (float(t)/float(arraySize))
+		x = 1.0-pow(1.0-x,2)
+		adjustGreen[t] = ((drySample*(1.0-x))+(wetSample*x))*sqrt(arraySize)
 	var adjustRed: PackedFloat32Array
 	adjustRed.resize(arraySize)
 	drySample = get_parent().get_node("Controls3").text.unicode_at(0)-65.0
 	wetSample = get_parent().get_node("Controls4").text.unicode_at(0)-65.0
 	for t: int in range(0,arraySize):
-		adjustRed[t] = ((drySample*(1.0-(float(t)/float(arraySize))))+(wetSample*(float(t)/float(arraySize))))*(27.0/sqrt(arraySize))
+		var x: float = (float(t)/float(arraySize))
+		x = 1.0-pow(1.0-x,2)
+		adjustRed[t] = ((drySample*(1.0-x))+(wetSample*x))*(27.0/sqrt(arraySize))
 	var adjustBlue: PackedFloat32Array
 	adjustBlue.resize(arraySize)
 	drySample = get_parent().get_node("Controls5").text.unicode_at(0)-65.0
 	wetSample = get_parent().get_node("Controls6").text.unicode_at(0)-65.0
 	for t: int in range(0,arraySize):
-		adjustBlue[t] = ((drySample*(1.0-(float(t)/float(arraySize)))) + (wetSample*(float(t)/float(arraySize))))
+		var x: float = (float(t)/float(arraySize))
+		x = 1.0-pow(1.0-x,2)
+		adjustBlue[t] = (drySample*(1.0-x)) + (wetSample*x)
 	
 	var delays: PackedInt32Array
 	delays.resize(10)
@@ -327,7 +333,9 @@ func _pressed():
 			redAmt = (redAmt/most)*512.0
 			blueAmt = (blueAmt/most)*512.0
 			for t: int in range(0,greenAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,40,0))
+				var samplePosition: int = t+(((longest-shortest)/2)+shortest)
+				if (samplePosition < arraySize):
+					display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,pow((dispDelays[samplePosition]+dispDelays[samplePosition+1])/maxGreen,2.0)*192.0,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(80,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
