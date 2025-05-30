@@ -362,9 +362,9 @@ func _pressed():
 				if (samplePosition < arraySize):
 					display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,pow((dispDelays[samplePosition]+dispDelays[samplePosition+1])/maxGreen,2.0)*192.0,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(80,0,0))
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(128,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,100))
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,256))
 			since = 0
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))

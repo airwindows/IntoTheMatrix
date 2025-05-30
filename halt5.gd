@@ -113,7 +113,7 @@ func _pressed():
 	suffix = suffix + "-" + get_parent().get_node("Controls1").text + get_parent().get_node("Controls2").text
 	suffix = suffix + "-" + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
 	suffix = suffix + "-" + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
-	suffix = suffix + " %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
+	suffix = suffix + " 5x5 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int delayA = "+str(delaysB[1])+"; "
 	taps = taps+"const int delayB = "+str(delaysB[2])+"; "
 	taps = taps+"const int delayC = "+str(delaysB[3])+"; "
