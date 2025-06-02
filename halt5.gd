@@ -111,8 +111,8 @@ func _pressed():
 	var current_date_time = Time.get_datetime_dict_from_system()
 	var suffix: String = ""
 	suffix = suffix + "-" + get_parent().get_node("Controls1").text + get_parent().get_node("Controls2").text
-	suffix = suffix + "-" + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
-	suffix = suffix + "-" + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
+	suffix = suffix + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
+	suffix = suffix + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
 	suffix = suffix + " 5x5 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int delayA = "+str(delaysB[1])+"; "
 	taps = taps+"const int delayB = "+str(delaysB[2])+"; "
@@ -140,9 +140,6 @@ func _pressed():
 	taps = taps+"const int delayX = "+str(delaysB[24])+"; "
 	taps = taps+"const int delayY = "+str(delaysB[25])+"; //"
 	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n//"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
-	
-	taps = taps + "\n//Orange: MaxRMS louder -10.25 dB, Red: louder -8.99 dB, Green: TP Slew quieter -6.25 dB,"
-	taps = taps + "\n//Blue: GlobalLUFS louder -10.75 dB, Purple: MaxRMS quieter -9.99 dB, 5x5 matrix"
 	
 	get_parent().get_node("Code").text = taps
 	#stopped = true
