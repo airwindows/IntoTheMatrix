@@ -286,7 +286,7 @@ func _pressed():
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
 			var targetseats: float =  get_parent().get_node("targetSeats").text.to_float()
-			get_parent().get_node("prevScoreTwo").text = str(most*(1.0+(abs((seats-targetseats)/targetseats)/sqrt(sqrt(total)))))
+			get_parent().get_node("prevScoreTwo").text = str(most*(1.0+(abs((seats-targetseats)/targetseats)/sqrt(sqrt(sqrt(total))))))
 			var venue: String = "room"
 			if (seats > 100):
 				venue = "club"
