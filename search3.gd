@@ -79,7 +79,7 @@ func _pressed():
 		var redAmt: float = 0.0
 		var blueAmt: float = 0.0
 		for entries: int in range(0,10):
-			var select: int = randi()>>(23+(since>>18))
+			var select: int = randi()>>(20+(since>>16))
 			#shift 23 seems to produce a decent amount of randomness as it goes
 			#less shift means increasing amounts of randomness, which will help kickstart things
 			if (select < 7 || select > begins[roomsize*100]):
