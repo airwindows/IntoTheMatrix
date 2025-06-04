@@ -359,7 +359,6 @@ offset_left = 12.0
 offset_top = 196.0
 offset_right = 134.0
 offset_bottom = 236.0
-text = "gen"
 placeholder_text = "Title"
 
 [node name="Seats" type="TextEdit" parent="."]

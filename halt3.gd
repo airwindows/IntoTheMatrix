@@ -79,7 +79,7 @@ func _pressed():
 	taps = taps+"const int earlyH = "+str(delaysB[8])+"; "
 	taps = taps+"const int earlyI = "+str(delaysB[9])+"; "
 	taps = taps+"const int predelay = "+str(shortest)+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n//"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define THREEBYTHREE true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
 	
 	get_parent().get_node("Code").text = taps
 	get_parent().get_node("search6").disabled = false

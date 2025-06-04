@@ -139,7 +139,7 @@ func _pressed():
 	taps = taps+"const int delayW = "+str(delaysB[23])+"; "
 	taps = taps+"const int delayX = "+str(delaysB[24])+"; "
 	taps = taps+"const int delayY = "+str(delaysB[25])+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n//"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define FIVEBYFIVE true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
 	
 	get_parent().get_node("Code").text = taps
 	#stopped = true

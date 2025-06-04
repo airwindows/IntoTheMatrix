@@ -101,7 +101,7 @@ func _pressed():
 	taps = taps+"const int shortN = "+str(delaysB[14])+"; "
 	taps = taps+"const int shortO = "+str(delaysB[15])+"; "
 	taps = taps+"const int shortP = "+str(delaysB[16])+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n//"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define FOURBYFOUR true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
 	
 	get_parent().get_node("Code").text = taps
 	get_parent().get_node("search6").disabled = false

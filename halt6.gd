@@ -166,7 +166,7 @@ func _pressed():
 	taps = taps+"const int delayZI = "+str(delaysB[34])+"; "
 	taps = taps+"const int delayZJ = "+str(delaysB[35])+"; "
 	taps = taps+"const int delayZK = "+str(delaysB[36])+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n//"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define SIXBYSIX true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
 	
 	get_parent().get_node("Code").text = taps
 	#stopped = true
