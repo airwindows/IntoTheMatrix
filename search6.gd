@@ -55,7 +55,7 @@ func _pressed():
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
-		adjustRed[t] = ((drySample*(1.0-x))+(wetSample*x))*(46656.0/sqrt(arraySize))
+		adjustRed[t] = ((drySample*(1.0-x))+(wetSample*x))*sqrt(arraySize)
 	var adjustBlue: PackedFloat32Array
 	adjustBlue.resize(arraySize)
 	drySample = get_parent().get_node("Controls5").text.unicode_at(0)-65.0
@@ -185,19 +185,19 @@ func _pressed():
 									dispDelays[total] += brightness
 									#green is how much the stacked echoes stack
 		for t: int in range(1,arraySize-1):
-			invDelays[t] = dispDelays[t] * (1.570796326794897-sin((float(t)/float(arraySize))*8.0))#show green as wider area
-			dispDelays[t] = dispDelays[t] / (1.570796326794897-sin((float(t)/float(arraySize))*8.0))#opposite effect!
-			most += (dispDelays[t]*dispDelays[t]*dispDelays[t]*adjustGreen[t])
+			invDelays[t] = dispDelays[t]
+			dispDelays[t] = dispDelays[t] / (1.570796326794897-sin((float(t)/float(longest/14.0))))
+			most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		greenAmt = most
-			
 		#now, do another array in which we're measuring spacings between
+		#print("alg: "+str((arraySize*(1.570796326794897/8.0)))+" l: "+str((shortest+((longest-shortest)*0.5))))
 		#the active taps of the first delay. We want these spacings to
 		#be as irregular as possible, so just like stacking up delay taps
 		#is bad, having 'em all spaced the same distance is bad.
 		spacings.fill(0.0)
 		var zeroRun: int = 0
 		var echoRun: int = 0
-		for t: int in range(2,arraySize-1,2):
+		for t: int in range(2,arraySize-1):
 			if (dispDelays[t] == 0.0):
 				zeroRun += 1
 				spacings[echoRun] += brightness
@@ -211,14 +211,14 @@ func _pressed():
 		#here's the thing though: what we should do is measure every departure from the previous
 		#spacings, in a 'slew measuring' way, because the evenest distribution will be best.
 		#These have spacings of TWO because we are using prime numbers for everything: only odd.
-		for t: int in range(2,arraySize-1,2):
+		for t: int in range(2,arraySize-1):
 			most += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
 		redAmt = most - greenAmt
 		#now, do a third array for the blue channel that just checks whether
 		#the angle has changed, which will be active when there's dense delay
 		#returns like in a 5x5. Will be about the same for a 3x3
 		angleChange.fill(0.0)
-		for t: int in range(2,arraySize-1,2):
+		for t: int in range(2,arraySize-1):
 			angleChange[t] = (dispDelays[t]-dispDelays[t-2])*(dispDelays[t]-dispDelays[t-2])*512.0
 			most += (angleChange[t]*adjustBlue[t])
 		blueAmt = most - (greenAmt+redAmt)
@@ -283,7 +283,7 @@ func _pressed():
 				gold[entries] = delays[entries]
 				#podium of the six best yet
 			
-			var editseats: float =  get_parent().get_node("Seats").text.to_float()
+			#var editseats: float =  get_parent().get_node("Seats").text.to_float()
 			display.fill(Color.BLACK)
 			var maxGreen: float = 0.0
 			var maxBlue: float = 0.0
@@ -292,14 +292,13 @@ func _pressed():
 					maxGreen = invDelays[t]
 				if (maxBlue < angleChange[t]):
 					maxBlue = angleChange[t]
-			for t: int in range(1,arraySize-1,2):
+			for t: int in range(1,arraySize-1):
 				var r: float = 256-spacings[t]
 				if (spacings[t] == 0.0):
 					r = 0.0
 				var g: float = sqrt(invDelays[t+1] / maxGreen) * 256.0
 				var b: float = sqrt(angleChange[t+1] / maxBlue) * 256.0
 				display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
-				display.set_pixel((t%512)+1,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
 			greenAmt = (greenAmt/most)*512.0
 			redAmt = (redAmt/most)*512.0
@@ -316,7 +315,7 @@ func _pressed():
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
 			var targetseats: float =  get_parent().get_node("targetSeats").text.to_float()
-			get_parent().get_node("prevScoreTwo").text = str(most*(1.0+(abs((seats-targetseats)/targetseats)/sqrt(sqrt(sqrt(total))))))
+			get_parent().get_node("prevScoreTwo").text = str(most*(1.0+(abs((seats-targetseats)/targetseats)/sqrt(sqrt(total)))))
 			var venue: String = "room"
 			if (seats > 100):
 				venue = "club"
