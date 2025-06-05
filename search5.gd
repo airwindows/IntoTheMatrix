@@ -47,7 +47,7 @@ func _pressed():
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
-		adjustGreen[t] = ((drySample*(1.0-x))+(wetSample*x))*arraySize
+		adjustGreen[t] = ((drySample*(1.0-x))+(wetSample*x))*(1.0+(0.0001*arraySize))
 	var adjustRed: PackedFloat32Array
 	adjustRed.resize(arraySize)
 	drySample = get_parent().get_node("Controls3").text.unicode_at(0)-65.0
@@ -55,7 +55,7 @@ func _pressed():
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
-		adjustRed[t] = ((drySample*(1.0-x))+(wetSample*x))*sqrt(arraySize)
+		adjustRed[t] = ((drySample*(1.0-x))+(wetSample*x))
 	var adjustBlue: PackedFloat32Array
 	adjustBlue.resize(arraySize)
 	drySample = get_parent().get_node("Controls5").text.unicode_at(0)-65.0
@@ -63,7 +63,7 @@ func _pressed():
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
-		adjustBlue[t] = (drySample*(1.0-x)) + (wetSample*x)
+		adjustBlue[t] = ((drySample*(1.0-x))+(wetSample*x))*(1.0+(0.0001*arraySize))
 	
 	var delays: PackedInt32Array
 	delays.resize(26)
@@ -172,7 +172,7 @@ func _pressed():
 								#green is how much the stacked echoes stack
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = dispDelays[t]
-			dispDelays[t] = dispDelays[t] / (1.570796326794897-sin((float(t)/float(longest/14.0))))
+			dispDelays[t] = dispDelays[t] / (4.0-abs(sin((float(t)/float(longest/14.0)))))
 			most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		greenAmt = most
 		#now, do another array in which we're measuring spacings between
@@ -289,9 +289,7 @@ func _pressed():
 			redAmt = (redAmt/most)*512.0
 			blueAmt = (blueAmt/most)*512.0
 			for t: int in range(0,greenAmt):
-				var samplePosition: int = t+(((longest-shortest)/2)+shortest)
-				if (samplePosition < arraySize):
-					display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,pow((invDelays[samplePosition]+invDelays[samplePosition+1])/maxGreen,2.0)*192.0,0))
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,64,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(128,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
