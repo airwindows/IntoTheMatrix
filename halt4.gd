@@ -85,22 +85,22 @@ func _pressed():
 	suffix = suffix + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
 	suffix = suffix + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
 	suffix = suffix + " 4x4 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
-	var taps: String = "const int shortA = "+str(delaysB[1])+"; "
-	taps = taps+"const int shortB = "+str(delaysB[2])+"; "
-	taps = taps+"const int shortC = "+str(delaysB[3])+"; "
-	taps = taps+"const int shortD = "+str(delaysB[4])+"; "
-	taps = taps+"const int shortE = "+str(delaysB[5])+"; "
-	taps = taps+"const int shortF = "+str(delaysB[6])+"; "
-	taps = taps+"const int shortG = "+str(delaysB[7])+"; "
-	taps = taps+"const int shortH = "+str(delaysB[8])+"; "
-	taps = taps+"const int shortI = "+str(delaysB[9])+"; "
-	taps = taps+"const int shortJ = "+str(delaysB[10])+"; "
-	taps = taps+"const int shortK = "+str(delaysB[11])+"; "
-	taps = taps+"const int shortL = "+str(delaysB[12])+"; "
-	taps = taps+"const int shortM = "+str(delaysB[13])+"; "
-	taps = taps+"const int shortN = "+str(delaysB[14])+"; "
-	taps = taps+"const int shortO = "+str(delaysB[15])+"; "
-	taps = taps+"const int shortP = "+str(delaysB[16])+"; //"
+	var taps: String = "const int d4A = "+str(delaysB[1])+"; "
+	taps = taps+"const int d4B = "+str(delaysB[2])+"; "
+	taps = taps+"const int d4C = "+str(delaysB[3])+"; "
+	taps = taps+"const int d4D = "+str(delaysB[4])+"; "
+	taps = taps+"const int d4E = "+str(delaysB[5])+"; "
+	taps = taps+"const int d4F = "+str(delaysB[6])+"; "
+	taps = taps+"const int d4G = "+str(delaysB[7])+"; "
+	taps = taps+"const int d4H = "+str(delaysB[8])+"; "
+	taps = taps+"const int d4I = "+str(delaysB[9])+"; "
+	taps = taps+"const int d4J = "+str(delaysB[10])+"; "
+	taps = taps+"const int d4K = "+str(delaysB[11])+"; "
+	taps = taps+"const int d4L = "+str(delaysB[12])+"; "
+	taps = taps+"const int d4M = "+str(delaysB[13])+"; "
+	taps = taps+"const int d4N = "+str(delaysB[14])+"; "
+	taps = taps+"const int d4O = "+str(delaysB[15])+"; "
+	taps = taps+"const int d4P = "+str(delaysB[16])+"; //"
 	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define FOURBYFOUR true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
 	
 	get_parent().get_node("Code").text = taps

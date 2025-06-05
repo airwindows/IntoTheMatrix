@@ -69,16 +69,15 @@ func _pressed():
 	suffix = suffix + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
 	suffix = suffix + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
 	suffix = suffix + " 3x3 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
-	var taps: String = "const int earlyA = "+str(delaysB[1])+"; "
-	taps = taps+"const int earlyB = "+str(delaysB[2])+"; "
-	taps = taps+"const int earlyC = "+str(delaysB[3])+"; "
-	taps = taps+"const int earlyD = "+str(delaysB[4])+"; "
-	taps = taps+"const int earlyE = "+str(delaysB[5])+"; "
-	taps = taps+"const int earlyF = "+str(delaysB[6])+"; "
-	taps = taps+"const int earlyG = "+str(delaysB[7])+"; "
-	taps = taps+"const int earlyH = "+str(delaysB[8])+"; "
-	taps = taps+"const int earlyI = "+str(delaysB[9])+"; "
-	taps = taps+"const int predelay = "+str(shortest)+"; //"
+	var taps: String = "const int d3A = "+str(delaysB[1])+"; "
+	taps = taps+"const int d3B = "+str(delaysB[2])+"; "
+	taps = taps+"const int d3C = "+str(delaysB[3])+"; "
+	taps = taps+"const int d3D = "+str(delaysB[4])+"; "
+	taps = taps+"const int d3E = "+str(delaysB[5])+"; "
+	taps = taps+"const int d3F = "+str(delaysB[6])+"; "
+	taps = taps+"const int d3G = "+str(delaysB[7])+"; "
+	taps = taps+"const int d3H = "+str(delaysB[8])+"; "
+	taps = taps+"const int d3I = "+str(delaysB[9])+"; //"
 	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define THREEBYTHREE true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
 	
 	get_parent().get_node("Code").text = taps

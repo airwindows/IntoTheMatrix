@@ -4,6 +4,9 @@ var begins: PackedInt32Array = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,6
 var gold: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var silver: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var bronze: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+var steel: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+var brass: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+var copper: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var display: Image
 var total: int = 0
 var since: int = 0
@@ -25,6 +28,9 @@ func _pressed():
 	var dispDelays: PackedFloat32Array
 	dispDelays.resize(arraySize)
 	dispDelays.fill(0.0)
+	var invDelays: PackedFloat32Array
+	invDelays.resize(arraySize)
+	invDelays.fill(0.0)
 	var spacings: PackedFloat32Array
 	spacings.resize(arraySize)
 	spacings.fill(0.0)
@@ -41,7 +47,7 @@ func _pressed():
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
-		adjustGreen[t] = ((drySample*(1.0-x))+(wetSample*x))*sqrt(arraySize)
+		adjustGreen[t] = ((drySample*(1.0-x))+(wetSample*x))*arraySize
 	var adjustRed: PackedFloat32Array
 	adjustRed.resize(arraySize)
 	drySample = get_parent().get_node("Controls3").text.unicode_at(0)-65.0
@@ -83,13 +89,22 @@ func _pressed():
 			#shift 23 seems to produce a decent amount of randomness as it goes
 			#less shift means increasing amounts of randomness, which will help kickstart things
 			if (select < 7 || select > begins[roomsize*100]):
-				if (select % 4 < 2):
+				if (select % 7 < 2):
 					delays[entries] = gold[entries] #0 or 1 uses Gold
 				else:
-					if (select % 4 < 3):
+					if (select % 7 < 3):
 						delays[entries] = silver[entries] #2 uses Silver
 					else:
-						delays[entries] = bronze[entries] #3 uses Bronze
+						if (select % 7 < 4):
+							delays[entries] = bronze[entries] #3 uses Bronze
+						else:
+							if (select % 7 < 5):
+								delays[entries] = steel[entries] #4 uses Steel
+							else:
+								if (select % 7 < 6):
+									delays[entries] = brass[entries] #5 uses Brass
+								else:
+									delays[entries] = copper[entries] #6 uses Copper
 				if (delays[entries] == 0):
 					delays[entries] = (select % begins[roomsize*100])+3
 			else:
@@ -109,13 +124,10 @@ func _pressed():
 						for e: int in range (25, 31):
 							for f: int in range (31, 37):
 								var total: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]+delays[f]
-								if (longest < total):
-									longest = total #now we have the final delay time
-								if (shortest > total):
-									shortest = total #now we have the final delay time
+								longest = max(longest,total)
+								shortest = min(shortest,total)
 								if (total < arraySize):
 									dispDelays[total] += brightness
-									most += (dispDelays[total]*dispDelays[total]*adjustGreen[total])
 									#green is how much the stacked echoes stack
 		#rotate
 		rotated[1] = delays[31]
@@ -167,15 +179,17 @@ func _pressed():
 						for e: int in range (25, 31):
 							for f: int in range (31, 37):
 								var total: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]+delays[f]
-								if (longest < total):
-									longest = total #now we have the final delay time
-								if (shortest > total):
-									shortest = total #now we have the final delay time
+								longest = max(longest,total)
+								shortest = min(shortest,total)
 								if (total < arraySize):
 									dispDelays[total] += brightness
-									most += (dispDelays[total]*dispDelays[total]*adjustGreen[total])
 									#green is how much the stacked echoes stack
+		for t: int in range(1,arraySize-1):
+			invDelays[t] = dispDelays[t] * (1.570796326794897-sin((float(t)/float(arraySize))*8.0))#show green as wider area
+			dispDelays[t] = dispDelays[t] / (1.570796326794897-sin((float(t)/float(arraySize))*8.0))#opposite effect!
+			most += (dispDelays[t]*dispDelays[t]*dispDelays[t]*adjustGreen[t])
 		greenAmt = most
+			
 		#now, do another array in which we're measuring spacings between
 		#the active taps of the first delay. We want these spacings to
 		#be as irregular as possible, so just like stacking up delay taps
@@ -212,7 +226,7 @@ func _pressed():
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
 			#since we are not in the zone, let's also tune the seat number
-			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
+			var seats: int = int((milliseconds/2.95)*(milliseconds/2.95))
 			var targetseats: float = get_parent().get_node("targetSeats").text.to_float()
 			var editseats: float =  get_parent().get_node("Seats").text.to_float()
 			if seats > targetseats:
@@ -261,25 +275,28 @@ func _pressed():
 			#let's try only updating those text boxes when we actually need to
 			
 			for entries: int in range(0,37):
+				copper[entries] = brass[entries]
+				brass[entries] = steel[entries]
+				steel[entries] = bronze[entries]
 				bronze[entries] = silver[entries]
 				silver[entries] = bronze[entries]
 				gold[entries] = delays[entries]
-				#podium of the three best yet
+				#podium of the six best yet
 			
 			var editseats: float =  get_parent().get_node("Seats").text.to_float()
 			display.fill(Color.BLACK)
 			var maxGreen: float = 0.0
 			var maxBlue: float = 0.0
 			for t: int in range(1,arraySize-1):
-				if (maxGreen < dispDelays[t]):
-					maxGreen = dispDelays[t]
+				if (maxGreen < invDelays[t]):
+					maxGreen = invDelays[t]
 				if (maxBlue < angleChange[t]):
 					maxBlue = angleChange[t]
 			for t: int in range(1,arraySize-1,2):
 				var r: float = 256-spacings[t]
 				if (spacings[t] == 0.0):
 					r = 0.0
-				var g: float = sqrt(dispDelays[t+1] / maxGreen) * 256.0
+				var g: float = sqrt(invDelays[t+1] / maxGreen) * 256.0
 				var b: float = sqrt(angleChange[t+1] / maxBlue) * 256.0
 				display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 				display.set_pixel((t%512)+1,(t/512),Color.from_rgba8(r,g,b))
@@ -290,7 +307,7 @@ func _pressed():
 			for t: int in range(0,greenAmt):
 				var samplePosition: int = t+(((longest-shortest)/2)+shortest)
 				if (samplePosition < arraySize):
-					display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,pow((dispDelays[samplePosition]+dispDelays[samplePosition+1])/maxGreen,2.0)*192.0,0))
+					display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,pow((invDelays[samplePosition]+invDelays[samplePosition+1])/maxGreen,2.0)*192.0,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(128,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
