@@ -118,17 +118,15 @@ func _pressed():
 		#do primary matrix calculation
 		dispDelays.fill(0.0)
 		for a: int in range (1,4):
-			var dA: int = int(delays[a])
 			for b: int in range (4,7):
-				var dB: int = int(delays[b])
 				for c: int in range (7,10):
-					var dC: int = int(delays[c])
-					if (longest < dA+dB+dC):
-						longest = dA+dB+dC #now we have the final delay time
-					if (shortest > dA+dB+dC):
-						shortest = dA+dB+dC #now we have the final delay time
-					var x: int = dA+dB+dC
-					dispDelays[x] += brightness
+					var total: int = delays[a]+delays[b]+delays[c]
+					longest = max(longest,total)
+					shortest = min(shortest,total)
+					if (total < arraySize):
+						dispDelays[total] += brightness
+					else:
+						dispDelays[arraySize/2] += brightness
 					#green is how much the stacked echoes stack
 		#rotate
 		rotated[1] = delays[7]
@@ -142,19 +140,16 @@ func _pressed():
 		rotated[9] = delays[3]
 		#do cross matrix calculation
 		for a: int in range (1,4):
-			var dA: int = int(rotated[a])
 			for b: int in range (4,7):
-				var dB: int = int(rotated[b])
 				for c: int in range (7,10):
-					var dC: int = int(rotated[c])
-					if (longest < dA+dB+dC):
-						longest = dA+dB+dC #now we have the final delay time
-					if (shortest > dA+dB+dC):
-						shortest = dA+dB+dC #now we have the final delay time
-					var x: int = dA+dB+dC
-					if (x < arraySize):
-						dispDelays[x] += brightness
-						#green is how much the stacked echoes stack
+					var total: int = rotated[a]+rotated[b]+rotated[c]
+					longest = max(longest,total)
+					shortest = min(shortest,total)
+					if (total < arraySize):
+						dispDelays[total] += brightness
+					else:
+						dispDelays[arraySize/2] += brightness
+					#green is how much the stacked echoes stack
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = sqrt(dispDelays[t])
 			dispDelays[t] = dispDelays[t] / (4.0-abs(sin((float(t)/float(longest/14.0)))))

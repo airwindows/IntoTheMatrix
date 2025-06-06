@@ -128,7 +128,9 @@ func _pressed():
 								shortest = min(shortest,total)
 								if (total < arraySize):
 									dispDelays[total] += brightness
-									#green is how much the stacked echoes stack
+								else:
+									dispDelays[arraySize/2] += brightness
+								#green is how much the stacked echoes stack
 		#rotate
 		rotated[1] = delays[31]
 		rotated[2] = delays[25]
@@ -183,7 +185,9 @@ func _pressed():
 								shortest = min(shortest,total)
 								if (total < arraySize):
 									dispDelays[total] += brightness
-									#green is how much the stacked echoes stack
+								else:
+									dispDelays[arraySize/2] += brightness
+								#green is how much the stacked echoes stack
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = dispDelays[t]*sqrt(dispDelays[t])
 			dispDelays[t] = dispDelays[t] / (4.0-abs(sin((float(t)/float(longest/14.0)))))
