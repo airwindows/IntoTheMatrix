@@ -10,6 +10,8 @@ var copper: PackedInt32Array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 var display: Image
 var total: int = 0
 var since: int = 0
+var best: int = 0
+var changes: int = 0
 # Called when the node enters the scene tree for the first time.
 
 func _pressed():
@@ -282,6 +284,11 @@ func _pressed():
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(128,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,256))
+			#that has drawn the bar chart: influence of each constraint
+			changes += 1
+			if (since > best):
+				best = since
+			get_parent().get_node("bestIterations").text = "update #"+str(changes) + " at least " + str(best) + "/1"
 			since = 0
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
@@ -304,8 +311,7 @@ func _pressed():
 			get_parent().get_node("TextureRect").texture = ImageTexture.create_from_image(display)
 	get_parent().get_node("Iterations").text = str(floori(sqrt(131072.0/(Time.get_unix_time_from_system()-timing))))
 	var billion: int = get_parent().get_node("totalIterations").text.to_int()
-	var million: int = get_parent().get_node("sinceIterations").text.to_int()
-	if (fireRedraw || billion > 16000000 || million > 1000000): #in the loop, we've updated with a new best
+	if (fireRedraw || billion > 16000000): #in the loop, we've updated with a new best
 		get_parent().get_node("halt3")._pressed()
 	else:
 		get_parent().get_node("Timer3").paused = false

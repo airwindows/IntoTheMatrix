@@ -88,6 +88,5 @@ func _pressed():
 	get_parent().get_node("search4").disabled = false
 	get_parent().get_node("halt4").disabled = false
 	var billion: int = get_parent().get_node("totalIterations").text.to_int()
-	var million: int = get_parent().get_node("sinceIterations").text.to_int()
-	if (get_parent().get_node("Generating").button_pressed && billion < 16000000 && million < 1000000):
+	if (get_parent().get_node("Generating").button_pressed && billion < 16000000):
 		get_parent().get_node("Timer3").paused = false
