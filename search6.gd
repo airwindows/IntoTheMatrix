@@ -81,6 +81,8 @@ func _pressed():
 	since += iterations
 	get_parent().get_node("totalIterations").text = str(total)
 	get_parent().get_node("sinceIterations").text = str(since)
+	if (since > 720000):
+		get_parent().get_node("totalIterations").text = "Finished"
 	for dummy: int in range(0,iterations):
 		var roomsize: float = sqrt(get_parent().get_node("Seats").text.to_float())/24.0 #seats, in K
 		if (roomsize > 26.68):
@@ -192,20 +194,28 @@ func _pressed():
 								else:
 									dispDelays[arraySize/2] += brightness
 								#green is how much the stacked echoes stack
+		var greenBrt: float = 0.0
+		var greenUnBrt: float = 1.0
 		for t: int in range(1,arraySize-1):
-			invDelays[t] = dispDelays[t]*sqrt(dispDelays[t])
-			dispDelays[t] = dispDelays[t] / (4.0-abs(sin((float(t)/float(longest/14.0)))))
-			most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
+			invDelays[t] = sqrt(dispDelays[t])
+			if (dispDelays[t] > 0.0):
+				greenUnBrt += 1.0
+				dispDelays[t] = dispDelays[t] / (4.0-abs(sin((float(t)/float(longest/14.0)))))
+				most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		if is_nan(most):
 			most = 9999999999.9
+		greenAmt = most
+		greenBrt = 0.0
 		#careful of getting weird bad values somehow
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
 					most -= (arraySize*0.0005)
+					greenBrt += 1.0
+					greenUnBrt -= 1.0
+		most = max(most,0.0)
 		#for very sparse arrangements, reward primes
 		#this is measuring primality of the COMBINED matrix delays, not individual ones
-		greenAmt = most
 		#now, do another array in which we're measuring spacings between
 		#the active taps of the first delay. We want these spacings to
 		#be as irregular as possible, so just like stacking up delay taps
@@ -227,21 +237,23 @@ func _pressed():
 		#here's the thing though: what we should do is measure every departure from the previous
 		#spacings, in a 'slew measuring' way, because the evenest distribution will be best.
 		#These have spacings of TWO because we are using prime numbers for everything: only odd.
+		redAmt = 0.0
 		for t: int in range(2,arraySize-1):
 			most += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
+			redAmt += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
 		if is_nan(most):
 			most = 9999999999.9
-		redAmt = most - greenAmt
 		#now, do a third array for the blue channel that just checks whether
 		#the angle has changed, which will be active when there's dense delay
 		#returns like in a 5x5. Will be about the same for a 3x3
 		angleChange.fill(0.0)
+		blueAmt = 0.0
 		for t: int in range(2,arraySize-1):
 			angleChange[t] = (dispDelays[t]-dispDelays[t-2])*(dispDelays[t]-dispDelays[t-2])*512.0
 			most += (angleChange[t]*adjustBlue[t])
+			blueAmt += (angleChange[t]*adjustBlue[t])
 		if is_nan(most):
 			most = 9999999999.9
-		blueAmt = most - (greenAmt+redAmt)
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
@@ -321,11 +333,15 @@ func _pressed():
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
-			greenAmt = (greenAmt/most)*512.0
-			redAmt = (redAmt/most)*512.0
-			blueAmt = (blueAmt/most)*512.0
-			for t: int in range(0,greenAmt):
+			var sum: float = greenAmt+redAmt+blueAmt
+			greenAmt = (greenAmt/sum)*512.0
+			greenBrt = max(greenAmt-(greenBrt*(greenBrt/greenUnBrt)),0.0)
+			redAmt = (redAmt/sum)*512.0
+			blueAmt = (blueAmt/sum)*512.0
+			for t: int in range(0,greenBrt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,64,0))
+			for t: int in range(greenBrt,greenAmt):
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,128,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(128,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
@@ -356,8 +372,8 @@ func _pressed():
 			get_parent().get_node("TextureRect").scale.y = 1.0
 			get_parent().get_node("TextureRect").texture = ImageTexture.create_from_image(display)
 	get_parent().get_node("Iterations").text = str(floori(sqrt(16384.0/(Time.get_unix_time_from_system()-timing))))
-	var billion: int = get_parent().get_node("totalIterations").text.to_int()
-	if (fireRedraw || billion > 16000000): #in the loop, we've updated with a new best
+	var halt: String = get_parent().get_node("totalIterations").text
+	if (fireRedraw || halt.contains("Finished")): #in the loop, we've updated with a new best
 		get_parent().get_node("halt6")._pressed()
 	else:
 		get_parent().get_node("Timer6").paused = false

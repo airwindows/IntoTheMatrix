@@ -22,7 +22,7 @@ config/macos_native_icon="res://IntoTheMatrix.icns"
 [display]
 
 window/size/viewport_width=1240
-window/size/viewport_height=280
+window/size/viewport_height=270
 window/size/resizable=false
 
 [dotnet]

@@ -110,6 +110,6 @@ func _pressed():
 	get_parent().get_node("halt5").disabled = false
 	get_parent().get_node("search3").disabled = false
 	get_parent().get_node("halt3").disabled = false
-	var billion: int = get_parent().get_node("totalIterations").text.to_int()
-	if (get_parent().get_node("Generating").button_pressed && billion < 16000000):
+	var halt: String = get_parent().get_node("totalIterations").text
+	if (get_parent().get_node("Generating").button_pressed && !halt.contains("Finished")):
 		get_parent().get_node("Timer4").paused = false
