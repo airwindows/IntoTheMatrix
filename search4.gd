@@ -171,7 +171,7 @@ func _pressed():
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
 				greenUnBrt += 1.0
-				dispDelays[t] = dispDelays[t] / (4.0-abs(sin((float(t)/float(longest/14.0)))))
+				dispDelays[t] = dispDelays[t] / (3.1415-abs(sin((float(t)/float(longest/14.0)))))
 				most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		if is_nan(most):
 			most = 9999999999.9
@@ -180,7 +180,7 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= (arraySize*0.0005)
+					most -= (arraySize*0.000618)
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
 		most = max(most,0.0)

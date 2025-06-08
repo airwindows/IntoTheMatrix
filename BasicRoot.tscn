@@ -469,9 +469,9 @@ script = ExtResource("7_4gl0g")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 12.0
-offset_top = 169.0
+offset_top = 171.0
 offset_right = 257.0
-offset_bottom = 193.0
+offset_bottom = 195.0
 text = "dimensions and type of room"
 scroll_active = false
 autowrap_mode = 0
@@ -486,14 +486,13 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="totalIterations" type="RichTextLabel" parent="."]
-offset_left = 565.0
-offset_top = 207.0
-offset_right = 661.0
-offset_bottom = 231.0
+offset_left = 734.0
+offset_top = 208.0
+offset_right = 830.0
+offset_bottom = 232.0
 text = "total tries"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 2
 
 [node name="sinceIterations" type="RichTextLabel" parent="."]
 offset_left = 701.0
@@ -505,13 +504,14 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="bestIterations" type="RichTextLabel" parent="."]
-offset_left = 586.0
-offset_top = 231.0
-offset_right = 822.0
-offset_bottom = 255.0
+offset_left = 551.0
+offset_top = 233.0
+offset_right = 849.0
+offset_bottom = 257.0
 text = "new highscores and odds"
 scroll_active = false
 autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="."]
 offset_left = 78.0
@@ -528,18 +528,18 @@ offset_bottom = 222.0
 text = "score:"
 
 [node name="RichTextLabel11" type="RichTextLabel" parent="."]
-offset_left = 673.0
-offset_top = 207.0
-offset_right = 844.0
-offset_bottom = 231.0
-text = "variations tried so far"
+offset_left = 554.0
+offset_top = 208.0
+offset_right = 737.0
+offset_bottom = 232.0
+text = "Variations tried so far:"
 
 [node name="RichTextLabel12" type="RichTextLabel" parent="."]
 offset_left = 543.0
 offset_top = 182.0
-offset_right = 850.0
+offset_right = 855.0
 offset_bottom = 206.0
-text = "Matrix delay is paths across or down"
+text = "Matrix delay: any path across or down"
 horizontal_alignment = 1
 
 [node name="RichTextLabel8" type="RichTextLabel" parent="."]
