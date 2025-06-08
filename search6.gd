@@ -198,6 +198,13 @@ func _pressed():
 			most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		if is_nan(most):
 			most = 9999999999.9
+		#careful of getting weird bad values somehow
+		for t: int in range(1,min(arraySize,2667)):
+			if (begins[t] < arraySize):
+				if (dispDelays[begins[t]] > 0.0):
+					most -= (arraySize*0.0005)
+		#for very sparse arrangements, reward primes
+		#this is measuring primality of the COMBINED matrix delays, not individual ones
 		greenAmt = most
 		#now, do another array in which we're measuring spacings between
 		#the active taps of the first delay. We want these spacings to
