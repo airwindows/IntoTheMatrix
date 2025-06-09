@@ -67,7 +67,7 @@ func _pressed():
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
-		adjustBlue[t] = ((drySample*(1.0-x))+(wetSample*x))*(1.0+(0.0001*arraySize))
+		adjustBlue[t] = ((drySample*(1.0-x))+(wetSample*x))
 	
 	var delays: PackedInt32Array
 	delays.resize(17)
@@ -180,7 +180,7 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= (arraySize*0.000618)
+					most -= (arraySize*0.001)
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
 		most = max(most,0.0)
@@ -192,10 +192,12 @@ func _pressed():
 		#is bad, having 'em all spaced the same distance is bad.
 		spacings.fill(0.0)
 		var zeroRun: int = 0
+		var zeroTotal: float = 0.0
 		var echoRun: int = 0
 		for t: int in range(2,arraySize-1):
 			if (dispDelays[t] == 0.0):
 				zeroRun += 1
+				zeroTotal += 1.0
 				spacings[echoRun] += brightness
 				spacings[echoRun] *= (sqrt(echoRun*0.5))
 				echoRun = 0
@@ -206,11 +208,11 @@ func _pressed():
 				zeroRun = 0
 		#here's the thing though: what we should do is measure every departure from the previous
 		#spacings, in a 'slew measuring' way, because the evenest distribution will be best.
-		#These have spacings of TWO because we are using prime numbers for everything: only odd.
 		redAmt = 0.0
 		for t: int in range(2,arraySize-1):
-			most += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
-			redAmt += (abs(spacings[t]-spacings[t-2])*adjustRed[t])
+			most += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/arraySize))
+			redAmt += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/arraySize))
+		
 		if is_nan(most):
 			most = 9999999999.9
 		#now, do a third array for the blue channel that just checks whether
@@ -219,7 +221,7 @@ func _pressed():
 		angleChange.fill(0.0)
 		blueAmt = 0.0
 		for t: int in range(2,arraySize-1):
-			angleChange[t] = (dispDelays[t]-dispDelays[t-2])*(dispDelays[t]-dispDelays[t-2])*512.0
+			angleChange[t] = (dispDelays[t]-dispDelays[t-1])*(dispDelays[t]-dispDelays[t-1])*512.0
 			most += (angleChange[t]*adjustBlue[t])
 			blueAmt += (angleChange[t]*adjustBlue[t])
 		if is_nan(most):
