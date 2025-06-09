@@ -323,7 +323,7 @@ func _pressed():
 			#that has drawn the reverb on the display, now for the chart
 			var sum: float = greenAmt+redAmt+blueAmt
 			greenAmt = (greenAmt/sum)*512.0
-			greenBrt = max(greenAmt-(greenBrt*(greenBrt/greenUnBrt)),0.0)
+			greenBrt = max(greenAmt-(greenBrt*(greenBrt/(greenUnBrt*0.2))),0.0)
 			redAmt = (redAmt/sum)*512.0
 			blueAmt = (blueAmt/sum)*512.0
 			for t: int in range(0,greenBrt):
@@ -338,7 +338,7 @@ func _pressed():
 			changes += 1
 			if (since > best):
 				best = since
-			get_parent().get_node("bestIterations").text = "update #"+str(changes) + " at least " + str(best) + "/1"
+			get_parent().get_node("bestIterations").text = "Update #"+str(changes) + " at least " + str(best) + "/1"
 			since = 0
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
