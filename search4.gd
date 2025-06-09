@@ -171,7 +171,7 @@ func _pressed():
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
 				greenUnBrt += 1.0
-				dispDelays[t] = dispDelays[t] / (3.1415-abs(sin((float(t)/float(longest/14.0)))))
+				dispDelays[t] = dispDelays[t] / (1.618-abs(sin((float(t)/float(longest/14.0)))))
 				most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		if is_nan(most):
 			most = 9999999999.9
@@ -197,7 +197,7 @@ func _pressed():
 		for t: int in range(2,arraySize-1):
 			if (dispDelays[t] == 0.0):
 				zeroRun += 1
-				zeroTotal += 1.0
+				zeroTotal += 1.618 # :D
 				spacings[echoRun] += brightness
 				spacings[echoRun] *= (sqrt(echoRun*0.5))
 				echoRun = 0
@@ -210,8 +210,8 @@ func _pressed():
 		#spacings, in a 'slew measuring' way, because the evenest distribution will be best.
 		redAmt = 0.0
 		for t: int in range(2,arraySize-1):
-			most += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/arraySize))
-			redAmt += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/arraySize))
+			most += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/(arraySize*sqrt(arraySize))))
+			redAmt += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/(arraySize*sqrt(arraySize))))
 		
 		if is_nan(most):
 			most = 9999999999.9
@@ -221,7 +221,7 @@ func _pressed():
 		angleChange.fill(0.0)
 		blueAmt = 0.0
 		for t: int in range(2,arraySize-1):
-			angleChange[t] = (dispDelays[t]-dispDelays[t-1])*(dispDelays[t]-dispDelays[t-1])*512.0
+			angleChange[t] = (dispDelays[t]-dispDelays[t-1])*(dispDelays[t]-dispDelays[t-1])*8.0
 			most += (angleChange[t]*adjustBlue[t])
 			blueAmt += (angleChange[t]*adjustBlue[t])
 		if is_nan(most):
@@ -306,17 +306,17 @@ func _pressed():
 			#that has drawn the reverb on the display, now for the chart
 			var sum: float = greenAmt+redAmt+blueAmt
 			greenAmt = (greenAmt/sum)*512.0
-			greenBrt = max(greenAmt-(greenBrt*(greenBrt/(greenUnBrt*0.2))),0.0)
+			greenBrt = max(greenAmt-(greenAmt*(greenBrt/greenUnBrt)),0.0)
 			redAmt = (redAmt/sum)*512.0
 			blueAmt = (blueAmt/sum)*512.0
 			for t: int in range(0,greenBrt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,64,0))
 			for t: int in range(greenBrt,greenAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,128,0))
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,192,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(128,0,0))
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(192,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,256))
+				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,192))
 			#that has drawn the bar chart: influence of each constraint
 			changes += 1
 			if (since > best):

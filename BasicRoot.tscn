@@ -284,7 +284,7 @@ offset_left = 270.0
 offset_top = 137.0
 offset_right = 299.0
 offset_bottom = 175.0
-text = "H"
+text = "G"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -294,7 +294,7 @@ offset_left = 504.0
 offset_top = 137.0
 offset_right = 533.0
 offset_bottom = 175.0
-text = "H"
+text = "C"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -304,7 +304,7 @@ offset_left = 270.0
 offset_top = 177.0
 offset_right = 299.0
 offset_bottom = 215.0
-text = "G"
+text = "O"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -314,7 +314,7 @@ offset_left = 504.0
 offset_top = 178.0
 offset_right = 533.0
 offset_bottom = 216.0
-text = "G"
+text = "J"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -324,7 +324,7 @@ offset_left = 270.0
 offset_top = 218.0
 offset_right = 299.0
 offset_bottom = 256.0
-text = "F"
+text = "O"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -334,7 +334,7 @@ offset_left = 505.0
 offset_top = 218.0
 offset_right = 534.0
 offset_bottom = 256.0
-text = "F"
+text = "T"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -379,8 +379,7 @@ offset_left = 869.0
 offset_top = 10.0
 offset_right = 1232.0
 offset_bottom = 264.0
-placeholder_text = "How To Use This Crazy Thing: 
-The 99999999 is score tracking: lower is better. Total Tries counts iterations.
+placeholder_text = "What On Earth Is All This
 G, R and B are separate fitness functions.
 Each one has a text box to the left, and to the right. A-Z fo 0 to maximum effect.
 They measure something bad about the reverb: G 'density', R 'spacing', B 'bright'.
@@ -389,18 +388,21 @@ There's a curve applied so the right settings still take effect, even if the ver
 doesn't extend all the way to the end of the evaluation window.
 Making G/Density at the START, 'Z' means 'LESS sound up front, all in the tail like a hall'
 Making G/Density at the END 'Z' means 'early sound OK but have it cut off like a plate'
+It's GC for a hall-like sound but can be CG (or more) to weight towards early plate-like density.
+On smaller matrices if you don't see enough green 'space', increase it toward ZZ.
 More R/Spacing in either place will make stuff more natural and distant and subdued.
+It's OJ to have naturalness and darkness start about equal, but to let it go spacier in the tail.
 Making B/Bright at the START, 'Z' means 'LESS brightness up front for a darker effect'
 Making B/Bright at the END, 'Z' means 'make the reverb tail get darker with time'
+It's OT to have naturalness and darkness start about equal, but to make the tail darker.
 The bars of color at the bottom show how much each quality affects the result:
 for instance if Bright is hard at work verbs will be dark and the blue bar's wider.
-It seems like having any R or B produces a strong effect: originally, all this ran
-using only the Green channel, and only measured delay loudnesses. That means
-it's possible to get the result you want, showing only Green.
-Dark green is the proportion of end result delays that aren't primes.
-Bright green is those that are. Note: each dot plotted is not any of the delays,
-but one of the COMBINATIONS of four delays, which are legion! It's those that
-should be primes for best sound and verb layering."
+Dark green is the proportion of end result delays that aren't primes. Bright green is those that are.
+This will be different for each matrix size: mostly green is good but some R and B are good too.
+If a color predominates, turn the letters for that color down closer to BB.
+Literally picking AA for any of the fitness functions turns it off completely.
+Note: each dot plotted is not any of the delays, but one of the COMBINATIONS of four delays, which are legion!
+It's those that should be primes for best sound and verb layering."
 wrap_mode = 1
 
 [node name="search6" type="Button" parent="."]
