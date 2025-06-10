@@ -258,6 +258,9 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
+		if (int((milliseconds/2.95)*(milliseconds/2.95))>get_parent().get_node("targetSeats").text.to_float()*1.618):
+			most = 9999999999.9
+		
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
 			#since we are not in the zone, let's also tune the seat number
 			var seats: int = int((milliseconds/2.95)*(milliseconds/2.95))
