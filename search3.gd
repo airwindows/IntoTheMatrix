@@ -132,7 +132,7 @@ func _pressed():
 					if (total < arraySize):
 						dispDelays[total] += brightness
 					else:
-						dispDelays[arraySize/2] += brightness
+						dispDelays[1] += 1.0
 					#green is how much the stacked echoes stack
 		#rotate
 		rotated[1] = delays[7]
@@ -154,7 +154,7 @@ func _pressed():
 					if (total < arraySize):
 						dispDelays[total] += brightness
 					else:
-						dispDelays[arraySize/2] += brightness
+						dispDelays[1] += 1.0
 					#green is how much the stacked echoes stack
 		var greenBrt: float = 0.0
 		var greenUnBrt: float = 1.0
