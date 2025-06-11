@@ -198,8 +198,8 @@ func _pressed():
 				echoRun += 1
 				spacings[zeroRun] += brightness
 				spacings[zeroRun] *= (sqrt(zeroRun*0.5))
-				if (redAmt < zeroRun*zeroRun):
-					redAmt = zeroRun*zeroRun
+				if (redAmt < zeroRun*adjustRed[t]):
+					redAmt = zeroRun*adjustRed[t]
 				#using Red to weight fiercely against long initial delay
 				#we'll never get here unless we're hitting an actual echo
 				#so final run to end of arraySize doesn't count
