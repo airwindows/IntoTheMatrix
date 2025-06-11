@@ -224,6 +224,7 @@ func _pressed():
 		var zeroRun: int = 0
 		var zeroTotal: float = 0.0
 		var echoRun: int = 0
+		redAmt = 0.0
 		for t: int in range(2,arraySize-1):
 			if (dispDelays[t] == 0.0):
 				zeroRun += 1
@@ -235,10 +236,14 @@ func _pressed():
 				echoRun += 1
 				spacings[zeroRun] += brightness
 				spacings[zeroRun] *= (sqrt(zeroRun*0.5))
+				if (redAmt < zeroRun*zeroRun):
+					redAmt = zeroRun*zeroRun
+				#using Red to weight fiercely against long initial delay
+				#we'll never get here unless we're hitting an actual echo
+				#so final run to end of arraySize doesn't count
 				zeroRun = 0
 		#here's the thing though: what we should do is measure every departure from the previous
 		#spacings, in a 'slew measuring' way, because the evenest distribution will be best.
-		redAmt = 0.0
 		for t: int in range(2,arraySize-1):
 			most += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/(arraySize*sqrt(arraySize))))
 			redAmt += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/(arraySize*sqrt(arraySize))))
