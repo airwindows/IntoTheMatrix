@@ -68,6 +68,14 @@ func _pressed():
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
 		adjustBlue[t] = ((drySample*(1.0-x))+(wetSample*x))
+	var adjustShape: PackedFloat32Array
+	adjustShape.resize(arraySize)
+	drySample = get_parent().get_node("Controls7").text.unicode_at(0)-65.0
+	wetSample = get_parent().get_node("Controls8").text.unicode_at(0)-65.0
+	for t: int in range(0,arraySize):
+		var x: float = (float(t)/float(arraySize))
+		x = 1.0-pow(1.0-x,2)
+		adjustShape[t] = (((drySample*(1.0-x))+(wetSample*x))*0.2)+1.1
 	
 	var delays: PackedInt32Array
 	delays.resize(37)
@@ -200,7 +208,7 @@ func _pressed():
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
 				greenUnBrt += 1.0
-				dispDelays[t] = dispDelays[t] / (1.618-abs(sin((float(t)/float(longest/14.0)))))
+				dispDelays[t] = dispDelays[t] / (adjustShape[t]-abs(sin((float(t)/float(longest/14.0)))))
 				most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		if is_nan(most):
 			most = 9999999999.9
@@ -210,7 +218,7 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= (arraySize*0.001)
+					most -= t
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
 		most = max(most,0.0)
@@ -338,8 +346,10 @@ func _pressed():
 				var r: float = 256-spacings[t]
 				if (spacings[t] == 0.0):
 					r = 0.0
-				var g: float = sqrt(invDelays[t+1] / maxGreen) * 256.0
-				var b: float = sqrt(angleChange[t+1] / maxBlue) * 256.0
+				var g: float = sqrt(invDelays[t] / maxGreen) * 128.0
+				var b: float = sqrt(angleChange[t] / maxBlue) * 256.0
+				if (begins.has(t) && g > 0.0):
+					g += 128.0
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
