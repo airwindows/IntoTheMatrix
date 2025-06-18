@@ -89,6 +89,7 @@ func _pressed():
 	since += iterations
 	get_parent().get_node("totalIterations").text = str(total)
 	get_parent().get_node("sinceIterations").text = str(since)
+	var targetseats: float = get_parent().get_node("targetSeats").text.to_float()
 	if (since > 720000):
 		get_parent().get_node("totalIterations").text = "Finished"
 	for dummy: int in range(0,iterations):
@@ -204,7 +205,8 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= t
+					most -= (t+arraySize)
+					most *= 0.9
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
 		most = max(most,0.0)
@@ -257,12 +259,12 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
-		if (int((milliseconds/2.95)*(milliseconds/2.95))>get_parent().get_node("targetSeats").text.to_float()*1.618):
+		most += absf(((milliseconds/2.95)*(milliseconds/2.95))-targetseats)
+		if (int((milliseconds/2.95)*(milliseconds/2.95))>targetseats*1.618):
 			most = 9999999999.9
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
 			#since we are not in the zone, let's also tune the seat number
 			var seats: int = int((milliseconds/2.75)*(milliseconds/2.75))
-			var targetseats: float = get_parent().get_node("targetSeats").text.to_float()
 			var editseats: float =  get_parent().get_node("Seats").text.to_float()
 			if seats > targetseats:
 				get_parent().get_node("Seats").text = str(int(abs(editseats-8)))
@@ -331,10 +333,13 @@ func _pressed():
 				var r: float = 256-spacings[t]
 				if (spacings[t] == 0.0):
 					r = 0.0
-				var g: float = sqrt(invDelays[t] / maxGreen) * 128.0
-				var b: float = sqrt(angleChange[t] / maxBlue) * 256.0
+				var g: float = (invDelays[t] / maxGreen) * 128.0
+				var b: float = (angleChange[t] / maxBlue) * 512.0
+				if (invDelays[t] > 0.0):
+					r += 32.0
+					g += 64.0
 				if (begins.has(t) && g > 0.0):
-					g += 128.0
+					g = 255.0
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
@@ -359,7 +364,6 @@ func _pressed():
 			since = 0
 			get_parent().get_node("sinceIterations").text = str(since)
 			var seats: int = int((milliseconds/2.9)*(milliseconds/2.9))
-			var targetseats: float =  get_parent().get_node("targetSeats").text.to_float()
 			get_parent().get_node("prevScoreTwo").text = str(most*(1.0+(abs((seats-targetseats)/targetseats)/sqrt(total))))
 			var venue: String = "room"
 			if (seats > 100):
