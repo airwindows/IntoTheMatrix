@@ -100,8 +100,7 @@ func _pressed():
 		var redAmt: float = 0.0
 		var blueAmt: float = 0.0
 		for entries: int in range(0,17):
-			var select: int = randi()>>(20+(since>>16))
-			#shift 23 seems to produce a decent amount of randomness as it goes
+			var select: int = randi() >> int(24-roomsize)
 			#less shift means increasing amounts of randomness, which will help kickstart things
 			if (select < 7 || select > begins[roomsize*100]):
 				if (select % 7 < 2):
@@ -180,7 +179,7 @@ func _pressed():
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
 				greenUnBrt += 1.0
-				dispDelays[t] = dispDelays[t] / (adjustShape[t]-abs(sin((float(t)/float(longest/14.0)))))
+				dispDelays[t] = dispDelays[t] / (adjustShape[t]-(sin((float(t)/float(longest/14.0)))))
 				most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 		if is_nan(most):
 			most = 9999999999.9
@@ -234,10 +233,14 @@ func _pressed():
 		#returns like in a 5x5. Will be about the same for a 3x3
 		angleChange.fill(0.0)
 		blueAmt = 0.0
-		for t: int in range(2,arraySize-1):
-			angleChange[t] = (dispDelays[t]-dispDelays[t-1])*(dispDelays[t]-dispDelays[t-1])*8.0
+		for t: int in range(3,arraySize-1):
+			angleChange[t] = (dispDelays[t]-dispDelays[t-1])
+			angleChange[t] -= (dispDelays[t-1]-dispDelays[t-2])
+			angleChange[t] *= angleChange[t]
+			angleChange[t] *= 8.0
 			most += (angleChange[t]*adjustBlue[t])
 			blueAmt += (angleChange[t]*adjustBlue[t])
+			
 		if is_nan(most):
 			most = 9999999999.9
 		
@@ -318,12 +321,12 @@ func _pressed():
 				if (spacings[t] == 0.0):
 					r = 0.0
 				var g: float = (invDelays[t] / maxGreen) * 128.0
-				var b: float = (angleChange[t] / maxBlue) * 512.0
+				var b: float = sqrt(angleChange[t] / maxBlue) * 256.0
 				if (invDelays[t] > 0.0):
 					r += 32.0
 					g += 64.0
 				if (begins.has(t) && g > 0.0):
-					g = 255.0
+					g += 64.0
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart

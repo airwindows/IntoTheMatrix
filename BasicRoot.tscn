@@ -28,255 +28,255 @@ offset_right = 521.0
 offset_bottom = 128.0
 
 [node name="TextEdit1" type="TextEdit" parent="."]
-offset_left = 366.0
-offset_top = 304.0
-offset_right = 412.0
-offset_bottom = 330.0
+offset_left = 417.0
+offset_top = 216.0
+offset_right = 463.0
+offset_bottom = 242.0
 text = "5003"
 
 [node name="TextEdit2" type="TextEdit" parent="."]
-offset_left = 366.0
-offset_top = 333.0
-offset_right = 412.0
-offset_bottom = 359.0
+offset_left = 417.0
+offset_top = 245.0
+offset_right = 463.0
+offset_bottom = 271.0
 text = "4349"
 
 [node name="TextEdit3" type="TextEdit" parent="."]
-offset_left = 366.0
-offset_top = 362.0
-offset_right = 412.0
-offset_bottom = 388.0
+offset_left = 417.0
+offset_top = 274.0
+offset_right = 463.0
+offset_bottom = 300.0
 text = "3323"
 
 [node name="TextEdit4" type="TextEdit" parent="."]
-offset_left = 366.0
-offset_top = 391.0
-offset_right = 412.0
-offset_bottom = 417.0
+offset_left = 417.0
+offset_top = 303.0
+offset_right = 463.0
+offset_bottom = 329.0
 text = "2141"
 
 [node name="TextEdit5" type="TextEdit" parent="."]
-offset_left = 366.0
-offset_top = 420.0
-offset_right = 412.0
-offset_bottom = 446.0
+offset_left = 417.0
+offset_top = 332.0
+offset_right = 463.0
+offset_bottom = 358.0
 text = "677"
 
 [node name="TextEdit6" type="TextEdit" parent="."]
-offset_left = 366.0
-offset_top = 449.0
-offset_right = 412.0
-offset_bottom = 475.0
+offset_left = 417.0
+offset_top = 361.0
+offset_right = 463.0
+offset_bottom = 387.0
 text = "4951"
 
 [node name="TextEdit7" type="TextEdit" parent="."]
-offset_left = 420.0
-offset_top = 304.0
-offset_right = 466.0
-offset_bottom = 330.0
+offset_left = 471.0
+offset_top = 216.0
+offset_right = 517.0
+offset_bottom = 242.0
 text = "4157"
 
 [node name="TextEdit8" type="TextEdit" parent="."]
-offset_left = 420.0
-offset_top = 333.0
-offset_right = 466.0
-offset_bottom = 359.0
+offset_left = 471.0
+offset_top = 245.0
+offset_right = 517.0
+offset_bottom = 271.0
 text = "2791"
 
 [node name="TextEdit9" type="TextEdit" parent="."]
-offset_left = 420.0
-offset_top = 362.0
-offset_right = 466.0
-offset_bottom = 388.0
+offset_left = 471.0
+offset_top = 274.0
+offset_right = 517.0
+offset_bottom = 300.0
 text = "1811"
 
 [node name="TextEdit10" type="TextEdit" parent="."]
-offset_left = 420.0
-offset_top = 391.0
-offset_right = 466.0
-offset_bottom = 417.0
+offset_left = 471.0
+offset_top = 303.0
+offset_right = 517.0
+offset_bottom = 329.0
 text = "643"
 
 [node name="TextEdit11" type="TextEdit" parent="."]
-offset_left = 420.0
-offset_top = 420.0
-offset_right = 466.0
-offset_bottom = 446.0
+offset_left = 471.0
+offset_top = 332.0
+offset_right = 517.0
+offset_bottom = 358.0
 text = "4919"
 
 [node name="TextEdit12" type="TextEdit" parent="."]
-offset_left = 420.0
-offset_top = 449.0
-offset_right = 466.0
-offset_bottom = 475.0
+offset_left = 471.0
+offset_top = 361.0
+offset_right = 517.0
+offset_bottom = 387.0
 text = "3929"
 
 [node name="TextEdit13" type="TextEdit" parent="."]
-offset_left = 474.0
-offset_top = 304.0
-offset_right = 520.0
-offset_bottom = 330.0
+offset_left = 525.0
+offset_top = 216.0
+offset_right = 571.0
+offset_bottom = 242.0
 text = "2767"
 
 [node name="TextEdit14" type="TextEdit" parent="."]
-offset_left = 474.0
-offset_top = 333.0
-offset_right = 520.0
-offset_bottom = 359.0
+offset_left = 525.0
+offset_top = 245.0
+offset_right = 571.0
+offset_bottom = 271.0
 text = "1733"
 
 [node name="TextEdit15" type="TextEdit" parent="."]
-offset_left = 474.0
-offset_top = 362.0
-offset_right = 520.0
-offset_bottom = 388.0
+offset_left = 525.0
+offset_top = 274.0
+offset_right = 571.0
+offset_bottom = 300.0
 text = "439"
 
 [node name="TextEdit16" type="TextEdit" parent="."]
-offset_left = 474.0
-offset_top = 391.0
-offset_right = 520.0
-offset_bottom = 417.0
+offset_left = 525.0
+offset_top = 303.0
+offset_right = 571.0
+offset_bottom = 329.0
 text = "4799"
 
 [node name="TextEdit17" type="TextEdit" parent="."]
-offset_left = 474.0
-offset_top = 420.0
-offset_right = 520.0
-offset_bottom = 446.0
+offset_left = 525.0
+offset_top = 332.0
+offset_right = 571.0
+offset_bottom = 358.0
 text = "3529"
 
 [node name="TextEdit18" type="TextEdit" parent="."]
-offset_left = 474.0
-offset_top = 449.0
-offset_right = 520.0
-offset_bottom = 475.0
+offset_left = 525.0
+offset_top = 361.0
+offset_right = 571.0
+offset_bottom = 387.0
 text = "2389"
 
 [node name="TextEdit19" type="TextEdit" parent="."]
-offset_left = 528.0
-offset_top = 304.0
-offset_right = 574.0
-offset_bottom = 330.0
+offset_left = 579.0
+offset_top = 216.0
+offset_right = 625.0
+offset_bottom = 242.0
 text = "1171"
 
 [node name="TextEdit20" type="TextEdit" parent="."]
-offset_left = 528.0
-offset_top = 333.0
-offset_right = 574.0
-offset_bottom = 359.0
+offset_left = 579.0
+offset_top = 245.0
+offset_right = 625.0
+offset_bottom = 271.0
 text = "349"
 
 [node name="TextEdit21" type="TextEdit" parent="."]
-offset_left = 528.0
-offset_top = 362.0
-offset_right = 574.0
-offset_bottom = 388.0
+offset_left = 579.0
+offset_top = 274.0
+offset_right = 625.0
+offset_bottom = 300.0
 text = "4751"
 
 [node name="TextEdit22" type="TextEdit" parent="."]
-offset_left = 528.0
-offset_top = 391.0
-offset_right = 574.0
-offset_bottom = 417.0
+offset_left = 579.0
+offset_top = 303.0
+offset_right = 625.0
+offset_bottom = 329.0
 text = "3329"
 
 [node name="TextEdit23" type="TextEdit" parent="."]
-offset_left = 528.0
-offset_top = 420.0
-offset_right = 574.0
-offset_bottom = 446.0
+offset_left = 579.0
+offset_top = 332.0
+offset_right = 625.0
+offset_bottom = 358.0
 text = "2347"
 
 [node name="TextEdit24" type="TextEdit" parent="."]
-offset_left = 528.0
-offset_top = 449.0
-offset_right = 574.0
-offset_bottom = 475.0
+offset_left = 579.0
+offset_top = 361.0
+offset_right = 625.0
+offset_bottom = 387.0
 text = "787"
 
 [node name="TextEdit25" type="TextEdit" parent="."]
-offset_left = 583.0
-offset_top = 304.0
-offset_right = 629.0
-offset_bottom = 330.0
+offset_left = 634.0
+offset_top = 216.0
+offset_right = 680.0
+offset_bottom = 242.0
 text = "281"
 
 [node name="TextEdit26" type="TextEdit" parent="."]
-offset_left = 583.0
-offset_top = 332.0
-offset_right = 629.0
-offset_bottom = 358.0
+offset_left = 634.0
+offset_top = 244.0
+offset_right = 680.0
+offset_bottom = 270.0
 text = "281"
 
 [node name="TextEdit27" type="TextEdit" parent="."]
-offset_left = 583.0
-offset_top = 361.0
-offset_right = 629.0
-offset_bottom = 387.0
+offset_left = 634.0
+offset_top = 273.0
+offset_right = 680.0
+offset_bottom = 299.0
 text = "281"
 
 [node name="TextEdit28" type="TextEdit" parent="."]
-offset_left = 583.0
-offset_top = 390.0
-offset_right = 629.0
-offset_bottom = 416.0
+offset_left = 634.0
+offset_top = 302.0
+offset_right = 680.0
+offset_bottom = 328.0
 text = "281"
 
 [node name="TextEdit29" type="TextEdit" parent="."]
-offset_left = 583.0
-offset_top = 419.0
-offset_right = 629.0
-offset_bottom = 445.0
+offset_left = 634.0
+offset_top = 331.0
+offset_right = 680.0
+offset_bottom = 357.0
 text = "281"
 
 [node name="TextEdit30" type="TextEdit" parent="."]
-offset_left = 583.0
-offset_top = 448.0
-offset_right = 629.0
-offset_bottom = 474.0
+offset_left = 634.0
+offset_top = 360.0
+offset_right = 680.0
+offset_bottom = 386.0
 text = "281"
 
 [node name="TextEdit31" type="TextEdit" parent="."]
-offset_left = 637.0
-offset_top = 304.0
-offset_right = 683.0
-offset_bottom = 330.0
+offset_left = 688.0
+offset_top = 216.0
+offset_right = 734.0
+offset_bottom = 242.0
 text = "281"
 
 [node name="TextEdit32" type="TextEdit" parent="."]
-offset_left = 637.0
-offset_top = 332.0
-offset_right = 683.0
-offset_bottom = 358.0
+offset_left = 688.0
+offset_top = 244.0
+offset_right = 734.0
+offset_bottom = 270.0
 text = "281"
 
 [node name="TextEdit33" type="TextEdit" parent="."]
-offset_left = 637.0
-offset_top = 361.0
-offset_right = 683.0
-offset_bottom = 387.0
+offset_left = 688.0
+offset_top = 273.0
+offset_right = 734.0
+offset_bottom = 299.0
 text = "281"
 
 [node name="TextEdit34" type="TextEdit" parent="."]
-offset_left = 637.0
-offset_top = 390.0
-offset_right = 683.0
-offset_bottom = 416.0
+offset_left = 688.0
+offset_top = 302.0
+offset_right = 734.0
+offset_bottom = 328.0
 text = "281"
 
 [node name="TextEdit35" type="TextEdit" parent="."]
-offset_left = 637.0
-offset_top = 419.0
-offset_right = 683.0
-offset_bottom = 445.0
+offset_left = 688.0
+offset_top = 331.0
+offset_right = 734.0
+offset_bottom = 357.0
 text = "281"
 
 [node name="TextEdit36" type="TextEdit" parent="."]
-offset_left = 637.0
-offset_top = 448.0
-offset_right = 683.0
-offset_bottom = 474.0
+offset_left = 688.0
+offset_top = 360.0
+offset_right = 734.0
+offset_bottom = 386.0
 text = "281"
 
 [node name="Controls1" type="TextEdit" parent="."]
@@ -284,7 +284,7 @@ offset_left = 541.0
 offset_top = 56.0
 offset_right = 570.0
 offset_bottom = 90.0
-text = "G"
+text = "B"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -294,7 +294,7 @@ offset_left = 776.0
 offset_top = 56.0
 offset_right = 805.0
 offset_bottom = 90.0
-text = "C"
+text = "G"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -304,7 +304,7 @@ offset_left = 541.0
 offset_top = 90.0
 offset_right = 570.0
 offset_bottom = 124.0
-text = "F"
+text = "E"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -324,7 +324,7 @@ offset_left = 541.0
 offset_top = 123.0
 offset_right = 570.0
 offset_bottom = 157.0
-text = "E"
+text = "C"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -344,7 +344,7 @@ offset_left = 541.0
 offset_top = 157.0
 offset_right = 570.0
 offset_bottom = 191.0
-text = "D"
+text = "B"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -354,7 +354,7 @@ offset_left = 776.0
 offset_top = 157.0
 offset_right = 805.0
 offset_bottom = 191.0
-text = "D"
+text = "G"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -434,10 +434,10 @@ text = "6x6"
 script = ExtResource("2_h5e0k")
 
 [node name="halt6" type="Button" parent="."]
-offset_left = 20.0
-offset_top = 426.0
-offset_right = 68.0
-offset_bottom = 457.0
+offset_left = 39.0
+offset_top = 345.0
+offset_right = 87.0
+offset_bottom = 376.0
 text = "stop"
 script = ExtResource("3_dwka6")
 
@@ -450,10 +450,10 @@ text = "5x5"
 script = ExtResource("2_upf03")
 
 [node name="halt5" type="Button" parent="."]
-offset_left = 76.0
-offset_top = 426.0
-offset_right = 124.0
-offset_bottom = 457.0
+offset_left = 95.0
+offset_top = 345.0
+offset_right = 143.0
+offset_bottom = 376.0
 text = "stop"
 script = ExtResource("3_h5e0k")
 
@@ -466,10 +466,10 @@ text = "4x4"
 script = ExtResource("4_dwka6")
 
 [node name="halt4" type="Button" parent="."]
-offset_left = 135.0
-offset_top = 425.0
-offset_right = 183.0
-offset_bottom = 456.0
+offset_left = 154.0
+offset_top = 344.0
+offset_right = 202.0
+offset_bottom = 375.0
 text = "stop"
 script = ExtResource("5_dpy4t")
 
@@ -482,10 +482,10 @@ text = "3x3"
 script = ExtResource("6_56rdx")
 
 [node name="halt3" type="Button" parent="."]
-offset_left = 193.0
-offset_top = 426.0
-offset_right = 241.0
-offset_bottom = 457.0
+offset_left = 212.0
+offset_top = 345.0
+offset_right = 260.0
+offset_bottom = 376.0
 text = "stop"
 script = ExtResource("7_4gl0g")
 
@@ -517,10 +517,10 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="sinceIterations" type="RichTextLabel" parent="."]
-offset_left = 65.0
-offset_top = 383.0
-offset_right = 118.0
-offset_bottom = 407.0
+offset_left = 231.0
+offset_top = 244.0
+offset_right = 284.0
+offset_bottom = 268.0
 text = "0"
 scroll_active = false
 autowrap_mode = 0
@@ -556,10 +556,10 @@ offset_bottom = 27.0
 text = "Variations tried so far:"
 
 [node name="RichTextLabel12" type="RichTextLabel" parent="."]
-offset_left = 368.0
-offset_top = 484.0
-offset_right = 680.0
-offset_bottom = 508.0
+offset_left = 774.0
+offset_top = 293.0
+offset_right = 1086.0
+offset_bottom = 317.0
 text = "Matrix delays: any path across or down"
 
 [node name="RichTextLabel14" type="RichTextLabel" parent="."]
