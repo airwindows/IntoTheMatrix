@@ -205,8 +205,7 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= (t+arraySize)
-					most *= 0.9
+					most -= (t+t+adjustGreen[t])
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
 		most = max(most,0.0)
