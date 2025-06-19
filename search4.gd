@@ -242,8 +242,10 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
-		most += absf(((milliseconds/2.95)*(milliseconds/2.95))-targetseats)
-		if (int((milliseconds/2.95)*(milliseconds/2.95))>targetseats*1.618):
+		#most += absf(((milliseconds/2.95)*(milliseconds/2.95))-targetseats)
+		if (int(longest*longest*0.000001)>targetseats):
+			most = 9999999999.9
+		if (int(shortest*shortest*0.2)<targetseats):
 			most = 9999999999.9
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
 			#since we are not in the zone, let's also tune the seat number
