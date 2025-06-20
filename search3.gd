@@ -238,7 +238,7 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
-		#most += absf(((milliseconds/2.95)*(milliseconds/2.95))-targetseats)
+		most += ((shortest*shortest)/milliseconds)
 		if (int(longest*longest*0.000001)>targetseats):
 			most = 9999999999.9
 		if (int(shortest*shortest*0.2)<targetseats):
