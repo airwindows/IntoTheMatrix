@@ -188,7 +188,7 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= (t+t+adjustGreen[t])
+					most -= (dispDelays[t]*618.0*adjustGreen[t])
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
 		most = max(most,0.0)
@@ -245,7 +245,7 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
-		most += ((shortest*shortest)/milliseconds)
+		most += ((shortest*shortest)/(milliseconds*2.0))
 		if (int(longest*longest*0.000001)>targetseats):
 			most = 9999999999.9
 		if (int(shortest*shortest*0.2)<targetseats):
@@ -326,7 +326,8 @@ func _pressed():
 					r += 32.0
 					g += 64.0
 				if (begins.has(t) && g > 0.0):
-					g += 64.0
+					g = min(g*1.618,255.0)
+					b = min(b*1.618,255.0)
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
