@@ -280,89 +280,119 @@ offset_bottom = 386.0
 text = "281"
 
 [node name="Controls1" type="TextEdit" parent="."]
-offset_left = 541.0
-offset_top = 56.0
-offset_right = 570.0
-offset_bottom = 90.0
+offset_left = 539.0
+offset_top = 5.0
+offset_right = 568.0
+offset_bottom = 39.0
 text = "G"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls2" type="TextEdit" parent="."]
-offset_left = 776.0
-offset_top = 56.0
-offset_right = 805.0
-offset_bottom = 90.0
-text = "G"
+offset_left = 774.0
+offset_top = 5.0
+offset_right = 803.0
+offset_bottom = 39.0
+text = "D"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls3" type="TextEdit" parent="."]
-offset_left = 541.0
-offset_top = 90.0
-offset_right = 570.0
-offset_bottom = 124.0
-text = "C"
+offset_left = 539.0
+offset_top = 39.0
+offset_right = 568.0
+offset_bottom = 73.0
+text = "B"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls4" type="TextEdit" parent="."]
-offset_left = 776.0
-offset_top = 90.0
-offset_right = 805.0
-offset_bottom = 124.0
+offset_left = 774.0
+offset_top = 39.0
+offset_right = 803.0
+offset_bottom = 73.0
 text = "B"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls5" type="TextEdit" parent="."]
-offset_left = 541.0
-offset_top = 123.0
-offset_right = 570.0
-offset_bottom = 157.0
+offset_left = 539.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 106.0
 text = "D"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls6" type="TextEdit" parent="."]
-offset_left = 776.0
-offset_top = 123.0
-offset_right = 805.0
-offset_bottom = 157.0
-text = "H"
+offset_left = 774.0
+offset_top = 72.0
+offset_right = 803.0
+offset_bottom = 106.0
+text = "I"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls7" type="TextEdit" parent="."]
-offset_left = 541.0
-offset_top = 157.0
-offset_right = 570.0
-offset_bottom = 191.0
-text = "E"
+offset_left = 539.0
+offset_top = 106.0
+offset_right = 568.0
+offset_bottom = 140.0
+text = "G"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls8" type="TextEdit" parent="."]
-offset_left = 776.0
-offset_top = 157.0
-offset_right = 805.0
-offset_bottom = 191.0
-text = "F"
+offset_left = 774.0
+offset_top = 106.0
+offset_right = 803.0
+offset_bottom = 140.0
+text = "H"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls9" type="TextEdit" parent="."]
+offset_left = 536.0
+offset_top = 140.0
+offset_right = 565.0
+offset_bottom = 174.0
+text = "E"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls10" type="TextEdit" parent="."]
+offset_left = 678.0
+offset_top = 140.0
+offset_right = 707.0
+offset_bottom = 174.0
+text = "X"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="Controls11" type="TextEdit" parent="."]
+offset_left = 911.0
+offset_top = 3.0
+offset_right = 940.0
+offset_bottom = 37.0
+text = "M"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="targetSeats" type="TextEdit" parent="."]
-offset_left = 278.0
+offset_left = 254.0
 offset_top = 129.0
-offset_right = 334.0
+offset_right = 310.0
 offset_bottom = 167.0
 text = "200"
 
@@ -375,10 +405,10 @@ text = "20"
 placeholder_text = "iter"
 
 [node name="MatrixName" type="TextEdit" parent="."]
-offset_left = 399.0
-offset_top = 130.0
-offset_right = 521.0
-offset_bottom = 165.0
+offset_left = 228.0
+offset_top = 563.0
+offset_right = 350.0
+offset_bottom = 598.0
 placeholder_text = "CommentField"
 
 [node name="Seats" type="TextEdit" parent="."]
@@ -395,8 +425,8 @@ autowrap_mode = 1
 script = ExtResource("1_yjg6u")
 
 [node name="Code" type="TextEdit" parent="."]
-offset_left = 829.0
-offset_top = 10.0
+offset_left = 950.0
+offset_top = 63.0
 offset_right = 1232.0
 offset_bottom = 190.0
 placeholder_text = "What On Earth Is All This
@@ -426,9 +456,9 @@ It's those that should be primes for best sound and verb layering."
 wrap_mode = 1
 
 [node name="search6" type="Button" parent="."]
-offset_left = 20.0
+offset_left = 8.0
 offset_top = 164.0
-offset_right = 70.0
+offset_right = 58.0
 offset_bottom = 195.0
 text = "6x6"
 script = ExtResource("2_h5e0k")
@@ -442,9 +472,9 @@ text = "stop"
 script = ExtResource("3_dwka6")
 
 [node name="search5" type="Button" parent="."]
-offset_left = 80.0
+offset_left = 63.0
 offset_top = 164.0
-offset_right = 130.0
+offset_right = 113.0
 offset_bottom = 195.0
 text = "5x5"
 script = ExtResource("2_upf03")
@@ -458,9 +488,9 @@ text = "stop"
 script = ExtResource("3_h5e0k")
 
 [node name="search4" type="Button" parent="."]
-offset_left = 140.0
+offset_left = 117.0
 offset_top = 165.0
-offset_right = 190.0
+offset_right = 167.0
 offset_bottom = 196.0
 text = "4x4"
 script = ExtResource("4_dwka6")
@@ -474,10 +504,10 @@ text = "stop"
 script = ExtResource("5_dpy4t")
 
 [node name="search3" type="Button" parent="."]
-offset_left = 199.0
-offset_top = 164.0
-offset_right = 249.0
-offset_bottom = 195.0
+offset_left = 171.0
+offset_top = 165.0
+offset_right = 221.0
+offset_bottom = 196.0
 text = "3x3"
 script = ExtResource("6_56rdx")
 
@@ -499,19 +529,19 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="prevScoreTwo" type="RichTextLabel" parent="."]
-offset_left = 334.0
+offset_left = 286.0
 offset_top = 166.0
-offset_right = 517.0
+offset_right = 507.0
 offset_bottom = 190.0
 text = "999999999999.9"
 scroll_active = false
 autowrap_mode = 0
 
 [node name="totalIterations" type="RichTextLabel" parent="."]
-offset_left = 721.0
-offset_top = 3.0
-offset_right = 817.0
-offset_bottom = 27.0
+offset_left = 1135.0
+offset_top = 7.0
+offset_right = 1231.0
+offset_bottom = 31.0
 text = "total tries"
 scroll_active = false
 autowrap_mode = 0
@@ -526,33 +556,167 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="bestIterations" type="RichTextLabel" parent="."]
-offset_left = 540.0
-offset_top = 26.0
-offset_right = 811.0
-offset_bottom = 50.0
+offset_left = 954.0
+offset_top = 30.0
+offset_right = 1225.0
+offset_bottom = 54.0
 text = "new highscores and odds"
 scroll_active = false
 autowrap_mode = 0
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="."]
-offset_left = 342.0
-offset_top = 135.0
-offset_right = 392.0
-offset_bottom = 159.0
-text = "seats"
+offset_left = 309.0
+offset_top = 134.0
+offset_right = 359.0
+offset_bottom = 158.0
+text = "size"
+
+[node name="displayPrimes" type="RichTextLabel" parent="."]
+offset_left = 475.0
+offset_top = 133.0
+offset_right = 527.0
+offset_bottom = 157.0
+text = "0"
+
+[node name="RichTextLabel19" type="RichTextLabel" parent="."]
+offset_left = 399.0
+offset_top = 133.0
+offset_right = 466.0
+offset_bottom = 157.0
+text = "PrimeX:"
+horizontal_alignment = 2
+
+[node name="RichTextLabel15" type="RichTextLabel" parent="."]
+offset_left = 573.0
+offset_top = 145.0
+offset_right = 673.0
+offset_bottom = 169.0
+text = "force early"
+
+[node name="RichTextLabel17" type="RichTextLabel" parent="."]
+offset_left = 709.0
+offset_top = 145.0
+offset_right = 801.0
+offset_bottom = 169.0
+text = "primeyness"
+
+[node name="RichTextLabel18" type="RichTextLabel" parent="."]
+offset_left = 828.0
+offset_top = 9.0
+offset_right = 899.0
+offset_bottom = 33.0
+text = "G 0.9"
+horizontal_alignment = 2
+
+[node name="Controls12" type="TextEdit" parent="."]
+offset_left = 911.0
+offset_top = 35.0
+offset_right = 940.0
+offset_bottom = 69.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="RichTextLabel20" type="RichTextLabel" parent="."]
+offset_left = 828.0
+offset_top = 41.0
+offset_right = 899.0
+offset_bottom = 65.0
+text = "0.99"
+horizontal_alignment = 2
+
+[node name="Controls13" type="TextEdit" parent="."]
+offset_left = 911.0
+offset_top = 67.0
+offset_right = 940.0
+offset_bottom = 101.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="RichTextLabel21" type="RichTextLabel" parent="."]
+offset_left = 828.0
+offset_top = 73.0
+offset_right = 899.0
+offset_bottom = 97.0
+text = "0.999"
+horizontal_alignment = 2
+
+[node name="Controls14" type="TextEdit" parent="."]
+offset_left = 911.0
+offset_top = 99.0
+offset_right = 940.0
+offset_bottom = 133.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="RichTextLabel22" type="RichTextLabel" parent="."]
+offset_left = 828.0
+offset_top = 105.0
+offset_right = 899.0
+offset_bottom = 129.0
+text = "0.9999"
+horizontal_alignment = 2
+
+[node name="Controls15" type="TextEdit" parent="."]
+offset_left = 911.0
+offset_top = 131.0
+offset_right = 940.0
+offset_bottom = 165.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="RichTextLabel23" type="RichTextLabel" parent="."]
+offset_left = 828.0
+offset_top = 137.0
+offset_right = 899.0
+offset_bottom = 161.0
+text = "0.99999"
+horizontal_alignment = 2
+
+[node name="Controls16" type="TextEdit" parent="."]
+offset_left = 911.0
+offset_top = 163.0
+offset_right = 940.0
+offset_bottom = 197.0
+text = "M"
+context_menu_enabled = false
+emoji_menu_enabled = false
+script = ExtResource("1_dwka6")
+
+[node name="RichTextLabel24" type="RichTextLabel" parent="."]
+offset_left = 821.0
+offset_top = 169.0
+offset_right = 899.0
+offset_bottom = 193.0
+text = "0.999999"
+horizontal_alignment = 2
+
+[node name="RichTextLabel16" type="RichTextLabel" parent="."]
+offset_left = 1144.0
+offset_top = 290.0
+offset_right = 1244.0
+offset_bottom = 314.0
+text = "force early"
 
 [node name="RichTextLabel13" type="RichTextLabel" parent="."]
-offset_left = 282.0
+offset_left = 226.0
 offset_top = 166.0
-offset_right = 332.0
+offset_right = 276.0
 offset_bottom = 190.0
 text = "score:"
 
 [node name="RichTextLabel11" type="RichTextLabel" parent="."]
-offset_left = 541.0
-offset_top = 3.0
-offset_right = 724.0
-offset_bottom = 27.0
+offset_left = 955.0
+offset_top = 7.0
+offset_right = 1138.0
+offset_bottom = 31.0
 text = "Variations tried so far:"
 
 [node name="RichTextLabel12" type="RichTextLabel" parent="."]
@@ -563,34 +727,34 @@ offset_bottom = 317.0
 text = "Matrix delays: any path across or down"
 
 [node name="RichTextLabel14" type="RichTextLabel" parent="."]
-offset_left = 577.0
-offset_top = 162.0
-offset_right = 773.0
-offset_bottom = 186.0
+offset_left = 575.0
+offset_top = 111.0
+offset_right = 771.0
+offset_bottom = 135.0
 text = "Shape: mid-verb density"
 horizontal_alignment = 3
 
 [node name="RichTextLabel8" type="RichTextLabel" parent="."]
-offset_left = 577.0
-offset_top = 61.0
-offset_right = 766.0
-offset_bottom = 85.0
+offset_left = 575.0
+offset_top = 10.0
+offset_right = 764.0
+offset_bottom = 34.0
 text = "G: bloom, space, sustain"
 horizontal_alignment = 3
 
 [node name="RichTextLabel9" type="RichTextLabel" parent="."]
-offset_left = 582.0
-offset_top = 94.0
-offset_right = 764.0
-offset_bottom = 118.0
+offset_left = 580.0
+offset_top = 43.0
+offset_right = 762.0
+offset_bottom = 67.0
 text = "R: naturalness, spacing"
 horizontal_alignment = 3
 
 [node name="RichTextLabel10" type="RichTextLabel" parent="."]
-offset_left = 594.0
-offset_top = 128.0
-offset_right = 745.0
-offset_bottom = 152.0
+offset_left = 592.0
+offset_top = 77.0
+offset_right = 743.0
+offset_bottom = 101.0
 text = "B: darkness, depth"
 horizontal_alignment = 3
 
@@ -627,7 +791,15 @@ ignore_time_scale = true
 [connection signal="text_changed" from="Controls6" to="Controls6" method="_text_changed"]
 [connection signal="text_changed" from="Controls7" to="Controls7" method="_text_changed"]
 [connection signal="text_changed" from="Controls8" to="Controls8" method="_text_changed"]
+[connection signal="text_changed" from="Controls9" to="Controls9" method="_text_changed"]
+[connection signal="text_changed" from="Controls10" to="Controls10" method="_text_changed"]
+[connection signal="text_changed" from="Controls11" to="Controls11" method="_text_changed"]
 [connection signal="text_changed" from="targetSeats" to="Seats" method="targetSeatsUpdated"]
+[connection signal="text_changed" from="Controls12" to="Controls12" method="_text_changed"]
+[connection signal="text_changed" from="Controls13" to="Controls13" method="_text_changed"]
+[connection signal="text_changed" from="Controls14" to="Controls14" method="_text_changed"]
+[connection signal="text_changed" from="Controls15" to="Controls15" method="_text_changed"]
+[connection signal="text_changed" from="Controls16" to="Controls16" method="_text_changed"]
 [connection signal="timeout" from="Timer3" to="search3" method="_pressed"]
 [connection signal="timeout" from="Timer4" to="search4" method="_pressed"]
 [connection signal="timeout" from="Timer5" to="search5" method="_pressed"]

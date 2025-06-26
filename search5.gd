@@ -76,6 +76,14 @@ func _pressed():
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
 		adjustShape[t] = (((drySample*(1.0-x))+(wetSample*x))*0.2)+1.1
+	var forceEarly: float = (get_parent().get_node("Controls9").text.unicode_at(0)-65.0)
+	var primeyness: float = (get_parent().get_node("Controls10").text.unicode_at(0)-65.0)
+	var rmsA: float = (get_parent().get_node("Controls11").text.unicode_at(0)-65.0)-12.0
+	var rmsB: float = (get_parent().get_node("Controls12").text.unicode_at(0)-65.0)-12.0
+	var rmsC: float = (get_parent().get_node("Controls13").text.unicode_at(0)-65.0)-12.0
+	var rmsD: float = (get_parent().get_node("Controls14").text.unicode_at(0)-65.0)-12.0
+	var rmsE: float = (get_parent().get_node("Controls15").text.unicode_at(0)-65.0)-12.0
+	var rmsF: float = (get_parent().get_node("Controls16").text.unicode_at(0)-65.0)-12.0
 	
 	var delays: PackedInt32Array
 	delays.resize(26)
@@ -93,6 +101,8 @@ func _pressed():
 	if (since > 720000):
 		get_parent().get_node("totalIterations").text = "Finished"
 	for dummy: int in range(0,iterations):
+		var primeCount: float = 0.0
+		var unprimeCount: float = 0.0
 		var roomsize: float = sqrt(get_parent().get_node("Seats").text.to_float())/24.0 #seats, in K
 		if (roomsize > 26.68):
 			roomsize = 26.68
@@ -190,12 +200,41 @@ func _pressed():
 							#green is how much the stacked echoes stack
 		var greenBrt: float = 0.0
 		var greenUnBrt: float = 1.0
+		var greenIIRA: float = 0.0
+		var greenIIRB: float = 0.0
+		var greenIIRC: float = 0.0
+		var greenIIRD: float = 0.0
+		var greenIIRE: float = 0.0
+		var greenIIRF: float = 0.0
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
 				greenUnBrt += 1.0
-				dispDelays[t] = dispDelays[t] / (adjustShape[t]-(sin((float(t)/float(longest/14.0)))))
-				most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
+				unprimeCount += dispDelays[t]
+			dispDelays[t] = dispDelays[t] / (adjustShape[t]-(sin((float(t)/float(longest/14.0)))))
+			var peak = dispDelays[t]*arraySize*adjustGreen[t]
+			greenIIRA = (greenIIRA*0.9)+(peak*0.1)
+			greenIIRB = (greenIIRB*0.99)+(peak*0.01)
+			greenIIRC = (greenIIRC*0.999)+(peak*0.001)
+			greenIIRD = (greenIIRD*0.9999)+(peak*0.0001)
+			greenIIRE = (greenIIRE*0.99999)+(peak*0.00001)
+			greenIIRF = (greenIIRF*0.999999)+(peak*0.000001)
+			#we have a whole chain of progressively more filtered influences,
+			#that relate to RMS (ish) weight relative to peak. They are weighting
+			#the 'high score' so moments with lots of delay returns in sequence
+			peak += (greenIIRA * rmsA * 0.1) #these will all be scaled to range of the letter, roughly
+			peak += (greenIIRB * rmsB * 1.0)
+			peak += (greenIIRC * rmsC * 10.0)
+			peak += (greenIIRD * rmsD * 100.0)
+			peak += (greenIIRE * rmsE * 1000.0)
+			peak += (greenIIRF * rmsF * 10000.0)
+			#which we then can apply to the peak, with M as 'no effect'
+			#and L being *-1, N being * 1, A being * -12 and Z being * 13
+			#by way of a boost relative to the unaltered peak. Remember that
+			#these filtered values will tend to be smaller.
+			most = max(peak,most)
+			#end of green 'bloom/density' calculation in which
+			#lowest is best. Green is normally the highest proportion of score.
 		if is_nan(most):
 			most = 9999999999.9
 		greenAmt = most
@@ -204,10 +243,11 @@ func _pressed():
 		for t: int in range(1,min(arraySize,2667)):
 			if (begins[t] < arraySize):
 				if (dispDelays[begins[t]] > 0.0):
-					most -= (dispDelays[t]*618.0*adjustGreen[t])
+					most -= (dispDelays[t]*adjustGreen[t]*primeyness)
+					primeCount += dispDelays[t]*100.0
 					greenBrt += 1.0
 					greenUnBrt -= 1.0
-		most = max(most,0.0)
+		#most = max(most,0.0)
 		#for very sparse arrangements, reward primes
 		#this is measuring primality of the COMBINED matrix delays, not individual ones
 		#now, do another array in which we're measuring spacings between
@@ -261,7 +301,8 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
-		most += ((shortest*shortest)/(milliseconds*2.0))
+		most /= (primeCount/unprimeCount)
+		most += ((shortest*shortest)/(milliseconds*2.0))*forceEarly
 		if (int(longest*longest*0.000001)>targetseats):
 			most = 9999999999.9
 		if (int(shortest*shortest*0.2)<targetseats):
@@ -343,8 +384,7 @@ func _pressed():
 					r += 32.0
 					g += 64.0
 				if (begins.has(t) && g > 0.0):
-					g = min(g*1.618,255.0)
-					b = min(b*1.618,255.0)
+					g = min(g*(1.0+primeyness),255.0)
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
@@ -362,6 +402,7 @@ func _pressed():
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
 				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,192))
 			#that has drawn the bar chart: influence of each constraint
+			get_parent().get_node("displayPrimes").text = str(int((primeCount/unprimeCount)*100.0))
 			changes += 1
 			if (since > best):
 				best = since
