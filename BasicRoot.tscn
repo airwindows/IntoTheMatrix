@@ -28,255 +28,255 @@ offset_right = 521.0
 offset_bottom = 128.0
 
 [node name="TextEdit1" type="TextEdit" parent="."]
-offset_left = 417.0
-offset_top = 216.0
-offset_right = 463.0
-offset_bottom = 242.0
+offset_left = 410.0
+offset_top = 300.0
+offset_right = 456.0
+offset_bottom = 326.0
 text = "5003"
 
 [node name="TextEdit2" type="TextEdit" parent="."]
-offset_left = 417.0
-offset_top = 245.0
-offset_right = 463.0
-offset_bottom = 271.0
+offset_left = 410.0
+offset_top = 329.0
+offset_right = 456.0
+offset_bottom = 355.0
 text = "4349"
 
 [node name="TextEdit3" type="TextEdit" parent="."]
-offset_left = 417.0
-offset_top = 274.0
-offset_right = 463.0
-offset_bottom = 300.0
+offset_left = 410.0
+offset_top = 358.0
+offset_right = 456.0
+offset_bottom = 384.0
 text = "3323"
 
 [node name="TextEdit4" type="TextEdit" parent="."]
-offset_left = 417.0
-offset_top = 303.0
-offset_right = 463.0
-offset_bottom = 329.0
+offset_left = 410.0
+offset_top = 387.0
+offset_right = 456.0
+offset_bottom = 413.0
 text = "2141"
 
 [node name="TextEdit5" type="TextEdit" parent="."]
-offset_left = 417.0
-offset_top = 332.0
-offset_right = 463.0
-offset_bottom = 358.0
+offset_left = 410.0
+offset_top = 416.0
+offset_right = 456.0
+offset_bottom = 442.0
 text = "677"
 
 [node name="TextEdit6" type="TextEdit" parent="."]
-offset_left = 417.0
-offset_top = 361.0
-offset_right = 463.0
-offset_bottom = 387.0
+offset_left = 410.0
+offset_top = 445.0
+offset_right = 456.0
+offset_bottom = 471.0
 text = "4951"
 
 [node name="TextEdit7" type="TextEdit" parent="."]
-offset_left = 471.0
-offset_top = 216.0
-offset_right = 517.0
-offset_bottom = 242.0
+offset_left = 464.0
+offset_top = 300.0
+offset_right = 510.0
+offset_bottom = 326.0
 text = "4157"
 
 [node name="TextEdit8" type="TextEdit" parent="."]
-offset_left = 471.0
-offset_top = 245.0
-offset_right = 517.0
-offset_bottom = 271.0
+offset_left = 464.0
+offset_top = 329.0
+offset_right = 510.0
+offset_bottom = 355.0
 text = "2791"
 
 [node name="TextEdit9" type="TextEdit" parent="."]
-offset_left = 471.0
-offset_top = 274.0
-offset_right = 517.0
-offset_bottom = 300.0
+offset_left = 464.0
+offset_top = 358.0
+offset_right = 510.0
+offset_bottom = 384.0
 text = "1811"
 
 [node name="TextEdit10" type="TextEdit" parent="."]
-offset_left = 471.0
-offset_top = 303.0
-offset_right = 517.0
-offset_bottom = 329.0
+offset_left = 464.0
+offset_top = 387.0
+offset_right = 510.0
+offset_bottom = 413.0
 text = "643"
 
 [node name="TextEdit11" type="TextEdit" parent="."]
-offset_left = 471.0
-offset_top = 332.0
-offset_right = 517.0
-offset_bottom = 358.0
+offset_left = 464.0
+offset_top = 416.0
+offset_right = 510.0
+offset_bottom = 442.0
 text = "4919"
 
 [node name="TextEdit12" type="TextEdit" parent="."]
-offset_left = 471.0
-offset_top = 361.0
-offset_right = 517.0
-offset_bottom = 387.0
+offset_left = 464.0
+offset_top = 445.0
+offset_right = 510.0
+offset_bottom = 471.0
 text = "3929"
 
 [node name="TextEdit13" type="TextEdit" parent="."]
-offset_left = 525.0
-offset_top = 216.0
-offset_right = 571.0
-offset_bottom = 242.0
+offset_left = 518.0
+offset_top = 300.0
+offset_right = 564.0
+offset_bottom = 326.0
 text = "2767"
 
 [node name="TextEdit14" type="TextEdit" parent="."]
-offset_left = 525.0
-offset_top = 245.0
-offset_right = 571.0
-offset_bottom = 271.0
+offset_left = 518.0
+offset_top = 329.0
+offset_right = 564.0
+offset_bottom = 355.0
 text = "1733"
 
 [node name="TextEdit15" type="TextEdit" parent="."]
-offset_left = 525.0
-offset_top = 274.0
-offset_right = 571.0
-offset_bottom = 300.0
+offset_left = 518.0
+offset_top = 358.0
+offset_right = 564.0
+offset_bottom = 384.0
 text = "439"
 
 [node name="TextEdit16" type="TextEdit" parent="."]
-offset_left = 525.0
-offset_top = 303.0
-offset_right = 571.0
-offset_bottom = 329.0
+offset_left = 518.0
+offset_top = 387.0
+offset_right = 564.0
+offset_bottom = 413.0
 text = "4799"
 
 [node name="TextEdit17" type="TextEdit" parent="."]
-offset_left = 525.0
-offset_top = 332.0
-offset_right = 571.0
-offset_bottom = 358.0
+offset_left = 518.0
+offset_top = 416.0
+offset_right = 564.0
+offset_bottom = 442.0
 text = "3529"
 
 [node name="TextEdit18" type="TextEdit" parent="."]
-offset_left = 525.0
-offset_top = 361.0
-offset_right = 571.0
-offset_bottom = 387.0
+offset_left = 518.0
+offset_top = 445.0
+offset_right = 564.0
+offset_bottom = 471.0
 text = "2389"
 
 [node name="TextEdit19" type="TextEdit" parent="."]
-offset_left = 579.0
-offset_top = 216.0
-offset_right = 625.0
-offset_bottom = 242.0
+offset_left = 572.0
+offset_top = 300.0
+offset_right = 618.0
+offset_bottom = 326.0
 text = "1171"
 
 [node name="TextEdit20" type="TextEdit" parent="."]
-offset_left = 579.0
-offset_top = 245.0
-offset_right = 625.0
-offset_bottom = 271.0
+offset_left = 572.0
+offset_top = 329.0
+offset_right = 618.0
+offset_bottom = 355.0
 text = "349"
 
 [node name="TextEdit21" type="TextEdit" parent="."]
-offset_left = 579.0
-offset_top = 274.0
-offset_right = 625.0
-offset_bottom = 300.0
+offset_left = 572.0
+offset_top = 358.0
+offset_right = 618.0
+offset_bottom = 384.0
 text = "4751"
 
 [node name="TextEdit22" type="TextEdit" parent="."]
-offset_left = 579.0
-offset_top = 303.0
-offset_right = 625.0
-offset_bottom = 329.0
+offset_left = 572.0
+offset_top = 387.0
+offset_right = 618.0
+offset_bottom = 413.0
 text = "3329"
 
 [node name="TextEdit23" type="TextEdit" parent="."]
-offset_left = 579.0
-offset_top = 332.0
-offset_right = 625.0
-offset_bottom = 358.0
+offset_left = 572.0
+offset_top = 416.0
+offset_right = 618.0
+offset_bottom = 442.0
 text = "2347"
 
 [node name="TextEdit24" type="TextEdit" parent="."]
-offset_left = 579.0
-offset_top = 361.0
-offset_right = 625.0
-offset_bottom = 387.0
+offset_left = 572.0
+offset_top = 445.0
+offset_right = 618.0
+offset_bottom = 471.0
 text = "787"
 
 [node name="TextEdit25" type="TextEdit" parent="."]
-offset_left = 634.0
-offset_top = 216.0
-offset_right = 680.0
-offset_bottom = 242.0
+offset_left = 627.0
+offset_top = 300.0
+offset_right = 673.0
+offset_bottom = 326.0
 text = "281"
 
 [node name="TextEdit26" type="TextEdit" parent="."]
-offset_left = 634.0
-offset_top = 244.0
-offset_right = 680.0
-offset_bottom = 270.0
+offset_left = 627.0
+offset_top = 328.0
+offset_right = 673.0
+offset_bottom = 354.0
 text = "281"
 
 [node name="TextEdit27" type="TextEdit" parent="."]
-offset_left = 634.0
-offset_top = 273.0
-offset_right = 680.0
-offset_bottom = 299.0
+offset_left = 627.0
+offset_top = 357.0
+offset_right = 673.0
+offset_bottom = 383.0
 text = "281"
 
 [node name="TextEdit28" type="TextEdit" parent="."]
-offset_left = 634.0
-offset_top = 302.0
-offset_right = 680.0
-offset_bottom = 328.0
+offset_left = 627.0
+offset_top = 386.0
+offset_right = 673.0
+offset_bottom = 412.0
 text = "281"
 
 [node name="TextEdit29" type="TextEdit" parent="."]
-offset_left = 634.0
-offset_top = 331.0
-offset_right = 680.0
-offset_bottom = 357.0
+offset_left = 627.0
+offset_top = 415.0
+offset_right = 673.0
+offset_bottom = 441.0
 text = "281"
 
 [node name="TextEdit30" type="TextEdit" parent="."]
-offset_left = 634.0
-offset_top = 360.0
-offset_right = 680.0
-offset_bottom = 386.0
+offset_left = 627.0
+offset_top = 444.0
+offset_right = 673.0
+offset_bottom = 470.0
 text = "281"
 
 [node name="TextEdit31" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 216.0
-offset_right = 734.0
-offset_bottom = 242.0
+offset_left = 681.0
+offset_top = 300.0
+offset_right = 727.0
+offset_bottom = 326.0
 text = "281"
 
 [node name="TextEdit32" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 244.0
-offset_right = 734.0
-offset_bottom = 270.0
+offset_left = 681.0
+offset_top = 328.0
+offset_right = 727.0
+offset_bottom = 354.0
 text = "281"
 
 [node name="TextEdit33" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 273.0
-offset_right = 734.0
-offset_bottom = 299.0
+offset_left = 681.0
+offset_top = 357.0
+offset_right = 727.0
+offset_bottom = 383.0
 text = "281"
 
 [node name="TextEdit34" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 302.0
-offset_right = 734.0
-offset_bottom = 328.0
+offset_left = 681.0
+offset_top = 386.0
+offset_right = 727.0
+offset_bottom = 412.0
 text = "281"
 
 [node name="TextEdit35" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 331.0
-offset_right = 734.0
-offset_bottom = 357.0
+offset_left = 681.0
+offset_top = 415.0
+offset_right = 727.0
+offset_bottom = 441.0
 text = "281"
 
 [node name="TextEdit36" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 360.0
-offset_right = 734.0
-offset_bottom = 386.0
+offset_left = 681.0
+offset_top = 444.0
+offset_right = 727.0
+offset_bottom = 470.0
 text = "281"
 
 [node name="Controls1" type="TextEdit" parent="."]
@@ -284,7 +284,7 @@ offset_left = 539.0
 offset_top = 5.0
 offset_right = 568.0
 offset_bottom = 39.0
-text = "G"
+text = "H"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -294,7 +294,7 @@ offset_left = 774.0
 offset_top = 5.0
 offset_right = 803.0
 offset_bottom = 39.0
-text = "D"
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -304,7 +304,7 @@ offset_left = 539.0
 offset_top = 39.0
 offset_right = 568.0
 offset_bottom = 73.0
-text = "B"
+text = "A"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -324,7 +324,7 @@ offset_left = 539.0
 offset_top = 72.0
 offset_right = 568.0
 offset_bottom = 106.0
-text = "D"
+text = "C"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -334,7 +334,7 @@ offset_left = 774.0
 offset_top = 72.0
 offset_right = 803.0
 offset_bottom = 106.0
-text = "I"
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -344,7 +344,7 @@ offset_left = 539.0
 offset_top = 106.0
 offset_right = 568.0
 offset_bottom = 140.0
-text = "G"
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -354,37 +354,37 @@ offset_left = 774.0
 offset_top = 106.0
 offset_right = 803.0
 offset_bottom = 140.0
-text = "H"
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls9" type="TextEdit" parent="."]
-offset_left = 536.0
+offset_left = 539.0
 offset_top = 140.0
-offset_right = 565.0
+offset_right = 568.0
 offset_bottom = 174.0
-text = "E"
+text = "B"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls10" type="TextEdit" parent="."]
-offset_left = 678.0
+offset_left = 681.0
 offset_top = 140.0
-offset_right = 707.0
+offset_right = 710.0
 offset_bottom = 174.0
-text = "X"
+text = "T"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="Controls11" type="TextEdit" parent="."]
-offset_left = 911.0
-offset_top = 3.0
-offset_right = 940.0
-offset_bottom = 37.0
-text = "M"
+offset_left = 539.0
+offset_top = 167.0
+offset_right = 568.0
+offset_bottom = 201.0
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -394,13 +394,13 @@ offset_left = 254.0
 offset_top = 129.0
 offset_right = 310.0
 offset_bottom = 167.0
-text = "200"
+text = "1000"
 
 [node name="Iterations" type="TextEdit" parent="."]
-offset_left = 41.0
-offset_top = 290.0
-offset_right = 93.0
-offset_bottom = 330.0
+offset_left = 42.0
+offset_top = 303.0
+offset_right = 94.0
+offset_bottom = 343.0
 text = "20"
 placeholder_text = "iter"
 
@@ -412,10 +412,10 @@ offset_bottom = 598.0
 placeholder_text = "CommentField"
 
 [node name="Seats" type="TextEdit" parent="."]
-offset_left = 115.0
-offset_top = 293.0
-offset_right = 188.0
-offset_bottom = 329.0
+offset_left = 116.0
+offset_top = 306.0
+offset_right = 189.0
+offset_bottom = 342.0
 text = "600"
 context_menu_enabled = false
 shortcut_keys_enabled = false
@@ -425,7 +425,7 @@ autowrap_mode = 1
 script = ExtResource("1_yjg6u")
 
 [node name="Code" type="TextEdit" parent="."]
-offset_left = 950.0
+offset_left = 815.0
 offset_top = 63.0
 offset_right = 1232.0
 offset_bottom = 190.0
@@ -464,10 +464,10 @@ text = "6x6"
 script = ExtResource("2_h5e0k")
 
 [node name="halt6" type="Button" parent="."]
-offset_left = 39.0
-offset_top = 345.0
-offset_right = 87.0
-offset_bottom = 376.0
+offset_left = 40.0
+offset_top = 358.0
+offset_right = 88.0
+offset_bottom = 389.0
 text = "stop"
 script = ExtResource("3_dwka6")
 
@@ -480,10 +480,10 @@ text = "5x5"
 script = ExtResource("2_upf03")
 
 [node name="halt5" type="Button" parent="."]
-offset_left = 95.0
-offset_top = 345.0
-offset_right = 143.0
-offset_bottom = 376.0
+offset_left = 96.0
+offset_top = 358.0
+offset_right = 144.0
+offset_bottom = 389.0
 text = "stop"
 script = ExtResource("3_h5e0k")
 
@@ -496,10 +496,10 @@ text = "4x4"
 script = ExtResource("4_dwka6")
 
 [node name="halt4" type="Button" parent="."]
-offset_left = 154.0
-offset_top = 344.0
-offset_right = 202.0
-offset_bottom = 375.0
+offset_left = 155.0
+offset_top = 357.0
+offset_right = 203.0
+offset_bottom = 388.0
 text = "stop"
 script = ExtResource("5_dpy4t")
 
@@ -512,10 +512,10 @@ text = "3x3"
 script = ExtResource("6_56rdx")
 
 [node name="halt3" type="Button" parent="."]
-offset_left = 212.0
-offset_top = 345.0
-offset_right = 260.0
-offset_bottom = 376.0
+offset_left = 213.0
+offset_top = 358.0
+offset_right = 261.0
+offset_bottom = 389.0
 text = "stop"
 script = ExtResource("7_4gl0g")
 
@@ -538,28 +538,28 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="totalIterations" type="RichTextLabel" parent="."]
-offset_left = 1135.0
-offset_top = 7.0
-offset_right = 1231.0
-offset_bottom = 31.0
+offset_left = 1005.0
+offset_top = 8.0
+offset_right = 1101.0
+offset_bottom = 32.0
 text = "total tries"
 scroll_active = false
 autowrap_mode = 0
 
 [node name="sinceIterations" type="RichTextLabel" parent="."]
-offset_left = 231.0
-offset_top = 244.0
-offset_right = 284.0
-offset_bottom = 268.0
+offset_left = 295.0
+offset_top = 355.0
+offset_right = 348.0
+offset_bottom = 379.0
 text = "0"
 scroll_active = false
 autowrap_mode = 0
 
 [node name="bestIterations" type="RichTextLabel" parent="."]
-offset_left = 954.0
-offset_top = 30.0
-offset_right = 1225.0
-offset_bottom = 54.0
+offset_left = 824.0
+offset_top = 31.0
+offset_right = 1095.0
+offset_bottom = 55.0
 text = "new highscores and odds"
 scroll_active = false
 autowrap_mode = 0
@@ -587,122 +587,48 @@ text = "PrimeX:"
 horizontal_alignment = 2
 
 [node name="RichTextLabel15" type="RichTextLabel" parent="."]
-offset_left = 573.0
+offset_left = 576.0
 offset_top = 145.0
-offset_right = 673.0
+offset_right = 676.0
 offset_bottom = 169.0
 text = "force early"
 
 [node name="RichTextLabel17" type="RichTextLabel" parent="."]
-offset_left = 709.0
+offset_left = 712.0
 offset_top = 145.0
-offset_right = 801.0
+offset_right = 804.0
 offset_bottom = 169.0
 text = "primeyness"
 
 [node name="RichTextLabel18" type="RichTextLabel" parent="."]
-offset_left = 828.0
-offset_top = 9.0
-offset_right = 899.0
-offset_bottom = 33.0
-text = "G 0.9"
-horizontal_alignment = 2
+offset_left = 579.0
+offset_top = 171.0
+offset_right = 668.0
+offset_bottom = 195.0
+text = "RMS Freq"
 
 [node name="Controls12" type="TextEdit" parent="."]
-offset_left = 911.0
-offset_top = 35.0
-offset_right = 940.0
-offset_bottom = 69.0
-text = "M"
+offset_left = 680.0
+offset_top = 167.0
+offset_right = 709.0
+offset_bottom = 201.0
+text = "J"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="RichTextLabel20" type="RichTextLabel" parent="."]
-offset_left = 828.0
-offset_top = 41.0
-offset_right = 899.0
-offset_bottom = 65.0
-text = "0.99"
-horizontal_alignment = 2
-
-[node name="Controls13" type="TextEdit" parent="."]
-offset_left = 911.0
-offset_top = 67.0
-offset_right = 940.0
-offset_bottom = 101.0
-text = "M"
-context_menu_enabled = false
-emoji_menu_enabled = false
-script = ExtResource("1_dwka6")
-
-[node name="RichTextLabel21" type="RichTextLabel" parent="."]
-offset_left = 828.0
-offset_top = 73.0
-offset_right = 899.0
-offset_bottom = 97.0
-text = "0.999"
-horizontal_alignment = 2
-
-[node name="Controls14" type="TextEdit" parent="."]
-offset_left = 911.0
-offset_top = 99.0
-offset_right = 940.0
-offset_bottom = 133.0
-text = "M"
-context_menu_enabled = false
-emoji_menu_enabled = false
-script = ExtResource("1_dwka6")
-
-[node name="RichTextLabel22" type="RichTextLabel" parent="."]
-offset_left = 828.0
-offset_top = 105.0
-offset_right = 899.0
-offset_bottom = 129.0
-text = "0.9999"
-horizontal_alignment = 2
-
-[node name="Controls15" type="TextEdit" parent="."]
-offset_left = 911.0
-offset_top = 131.0
-offset_right = 940.0
-offset_bottom = 165.0
-text = "M"
-context_menu_enabled = false
-emoji_menu_enabled = false
-script = ExtResource("1_dwka6")
-
-[node name="RichTextLabel23" type="RichTextLabel" parent="."]
-offset_left = 828.0
-offset_top = 137.0
-offset_right = 899.0
-offset_bottom = 161.0
-text = "0.99999"
-horizontal_alignment = 2
-
-[node name="Controls16" type="TextEdit" parent="."]
-offset_left = 911.0
-offset_top = 163.0
-offset_right = 940.0
+offset_left = 722.0
+offset_top = 173.0
+offset_right = 811.0
 offset_bottom = 197.0
-text = "M"
-context_menu_enabled = false
-emoji_menu_enabled = false
-script = ExtResource("1_dwka6")
-
-[node name="RichTextLabel24" type="RichTextLabel" parent="."]
-offset_left = 821.0
-offset_top = 169.0
-offset_right = 899.0
-offset_bottom = 193.0
-text = "0.999999"
-horizontal_alignment = 2
+text = "RMS - or +"
 
 [node name="RichTextLabel16" type="RichTextLabel" parent="."]
-offset_left = 1144.0
-offset_top = 290.0
-offset_right = 1244.0
-offset_bottom = 314.0
+offset_left = 1131.0
+offset_top = 312.0
+offset_right = 1231.0
+offset_bottom = 336.0
 text = "force early"
 
 [node name="RichTextLabel13" type="RichTextLabel" parent="."]
@@ -713,17 +639,17 @@ offset_bottom = 190.0
 text = "score:"
 
 [node name="RichTextLabel11" type="RichTextLabel" parent="."]
-offset_left = 955.0
-offset_top = 7.0
-offset_right = 1138.0
-offset_bottom = 31.0
+offset_left = 825.0
+offset_top = 8.0
+offset_right = 1008.0
+offset_bottom = 32.0
 text = "Variations tried so far:"
 
 [node name="RichTextLabel12" type="RichTextLabel" parent="."]
-offset_left = 774.0
-offset_top = 293.0
-offset_right = 1086.0
-offset_bottom = 317.0
+offset_left = 761.0
+offset_top = 315.0
+offset_right = 1073.0
+offset_bottom = 339.0
 text = "Matrix delays: any path across or down"
 
 [node name="RichTextLabel14" type="RichTextLabel" parent="."]
@@ -759,10 +685,10 @@ text = "B: darkness, depth"
 horizontal_alignment = 3
 
 [node name="Generating" type="CheckButton" parent="."]
-offset_left = 215.0
-offset_top = 294.0
-offset_right = 332.0
-offset_bottom = 325.0
+offset_left = 216.0
+offset_top = 307.0
+offset_right = 333.0
+offset_bottom = 338.0
 focus_mode = 0
 button_pressed = true
 text = "continue"
@@ -796,10 +722,6 @@ ignore_time_scale = true
 [connection signal="text_changed" from="Controls11" to="Controls11" method="_text_changed"]
 [connection signal="text_changed" from="targetSeats" to="Seats" method="targetSeatsUpdated"]
 [connection signal="text_changed" from="Controls12" to="Controls12" method="_text_changed"]
-[connection signal="text_changed" from="Controls13" to="Controls13" method="_text_changed"]
-[connection signal="text_changed" from="Controls14" to="Controls14" method="_text_changed"]
-[connection signal="text_changed" from="Controls15" to="Controls15" method="_text_changed"]
-[connection signal="text_changed" from="Controls16" to="Controls16" method="_text_changed"]
 [connection signal="timeout" from="Timer3" to="search3" method="_pressed"]
 [connection signal="timeout" from="Timer4" to="search4" method="_pressed"]
 [connection signal="timeout" from="Timer5" to="search5" method="_pressed"]

@@ -78,12 +78,8 @@ func _pressed():
 		adjustShape[t] = (((drySample*(1.0-x))+(wetSample*x))*0.2)+1.1
 	var forceEarly: float = (get_parent().get_node("Controls9").text.unicode_at(0)-65.0)
 	var primeyness: float = (get_parent().get_node("Controls10").text.unicode_at(0)-65.0)
-	var rmsA: float = (get_parent().get_node("Controls11").text.unicode_at(0)-65.0)-12.0
+	var rmsFreq: float = (get_parent().get_node("Controls11").text.unicode_at(0)-65.0)*0.00008
 	var rmsB: float = (get_parent().get_node("Controls12").text.unicode_at(0)-65.0)-12.0
-	var rmsC: float = (get_parent().get_node("Controls13").text.unicode_at(0)-65.0)-12.0
-	var rmsD: float = (get_parent().get_node("Controls14").text.unicode_at(0)-65.0)-12.0
-	var rmsE: float = (get_parent().get_node("Controls15").text.unicode_at(0)-65.0)-12.0
-	var rmsF: float = (get_parent().get_node("Controls16").text.unicode_at(0)-65.0)-12.0
 	
 	var delays: PackedInt32Array
 	delays.resize(17)
@@ -185,12 +181,7 @@ func _pressed():
 						#green is how much the stacked echoes stack
 		var greenBrt: float = 0.0
 		var greenUnBrt: float = 1.0
-		var greenIIRA: float = 0.0
-		var greenIIRB: float = 0.0
-		var greenIIRC: float = 0.0
-		var greenIIRD: float = 0.0
-		var greenIIRE: float = 0.0
-		var greenIIRF: float = 0.0
+		var greenIIR: float = 0.0
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
@@ -198,25 +189,8 @@ func _pressed():
 				unprimeCount += dispDelays[t]
 			dispDelays[t] = dispDelays[t] / (adjustShape[t]-(sin((float(t)/float(longest/14.0)))))
 			var peak = dispDelays[t]*arraySize*adjustGreen[t]
-			greenIIRA = (greenIIRA*0.9)+(peak*0.1)
-			greenIIRB = (greenIIRB*0.99)+(peak*0.01)
-			greenIIRC = (greenIIRC*0.999)+(peak*0.001)
-			greenIIRD = (greenIIRD*0.9999)+(peak*0.0001)
-			greenIIRE = (greenIIRE*0.99999)+(peak*0.00001)
-			greenIIRF = (greenIIRF*0.999999)+(peak*0.000001)
-			#we have a whole chain of progressively more filtered influences,
-			#that relate to RMS (ish) weight relative to peak. They are weighting
-			#the 'high score' so moments with lots of delay returns in sequence
-			peak += (greenIIRA * rmsA * 0.1) #these will all be scaled to range of the letter, roughly
-			peak += (greenIIRB * rmsB * 1.0)
-			peak += (greenIIRC * rmsC * 10.0)
-			peak += (greenIIRD * rmsD * 100.0)
-			peak += (greenIIRE * rmsE * 1000.0)
-			peak += (greenIIRF * rmsF * 10000.0)
-			#which we then can apply to the peak, with M as 'no effect'
-			#and L being *-1, N being * 1, A being * -12 and Z being * 13
-			#by way of a boost relative to the unaltered peak. Remember that
-			#these filtered values will tend to be smaller.
+			greenIIR = (greenIIR*(1.0-rmsFreq))+(peak*rmsFreq)
+			peak += (greenIIR * rmsB)
 			most = max(peak,most)
 			#end of green 'bloom/density' calculation in which
 			#lowest is best. Green is normally the highest proportion of score.
@@ -367,7 +341,7 @@ func _pressed():
 					r += 32.0
 					g += 64.0
 				if (begins.has(t) && g > 0.0):
-					g = min(g*(1.0+primeyness),255.0)
+					g = min(g*(1.0+(primeyness*0.02)),255.0)
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
