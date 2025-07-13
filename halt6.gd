@@ -1,5 +1,6 @@
 extends Button
 var delaysB: PackedInt32Array
+var delaysC: PackedInt32Array
 
 func _pressed():
 	get_parent().get_node("Timer6").paused = true
@@ -63,6 +64,13 @@ func _pressed():
 								shortest = pos
 							#now we have the final delay time
 	#rotate
+	for item in delaysB:
+		if not delaysC.has(item):
+			delaysC.append(item)
+	#deduplicated array
+	delaysC.sort()
+	delaysC.reverse()
+	
 	var rotated: PackedInt32Array
 	rotated.resize(37)
 	rotated.fill(0)
@@ -133,7 +141,19 @@ func _pressed():
 	suffix = suffix + get_parent().get_node("Controls9").text + get_parent().get_node("Controls10").text
 	suffix = suffix + get_parent().get_node("Controls11").text + get_parent().get_node("Controls12").text
 	suffix = suffix + "6 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
-	var taps: String = "const int d6A = "+str(delaysB[1])+"; "
+	
+	var taps: String = "const int d3A = "+str(delaysC[5])+"; "
+	taps = taps+"const int d3B = "+str(delaysC[1])+"; "
+	taps = taps+"const int d3C = "+str(delaysC[0])+";\n"
+	taps = taps+"const int d3D = "+str(delaysC[6])+"; "
+	taps = taps+"const int d3E = "+str(delaysC[4])+"; "
+	taps = taps+"const int d3F = "+str(delaysC[2])+";\n"
+	taps = taps+"const int d3G = "+str(delaysC[8])+"; "
+	taps = taps+"const int d3H = "+str(delaysC[7])+"; "
+	taps = taps+"const int d3I = "+str(delaysC[3])+";\n#define THREEBYTHREE true\n"
+	#this adds a level of early reflections, always 3x3, using values from the 6x6
+	
+	taps = taps+"const int d6A = "+str(delaysB[1])+"; "
 	taps = taps+"const int d6B = "+str(delaysB[2])+"; "
 	taps = taps+"const int d6C = "+str(delaysB[3])+"; "
 	taps = taps+"const int d6D = "+str(delaysB[4])+"; "
