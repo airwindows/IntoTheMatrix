@@ -64,6 +64,7 @@ func _pressed():
 								shortest = pos
 							#now we have the final delay time
 	#rotate
+	delaysC.resize(0)
 	for item in delaysB:
 		if not delaysC.has(item):
 			delaysC.append(item)
