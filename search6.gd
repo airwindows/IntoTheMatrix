@@ -78,9 +78,6 @@ func _pressed():
 		adjustShape[t] = (((drySample*(1.0-x))+(wetSample*x))*0.2)+1.1
 	var forceEarly: float = (get_parent().get_node("Controls9").text.unicode_at(0)-65.0)
 	var primeyness: float = (get_parent().get_node("Controls10").text.unicode_at(0)-65.0)
-	var rmsFreq: float = (get_parent().get_node("Controls11").text.unicode_at(0)-65.0)*0.00008
-	var rmsB: float = (get_parent().get_node("Controls12").text.unicode_at(0)-65.0)-12.0
-	
 	var delays: PackedInt32Array
 	delays.resize(37)
 	var rotated: PackedInt32Array
@@ -211,18 +208,17 @@ func _pressed():
 		var greenBrt: float = 0.0
 		var greenUnBrt: float = 1.0
 		var greenIIR: float = 0.0
+		var greenAvg: float = 0.0
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = sqrt(dispDelays[t])
 			if (dispDelays[t] > 0.0):
 				greenUnBrt += 1.0
 				unprimeCount += dispDelays[t]
 			dispDelays[t] = dispDelays[t] / (adjustShape[t]-(sin((float(t)/float(longest/14.0)))))
-			var peak = dispDelays[t]*arraySize*adjustGreen[t]
-			greenIIR = (greenIIR*(1.0-rmsFreq))+(peak*rmsFreq)
-			peak += (greenIIR * rmsB)
-			most = max(peak,most)
+			most = max(dispDelays[t]*arraySize*adjustGreen[t],most)
 			#end of green 'bloom/density' calculation in which
 			#lowest is best. Green is normally the highest proportion of score.
+			greenAvg += dispDelays[t]*dispDelays[t]
 		if is_nan(most):
 			most = 9999999999.9
 		greenAmt = most
@@ -296,6 +292,7 @@ func _pressed():
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
 		most /= (primeCount/unprimeCount)
+		most *= greenAvg
 		most += ((shortest*shortest)/(milliseconds*2.0))*forceEarly
 		if (int(longest*longest*0.000001)>targetseats):
 			most = 9999999999.9
