@@ -48,6 +48,7 @@ func _pressed():
 	adjustGreen.resize(arraySize)
 	drySample = get_parent().get_node("Controls1").text.unicode_at(0)-65.0
 	wetSample = get_parent().get_node("Controls2").text.unicode_at(0)-65.0
+	var greennessTotal: float = (drySample+wetSample)/52.0 #0 for AA, 1.0 for ZZ
 	for t: int in range(0,arraySize):
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
@@ -263,7 +264,7 @@ func _pressed():
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
 		most /= (primeCount/unprimeCount)
-		most *= greenAvg
+		most *= ((1.0-greennessTotal) + (greenAvg*greennessTotal))
 		most += ((shortest*shortest)/(milliseconds*2.0))*forceEarly
 		if (int(longest*longest*0.000001)>targetseats):
 			most = 9999999999.9
