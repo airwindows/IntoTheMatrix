@@ -3,6 +3,10 @@ var delaysB: PackedInt32Array
 
 func _pressed():
 	get_parent().get_node("Timer4").paused = true
+	
+	if (!get_parent().get_node("totalIterations").text.contains("Finished")):
+		get_parent().get_node("Code2").text = get_parent().get_node("Code").text
+	
 	delaysB.resize(26)
 	delaysB.fill(1)
 	delaysB[1] = get_parent().get_node("TextEdit1").text.to_int()
@@ -81,11 +85,7 @@ func _pressed():
 	get_parent().get_node("RichTextLabel2").text = str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue
 	var current_date_time = Time.get_datetime_dict_from_system()
 	var suffix: String = ""
-	suffix = suffix + "-" + get_parent().get_node("Controls1").text + get_parent().get_node("Controls2").text
-	suffix = suffix + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
-	suffix = suffix + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
-	suffix = suffix + "-" + get_parent().get_node("Controls7").text + get_parent().get_node("Controls8").text
-	suffix = suffix + get_parent().get_node("Controls9").text + get_parent().get_node("Controls10").text
+	suffix = suffix + "seat" + str(delaysB[1]) + str(delaysB[2]) + str(delaysB[3]) + "x"
 	suffix = suffix + "4 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int d4A = "+str(delaysB[1])+"; "
 	taps = taps+"const int d4B = "+str(delaysB[2])+"; "
@@ -103,7 +103,7 @@ func _pressed():
 	taps = taps+"const int d4N = "+str(delaysB[14])+"; "
 	taps = taps+"const int d4O = "+str(delaysB[15])+"; "
 	taps = taps+"const int d4P = "+str(delaysB[16])+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define FOURBYFOUR true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define FOURBYFOUR true // "+str(int(seats))+suffix
 	
 	get_parent().get_node("Code").text = taps
 	get_parent().get_node("search6").disabled = false

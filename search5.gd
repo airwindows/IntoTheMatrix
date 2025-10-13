@@ -77,7 +77,7 @@ func _pressed():
 		var x: float = (float(t)/float(arraySize))
 		x = 1.0-pow(1.0-x,2)
 		adjustShape[t] = (((drySample*(1.0-x))+(wetSample*x))*0.2)+1.1
-	var forceEarly: float = (get_parent().get_node("Controls9").text.unicode_at(0)-65.0)
+	var forceEarly: float = (get_parent().get_node("Controls9").text.unicode_at(0)-65.0)*0.1
 	var primeyness: float = (get_parent().get_node("Controls10").text.unicode_at(0)-65.0)
 	
 	var delays: PackedInt32Array
@@ -93,8 +93,6 @@ func _pressed():
 	get_parent().get_node("totalIterations").text = str(total)
 	get_parent().get_node("sinceIterations").text = str(since)
 	var targetseats: float = get_parent().get_node("targetSeats").text.to_float()
-	if (since > 720000):
-		get_parent().get_node("totalIterations").text = "Finished"
 	for dummy: int in range(0,iterations):
 		var primeCount: float = 0.0
 		var unprimeCount: float = 0.0
@@ -409,8 +407,8 @@ func _pressed():
 			get_parent().get_node("TextureRect").scale.y = 1.0
 			get_parent().get_node("TextureRect").texture = ImageTexture.create_from_image(display)
 	get_parent().get_node("Iterations").text = str(floori(sqrt(32768.0/(Time.get_unix_time_from_system()-timing))))
-	var halt: String = get_parent().get_node("totalIterations").text
-	if (fireRedraw || halt.contains("Finished")): #in the loop, we've updated with a new best
+	var halt: int = get_parent().get_node("totalIterations").text.to_int()
+	if (fireRedraw || halt > 16000000): #in the loop, we've updated with a new best
 		get_parent().get_node("halt5")._pressed()
 	else:
 		get_parent().get_node("Timer5").paused = false

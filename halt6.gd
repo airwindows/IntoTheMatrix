@@ -4,6 +4,10 @@ var delaysC: PackedInt32Array
 
 func _pressed():
 	get_parent().get_node("Timer6").paused = true
+	
+	if (!get_parent().get_node("totalIterations").text.contains("Finished")):
+		get_parent().get_node("Code2").text = get_parent().get_node("Code").text
+	
 	delaysB.resize(37)
 	delaysB.fill(1)
 	delaysB[1] = get_parent().get_node("TextEdit1").text.to_int()
@@ -135,11 +139,7 @@ func _pressed():
 	get_parent().get_node("RichTextLabel2").text = str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue
 	var current_date_time = Time.get_datetime_dict_from_system()
 	var suffix: String = ""
-	suffix = suffix + "-" + get_parent().get_node("Controls1").text + get_parent().get_node("Controls2").text
-	suffix = suffix + get_parent().get_node("Controls3").text + get_parent().get_node("Controls4").text
-	suffix = suffix + get_parent().get_node("Controls5").text + get_parent().get_node("Controls6").text
-	suffix = suffix + "-" + get_parent().get_node("Controls7").text + get_parent().get_node("Controls8").text
-	suffix = suffix + get_parent().get_node("Controls9").text + get_parent().get_node("Controls10").text
+	suffix = suffix + "seat" + str(delaysB[1]) + str(delaysB[2]) + str(delaysB[3]) + "x"
 	suffix = suffix + "6 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	
 	var taps: String = "const int d3A = "+str(delaysC[5])+"; "
@@ -189,7 +189,7 @@ func _pressed():
 	taps = taps+"const int d6ZI = "+str(delaysB[34])+"; "
 	taps = taps+"const int d6ZJ = "+str(delaysB[35])+"; "
 	taps = taps+"const int d6ZK = "+str(delaysB[36])+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define SIXBYSIX true //"+str(int(seats))+get_parent().get_node("MatrixName").text+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define SIXBYSIX true // "+str(int(seats))+suffix
 	
 	get_parent().get_node("Code").text = taps
 	#stopped = true
