@@ -382,10 +382,10 @@ emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
 
 [node name="targetSeats" type="TextEdit" parent="."]
-offset_left = 557.0
-offset_top = 10.0
-offset_right = 613.0
-offset_bottom = 45.0
+offset_left = 553.0
+offset_top = 14.0
+offset_right = 609.0
+offset_bottom = 49.0
 text = "61.8"
 script = ExtResource("2_dpy4t")
 
@@ -517,7 +517,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="totalIterations" type="RichTextLabel" parent="."]
-offset_left = 237.0
+offset_left = 267.0
 offset_top = 138.0
 offset_right = 395.0
 offset_bottom = 162.0

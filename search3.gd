@@ -23,10 +23,10 @@ func _pressed():
 	get_parent().get_node("halt4").disabled = true
 	get_parent().get_node("Timer3").start()
 	get_parent().get_node("Timer3").paused = true
-	var arraySize: int = (sqrt(get_parent().get_node("targetSeats").text.to_float())*400.0)
-	if (arraySize > 23000):
-		arraySize = 23000
-	display = Image.create(512, int(arraySize/785)+1, false, Image.FORMAT_RGBAH)
+	var arraySize: int = (sqrt(get_parent().get_node("targetSeats").text.to_float())*618.0)
+	if (arraySize > 61800):
+		arraySize = 61800
+	display = Image.create(512, int(arraySize/1024)+1, false, Image.FORMAT_RGBAH)
 	var timing: float = Time.get_unix_time_from_system()
 	var fireRedraw: bool = false
 	var dispDelays: PackedFloat32Array
@@ -104,9 +104,9 @@ func _pressed():
 		var redAmt: float = 0.0
 		var blueAmt: float = 0.0
 		for entries: int in range(0,10):
-			var select: int = randi() >> int(24-roomsize)
+			var select: int = randi() % begins[roomsize*240] #>> int(24-roomsize)
 			#less shift means increasing amounts of randomness, which will help kickstart things
-			if (select < 7 || select > begins[roomsize*100]):
+			if (select < 7):# || select > begins[roomsize*100]):
 				if (select % 7 < 2):
 					delays[entries] = gold[entries] #0 or 1 uses Gold
 				else:
@@ -123,8 +123,8 @@ func _pressed():
 									delays[entries] = brass[entries] #5 uses Brass
 								else:
 									delays[entries] = copper[entries] #6 uses Copper
-				if (delays[entries] == 0):
-					delays[entries] = (select % begins[roomsize*100])+3
+			if (delays[entries] < 3):
+				delays[entries] = 3
 			else:
 				delays[entries] = select #use the number directly if we can't
 				
@@ -228,12 +228,6 @@ func _pressed():
 		for t: int in range(2,arraySize-1):
 			most += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/(arraySize*sqrt(arraySize))))
 			redAmt += (abs(spacings[t]-spacings[t-1])*adjustRed[t]*(zeroTotal/(arraySize*sqrt(arraySize))))
-		for t: int in range(1,min(arraySize,2667)):
-			if (begins[t] < arraySize):
-				if (spacings[begins[t]] > 0.0):
-					most *= 0.9
-					redAmt /= 0.9
-		#add a factor which is whether the spacing itself is a prime
 		
 		if is_nan(most):
 			most = 9999999999.9
@@ -254,13 +248,10 @@ func _pressed():
 			most = 9999999999.9
 		
 		var milliseconds: float = float((shortest+longest)/2.0)/44.1
-		most /= (primeCount/unprimeCount)
 		most *= ((1.0-greennessTotal) + (greenAvg*greennessTotal))
 		most += ((shortest*shortest)/(milliseconds*2.0))*forceEarly
-		if (int(longest*longest*0.000001)>targetseats):
-			most = 9999999999.9
-		if (int(shortest*shortest*0.2)<targetseats):
-			most = 9999999999.9
+		most /= (longest*primeCount)
+		
 		if (most > doPrintout): #we want the lowest number, so this part is failure to beat the best
 			#since we are not in the zone, let's also tune the seat number
 			var seats: int = int((milliseconds/2.25)*(milliseconds/2.25))
@@ -340,7 +331,11 @@ func _pressed():
 					if (r > 127.0):
 						r = 256.0
 					if (g > 0.0):
-						g = min(g*(1.0+(primeyness*0.02)),255.0)
+						g = g/1.272
+						if (b > 61.8):
+							b = g*1.618
+						else:
+							r = g*1.618
 				if (t/512 < display.get_height()-1):
 					display.set_pixel(t%512,(t/512),Color.from_rgba8(r,g,b))
 			#that has drawn the reverb on the display, now for the chart
@@ -350,13 +345,13 @@ func _pressed():
 			redAmt = (redAmt/sum)*512.0
 			blueAmt = (blueAmt/sum)*512.0
 			for t: int in range(0,greenBrt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,64,0))
+				display.set_pixel(t,(arraySize/1024),Color.from_rgba8(0,64,0))
 			for t: int in range(greenBrt,greenAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,192,0))
+				display.set_pixel(t,(arraySize/1024),Color.from_rgba8(0,192,0))
 			for t: int in range(greenAmt,greenAmt+redAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(192,0,0))
+				display.set_pixel(t,(arraySize/1024),Color.from_rgba8(192,0,0))
 			for t: int in range(greenAmt+redAmt,greenAmt+redAmt+blueAmt):
-				display.set_pixel(t,(arraySize/785),Color.from_rgba8(0,0,192))
+				display.set_pixel(t,(arraySize/1024),Color.from_rgba8(0,0,192))
 			#that has drawn the bar chart: influence of each constraint
 			get_parent().get_node("displayPrimes").text = str(int((primeCount/unprimeCount)*100.0))
 			changes += 1

@@ -6,6 +6,7 @@ func _ready() -> void:
 	targetSeats += randi_range(0, targetSeats*1.61803398875)
 	targetSeats += randi_range(0, targetSeats*1.61803398875)
 	targetSeats += randi_range(0, targetSeats*1.61803398875)
+	targetSeats += randi_range(0, targetSeats*1.61803398875)
 	self.text = str(targetSeats)
 	
 	#get_parent().get_node("Controls1").text = char(min(max(randi_range(2, 6),0),25)+65)
