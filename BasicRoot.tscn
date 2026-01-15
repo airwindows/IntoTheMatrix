@@ -386,7 +386,7 @@ offset_left = 262.0
 offset_top = 132.0
 offset_right = 309.0
 offset_bottom = 167.0
-text = "500"
+text = "747"
 script = ExtResource("2_dpy4t")
 
 [node name="Iterations" type="TextEdit" parent="."]
