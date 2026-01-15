@@ -139,11 +139,11 @@ func _pressed():
 				for c: int in range (11,16):
 					for d: int in range (16, 21):
 						for e: int in range (21, 26):
-							var total: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]
-							longest = max(longest,total)
-							shortest = min(shortest,total)
-							if (total < arraySize):
-								dispDelays[total] += brightness
+							var totalV: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]
+							longest = max(longest,totalV)
+							shortest = min(shortest,totalV)
+							if (totalV < arraySize):
+								dispDelays[totalV] += brightness
 							else:
 								dispDelays[1] += 1.0
 							#green is how much the stacked echoes stack
@@ -183,17 +183,17 @@ func _pressed():
 				for c: int in range (11,16):
 					for d: int in range (16, 21):
 						for e: int in range (21, 26):
-							var total: int = rotated[a]+rotated[b]+rotated[c]+rotated[d]+rotated[e]
-							longest = max(longest,total)
-							shortest = min(shortest,total)
-							if (total < arraySize):
-								dispDelays[total] += brightness
+							var totalV: int = rotated[a]+rotated[b]+rotated[c]+rotated[d]+rotated[e]
+							longest = max(longest,totalV)
+							shortest = min(shortest,totalV)
+							if (totalV < arraySize):
+								dispDelays[totalV] += brightness
 							else:
 								dispDelays[1] += 1.0
 							#green is how much the stacked echoes stack
 		var greenBrt: float = 0.0
 		var greenUnBrt: float = 1.0
-		var greenIIR: float = 0.0
+		#var greenIIR: float = 0.0
 		var greenAvg: float = 0.0
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = sqrt(dispDelays[t])
@@ -333,7 +333,7 @@ func _pressed():
 				gold[entries] = delays[entries]
 				#podium of the six best yet
 			
-			var editseats: float =  get_parent().get_node("Seats").text.to_float()
+			#var editseats: float =  get_parent().get_node("Seats").text.to_float()
 			display.fill(Color.BLACK)
 			var maxGreen: float = 0.0
 			var maxBlue: float = 0.0

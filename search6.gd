@@ -103,6 +103,7 @@ func _pressed():
 		var blueAmt: float = 0.0
 		for entries: int in range(0,37):
 			var select: int = randi() % begins[roomsize*240] #>> int(24-roomsize)
+			print(select)
 			#less shift means increasing amounts of randomness, which will help kickstart things
 			if (select < 7):# || select > begins[roomsize*100]):
 				if (select % 7 < 2):
@@ -139,11 +140,11 @@ func _pressed():
 					for d: int in range (19, 25):
 						for e: int in range (25, 31):
 							for f: int in range (31, 37):
-								var total: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]+delays[f]
-								longest = max(longest,total)
-								shortest = min(shortest,total)
-								if (total < arraySize):
-									dispDelays[total] += brightness
+								var totalV: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]+delays[f]
+								longest = max(longest,totalV)
+								shortest = min(shortest,totalV)
+								if (totalV < arraySize):
+									dispDelays[totalV] += brightness
 								else:
 									dispDelays[1] += 1.0
 								#green is how much the stacked echoes stack
@@ -196,17 +197,17 @@ func _pressed():
 					for d: int in range (19, 25):
 						for e: int in range (25, 31):
 							for f: int in range (31, 37):
-								var total: int = delays[a]+delays[b]+delays[c]+delays[d]+delays[e]+delays[f]
-								longest = max(longest,total)
-								shortest = min(shortest,total)
-								if (total < arraySize):
-									dispDelays[total] += brightness
+								var totalV: int = rotated[a]+rotated[b]+rotated[c]+rotated[d]+rotated[e]+rotated[f]
+								longest = max(longest,totalV)
+								shortest = min(shortest,totalV)
+								if (totalV < arraySize):
+									dispDelays[totalV] += brightness
 								else:
 									dispDelays[1] += 1.0
 								#green is how much the stacked echoes stack
 		var greenBrt: float = 0.0
 		var greenUnBrt: float = 1.0
-		var greenIIR: float = 0.0
+		#var greenIIR: float = 0.0
 		var greenAvg: float = 0.0
 		for t: int in range(1,arraySize-1):
 			invDelays[t] = sqrt(dispDelays[t])
@@ -418,6 +419,7 @@ func _pressed():
 	var halt: int = get_parent().get_node("totalIterations").text.to_int()
 	if (fireRedraw || halt > 16000000): #in the loop, we've updated with a new best
 		get_parent().get_node("halt6")._pressed()
+		#get_parent().get_node("halt6").emit_signal("pressed", true)
 	else:
 		get_parent().get_node("Timer6").paused = false
 	

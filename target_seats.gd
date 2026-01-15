@@ -2,12 +2,9 @@ extends TextEdit
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var targetSeats: int = self.text.to_int()
-	targetSeats += randi_range(0, targetSeats*1.61803398875)
-	targetSeats += randi_range(0, targetSeats*1.61803398875)
-	targetSeats += randi_range(0, targetSeats*1.61803398875)
-	targetSeats += randi_range(0, targetSeats*1.61803398875)
-	targetSeats += randi_range(0, targetSeats*1.61803398875)
-	self.text = str(targetSeats)
+	#targetSeats += randi_range(0, targetSeats)
+	#targetSeats += randi_range(0, targetSeats)
+	#self.text = str(targetSeats)
 	
 	#get_parent().get_node("Controls1").text = char(min(max(randi_range(2, 6),0),25)+65)
 	#get_parent().get_node("Controls2").text = char(min(max(randi_range(2, 7),0),25)+65)

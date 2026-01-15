@@ -5,8 +5,8 @@ var delaysC: PackedInt32Array
 func _pressed():
 	get_parent().get_node("Timer6").paused = true
 	
-	if (!get_parent().get_node("totalIterations").text.contains("Finished")):
-		get_parent().get_node("Code2").text = get_parent().get_node("Code").text
+	#if (!get_parent().get_node("totalIterations").text.contains("Finished")):
+	#	get_parent().get_node("Code2").text = get_parent().get_node("Code").text
 	
 	delaysB.resize(37)
 	delaysB.fill(1)
@@ -202,6 +202,12 @@ func _pressed():
 	var halt: String = get_parent().get_node("totalIterations").text
 	if (get_parent().get_node("Generating").button_pressed && !halt.contains("Finished")):
 		get_parent().get_node("Timer6").paused = false
+		
+	var output: String # = get_parent().get_node("Code2").text + "\n\n"
+	output = get_parent().get_node("Code").text + "\n\n"
+	DisplayServer.clipboard_set(output)
+	get_tree().quit()
+
 
 func format_number(number: int) -> String:
 	# Handle negative numbers by adding the "minus" sign in advance, as we discard it

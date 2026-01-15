@@ -4,8 +4,8 @@ var delaysB: PackedInt32Array
 func _pressed():
 	get_parent().get_node("Timer5").paused = true
 	
-	if (!get_parent().get_node("totalIterations").text.contains("Finished")):
-		get_parent().get_node("Code2").text = get_parent().get_node("Code").text
+	#if (!get_parent().get_node("totalIterations").text.contains("Finished")):
+	#	get_parent().get_node("Code2").text = get_parent().get_node("Code").text
 	
 	delaysB.resize(26)
 	delaysB.fill(1)

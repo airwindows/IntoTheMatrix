@@ -138,11 +138,11 @@ func _pressed():
 		for a: int in range (1,4):
 			for b: int in range (4,7):
 				for c: int in range (7,10):
-					var total: int = delays[a]+delays[b]+delays[c]
-					longest = max(longest,total)
-					shortest = min(shortest,total)
-					if (total < arraySize):
-						dispDelays[total] += brightness
+					var totalV: int = delays[a]+delays[b]+delays[c]
+					longest = max(longest,totalV)
+					shortest = min(shortest,totalV)
+					if (totalV < arraySize):
+						dispDelays[totalV] += brightness
 					else:
 						dispDelays[1] += 1.0
 					#green is how much the stacked echoes stack
@@ -160,11 +160,11 @@ func _pressed():
 		for a: int in range (1,4):
 			for b: int in range (4,7):
 				for c: int in range (7,10):
-					var total: int = rotated[a]+rotated[b]+rotated[c]
-					longest = max(longest,total)
-					shortest = min(shortest,total)
-					if (total < arraySize):
-						dispDelays[total] += brightness
+					var totalV: int = rotated[a]+rotated[b]+rotated[c]
+					longest = max(longest,totalV)
+					shortest = min(shortest,totalV)
+					if (totalV < arraySize):
+						dispDelays[totalV] += brightness
 					else:
 						dispDelays[1] += 1.0
 					#green is how much the stacked echoes stack
