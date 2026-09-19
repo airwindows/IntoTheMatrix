@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.IO;
+using System.IO.Compression;
 
 public partial class search4 : Button
 {
@@ -166,29 +168,29 @@ public partial class search4 : Button
 
 	//there are 2668 primes here
 	private int[] gold = 
-		{3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] silver =
-		{13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] bronze =
-		{31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] steel =
-		{53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] brass =
-		{71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] copper =
-		{113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] tin = 
-		{157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] lead = 
-		{199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] mud = 
-		{251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] poo = 
-		{271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] llm = 
-		{293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] musk = 
-		{347, 349, 353, 359, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337};
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	
 	private Image display;
 	private int total = 0;
@@ -209,8 +211,10 @@ public partial class search4 : Button
 		GetParent().GetNode<Button>("halt5").Disabled = true;
 		GetParent().GetNode<Button>("search3").Disabled = true;
 		GetParent().GetNode<Button>("halt3").Disabled = true;
+		GetParent().GetNode<Button>("searchGodot").Disabled = true;
+		GetParent().GetNode<Button>("haltGodot").Disabled = true;
 		GetParent().GetNode<Timer>("Timer4").Start();
-		GetParent().GetNode<Timer>("Timer4").EmitSignal("start");
+		//GetParent().GetNode<Timer>("Timer4").EmitSignal("start");
 		GetParent().GetNode<Timer>("Timer4").Paused = true;
 		int arraySize = (int) (Math.Sqrt(GetParent().GetNode<TextEdit>("targetSeats").Text.ToFloat()) * 618.0f);
 		if (arraySize > 61800) arraySize = 61800;
@@ -303,8 +307,11 @@ public partial class search4 : Button
 				select = (int)Math.Abs(select);
 				//GD.Print(select);
 				//less shift means increasing amounts of randomness, which will help kickstart things
-				if (GD.Randf()<0.618f) // || select > begins[roomsize*100]):
-					if (select % 12 < 1)
+				if (GD.Randf() > 0.618f) // || select > begins[roomsize*100]):
+				{
+					if (select % 12 > changes)
+						delays[entries] = select; //use the number directly if there's not enough history
+					else if (select % 12 < 1)
 						delays[entries] = gold[entries]; //0 uses Gold
 					else if (select % 12 < 2)
 						delays[entries] = silver[entries]; //1 uses Silver
@@ -328,9 +335,15 @@ public partial class search4 : Button
 						delays[entries] = llm[entries]; //10 uses LLM
 					else
 						delays[entries] = musk[entries]; //12 uses Musk
+				}
 				else
 					delays[entries] = select; //use the number directly if not using history
-				if (delays[entries] < 3) delays[entries] = 3; //override zeroes and such
+				if (delays[entries] < 3) { 
+					select = (int) GD.Randi(); 
+					select %= begins[(int)(roomsize*120)]; 
+					select = (int)Math.Abs(select); 
+					delays[entries] = select + 1; 
+				}
 			}
 			doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
 			float brightness = 0.2f;
@@ -415,9 +428,15 @@ public partial class search4 : Button
 
 			float greenUnBrt = 1.0f;
 			float greenAvg = 0.0f;
+			
+			//now we have a peak value (greenPeak) and can add bytes to the array to compress,
+			//because we can scale everything to max Byte rather than compressing four byte floats.
+			//now try to gzip the whole array and then get the size
+			byte[] toCompress = new byte[arraySize];
 			for (int t = 1; t < arraySize - 1; t++)
 			{
 				invDelays[t] = (float) Math.Sqrt(dispDelays[t]);
+				toCompress[t] = (byte) (dispDelays[t] * 255.0f / greenPeak);
 				if (dispDelays[t] > 0.0f)
 				{
 					greenUnBrt += 1.0f;
@@ -429,6 +448,13 @@ public partial class search4 : Button
 				//lowest is best. Green is normally the highest proportion of score.
 				greenAvg += dispDelays[t] * dispDelays[t];
 			}
+			//we now have toCompress as a byte array to feed to GZip
+			MemoryStream ms = new MemoryStream();
+			GZipStream zip = new GZipStream(ms, CompressionLevel.SmallestSize, true);
+			zip.Write(toCompress, 0, arraySize);
+			zip.Flush();
+			float sizeOfZip = zip.BaseStream.Length;
+			sizeOfZip = sizeOfZip * sizeOfZip * 0.0001f;
 
 			if (float.IsNaN(most)) most = 9999999999.9f;
 			greenAmt = most;
@@ -456,6 +482,7 @@ public partial class search4 : Button
 			//be as irregular as possible, so just like stacking up delay taps
 			//is bad, having 'em all spaced the same distance is bad.
 			spacings = new float[arraySize];
+			float biggestZeroRun = 0.0f;
 			int zeroRun = 0;
 			float zeroTotal = 0.0f;
 			int echoRun = 0;
@@ -480,9 +507,12 @@ public partial class search4 : Button
 					//using Red to weight fiercely against long initial delay
 					//we'll never get here unless we're hitting an actual echo
 					//so final run to end of arraySize doesn't count
+					biggestZeroRun += zeroRun*zeroRun*0.00016f;
 					zeroRun = 0;
 				}
 			}
+
+			most += biggestZeroRun; //correct for giant spaces in sparser delays
 
 			//here's the thing though: what we should do is measure every departure from the previous
 			//spacings, in a 'slew measuring' way, because the evenest distribution will be best.
@@ -522,7 +552,10 @@ public partial class search4 : Button
 			int desiredIterations = 100-(int)Math.Sqrt(Math.Abs(Time.GetUnixTimeFromSystem() - timing));
 			desiredIterations = Math.Abs(desiredIterations) + 1;
 			GetParent().GetNode<TextEdit>("Iterations").Text = desiredIterations.ToString();
-			
+
+			//and lastly, we're gonna multiply the whole 'most' by the number of bytes it takes to compress it
+			most *= sizeOfZip;
+
 			if (most > doPrintout)
 			{
 				//we want the lowest number, so this part is failure to beat the best
@@ -669,7 +702,7 @@ public partial class search4 : Button
 			}
 		}
 
-		GetParent().GetNode<Button>("halt4").EmitSignal("pressed", true);
+		//GetParent().GetNode<Button>("halt4").EmitSignal("pressed", true);
 		GetParent().GetNode<Button>("halt4")._Pressed();
 		GetParent().GetNode<Timer>("Timer4").Paused = false;
 	}

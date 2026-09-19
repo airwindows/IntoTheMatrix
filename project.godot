@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="IntoTheMatrix"
 run/main_scene="res://BasicRoot.tscn"
-config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/use_filter=false
 boot_splash/image="res://IntoTheMatrix.png"
@@ -21,7 +25,7 @@ config/icon="res://IntoTheMatrix.png"
 [display]
 
 window/size/viewport_width=530
-window/size/viewport_height=190
+window/size/viewport_height=290
 window/size/resizable=false
 
 [dotnet]

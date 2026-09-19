@@ -5,7 +5,7 @@ func _Pressed():
 	self._pressed()
 
 func _pressed():
-	get_parent().get_node("Timer4").paused = true
+	get_parent().get_node("TimerGodot").paused = true
 	
 	#if (!get_parent().get_node("totalIterations").text.contains("Finished")):
 	#	get_parent().get_node("Code2").text = get_parent().get_node("Code").text
@@ -41,37 +41,6 @@ func _pressed():
 					if pos < shortest:
 						shortest = pos
 					#now we have the final delay time
-	#rotate
-	var rotated: PackedInt32Array
-	rotated.resize(17)
-	rotated.fill(0)
-	rotated[1] = delaysB[13]
-	rotated[2] = delaysB[9]
-	rotated[3] = delaysB[5]
-	rotated[4] = delaysB[1]
-	rotated[5] = delaysB[14]
-	rotated[6] = delaysB[10]
-	rotated[7] = delaysB[6]
-	rotated[8] = delaysB[2]
-	rotated[9] = delaysB[15]
-	rotated[10] = delaysB[11]
-	rotated[11] = delaysB[7]
-	rotated[12] = delaysB[3]
-	rotated[13] = delaysB[16]
-	rotated[14] = delaysB[12]
-	rotated[15] = delaysB[8]
-	rotated[16] = delaysB[4]
-	#do cross matrix calculation
-	for a: int in range (1,5):
-		for b: int in range (5,9):
-			for c: int in range (9,13):
-				for d: int in range (13,17):
-					var pos = rotated[a]+rotated[b]+rotated[c]+rotated[d]
-					if pos > longest:
-						longest = pos
-					if pos < shortest:
-						shortest = pos
-					#now we have the final delay time
 	var milliseconds: float = float((shortest+longest)/2.0)/44.1
 	var seats: float  = (milliseconds/2.9)*(milliseconds/2.9)
 	var venue: String = "room"
@@ -89,9 +58,9 @@ func _pressed():
 	var current_date_time = Time.get_datetime_dict_from_system()
 	var suffix: String = ""
 	suffix = suffix + "seat"
-	var bignum: String = str(delaysB[3])+str(delaysB[4])+str(delaysB[5])+str(delaysB[6])
+	var bignum: String = str(delaysB[3])+str(delaysB[4])+str(delaysB[5])
 	suffix = suffix + "%X" % bignum.to_int()
-	suffix = suffix + "x4 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
+	suffix = suffix + " on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int d4A = "+str(delaysB[1])+"; "
 	taps = taps+"const int d4B = "+str(delaysB[2])+"; "
 	taps = taps+"const int d4C = "+str(delaysB[3])+"; "
@@ -108,22 +77,21 @@ func _pressed():
 	taps = taps+"const int d4N = "+str(delaysB[14])+"; "
 	taps = taps+"const int d4O = "+str(delaysB[15])+"; "
 	taps = taps+"const int d4P = "+str(delaysB[16])+"; //"
-	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n#define FOURBYFOUR true // "+str(int(seats))+suffix
+	taps = taps+str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue+"  \n// "+str(int(seats))+suffix
 	
 	get_parent().get_node("Code").text = taps
 	get_parent().get_node("search6").disabled = false
 	get_parent().get_node("halt6").disabled = false
 	get_parent().get_node("search5").disabled = false
 	get_parent().get_node("halt5").disabled = false
+	get_parent().get_node("search4").disabled = false
+	get_parent().get_node("halt4").disabled = false
 	get_parent().get_node("search3").disabled = false
 	get_parent().get_node("halt3").disabled = false
-	get_parent().get_node("searchGodot").disabled = false
-	get_parent().get_node("haltGodot").disabled = false
 	var halt: String = get_parent().get_node("totalIterations").text
 	if (get_parent().get_node("Generating").button_pressed && !halt.contains("Finished")):
-		get_parent().get_node("Timer4").paused = false
+		get_parent().get_node("TimerGodot").paused = false
 
-	var output: String # = get_parent().get_node("Code2").text + "\n\n"
-	output = get_parent().get_node("Code").text + "\n\n"
-	DisplayServer.clipboard_set(output)
+	#var output: String = get_parent().get_node("Code").text
+	DisplayServer.clipboard_set(get_parent().get_node("Code").text)
 	get_tree().quit()

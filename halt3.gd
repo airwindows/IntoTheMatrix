@@ -1,6 +1,9 @@
 extends Button
 var delaysB: PackedInt32Array
 
+func _Pressed():
+	self._pressed()
+
 func _pressed():
 	get_parent().get_node("Timer3").paused = true
 	
@@ -69,8 +72,10 @@ func _pressed():
 	get_parent().get_node("RichTextLabel2").text = str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue
 	var current_date_time = Time.get_datetime_dict_from_system()
 	var suffix: String = ""
-	suffix = suffix + "seat" + str(delaysB[1]) + str(delaysB[2]) + str(delaysB[3]) + "x"
-	suffix = suffix + "3 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
+	suffix = suffix + "seat"
+	var bignum: String = str(delaysB[3])+str(delaysB[4])+str(delaysB[5])+str(delaysB[6])
+	suffix = suffix + "%X" % bignum.to_int()
+	suffix = suffix + "x3 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
 	var taps: String = "const int d3A = "+str(delaysB[1])+"; "
 	taps = taps+"const int d3B = "+str(delaysB[2])+"; "
 	taps = taps+"const int d3C = "+str(delaysB[3])+"; "
@@ -89,6 +94,8 @@ func _pressed():
 	get_parent().get_node("halt5").disabled = false
 	get_parent().get_node("search4").disabled = false
 	get_parent().get_node("halt4").disabled = false
+	get_parent().get_node("searchGodot").disabled = false
+	get_parent().get_node("haltGodot").disabled = false
 	var halt: String = get_parent().get_node("totalIterations").text
 	if (get_parent().get_node("Generating").button_pressed && !halt.contains("Finished")):
 		get_parent().get_node("Timer3").paused = false

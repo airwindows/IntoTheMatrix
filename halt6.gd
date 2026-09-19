@@ -2,6 +2,9 @@ extends Button
 var delaysB: PackedInt32Array
 var delaysC: PackedInt32Array
 
+func _Pressed():
+	self._pressed()
+
 func _pressed():
 	get_parent().get_node("Timer6").paused = true
 	
@@ -68,13 +71,6 @@ func _pressed():
 								shortest = pos
 							#now we have the final delay time
 	#rotate
-	delaysC.resize(0)
-	for item in delaysB:
-		if not delaysC.has(item):
-			delaysC.append(item)
-	#deduplicated array
-	delaysC.sort()
-	delaysC.reverse()
 	
 	var rotated: PackedInt32Array
 	rotated.resize(37)
@@ -139,8 +135,21 @@ func _pressed():
 	get_parent().get_node("RichTextLabel2").text = str(int(shortest/44.1))+" to "+str(int(longest/44.1))+" ms, "+str(int(seats))+" seat "+venue
 	var current_date_time = Time.get_datetime_dict_from_system()
 	var suffix: String = ""
-	suffix = suffix + "seat" + str(delaysB[1]) + str(delaysB[2]) + str(delaysB[3]) + "x"
-	suffix = suffix + "6 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
+	suffix = suffix + "seat"
+	var bignum: String = str(delaysB[3])+str(delaysB[4])+str(delaysB[5])+str(delaysB[6])
+	suffix = suffix + "%X" % bignum.to_int()
+	suffix = suffix + "x6 on %04d-%02d-%02d" % [current_date_time["year"], current_date_time["month"], current_date_time["day"]]
+	
+	
+	delaysC.resize(0)
+	for item in delaysB:
+		delaysC.append(item)
+	
+	delaysC.sort()
+	delaysC.reverse()
+
+	
+	
 	
 	var taps: String = "const int d3A = "+str(delaysC[5])+"; "
 	taps = taps+"const int d3B = "+str(delaysC[1])+"; "
@@ -199,6 +208,8 @@ func _pressed():
 	get_parent().get_node("halt4").disabled = false
 	get_parent().get_node("search3").disabled = false
 	get_parent().get_node("halt3").disabled = false
+	get_parent().get_node("searchGodot").disabled = false
+	get_parent().get_node("haltGodot").disabled = false
 	var halt: String = get_parent().get_node("totalIterations").text
 	if (get_parent().get_node("Generating").button_pressed && !halt.contains("Finished")):
 		get_parent().get_node("Timer6").paused = false

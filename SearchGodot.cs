@@ -2,8 +2,9 @@ using Godot;
 using System;
 using System.IO;
 using System.IO.Compression;
+using Godot.Collections;
 
-public partial class search6 : Button
+public partial class SearchGodot : Button
 {
 	//note that the array here is ONLY a Godot.Collections.Array (WAY SLOWER) for a visual hack!
 	private int[] begins =
@@ -196,7 +197,6 @@ public partial class search6 : Button
 	private int total = 0;
 	private int since = 0;
 	private int best = 0;
-
 	private int changes = 0;
 
 	// Called when the node enters the scene tree for the first time.
@@ -206,17 +206,16 @@ public partial class search6 : Button
 
 	public override void _Pressed()
 	{
+		GetParent().GetNode<Button>("search6").Disabled = true;
+		GetParent().GetNode<Button>("halt6").Disabled = true;
 		GetParent().GetNode<Button>("search5").Disabled = true;
 		GetParent().GetNode<Button>("halt5").Disabled = true;
 		GetParent().GetNode<Button>("search4").Disabled = true;
 		GetParent().GetNode<Button>("halt4").Disabled = true;
 		GetParent().GetNode<Button>("search3").Disabled = true;
 		GetParent().GetNode<Button>("halt3").Disabled = true;
-		GetParent().GetNode<Button>("searchGodot").Disabled = true;
-		GetParent().GetNode<Button>("haltGodot").Disabled = true;
-		GetParent().GetNode<Timer>("Timer6").Start();
-		//GetParent().GetNode<Timer>("Timer6").EmitSignal("start");
-		GetParent().GetNode<Timer>("Timer6").Paused = true;
+		GetParent().GetNode<Timer>("TimerGodot").Start();
+		GetParent().GetNode<Timer>("TimerGodot").Paused = true;
 		int arraySize = (int) (Math.Sqrt(GetParent().GetNode<TextEdit>("targetSeats").Text.ToFloat()) * 618.0f);
 		if (arraySize > 61800) arraySize = 61800;
 		display = Image.CreateEmpty(512, (int) (arraySize / 1024) + 1, false, Image.Format.Rgbah);
@@ -281,9 +280,7 @@ public partial class search6 : Button
 		float forceEarly = (GetParent().GetNode<TextEdit>("Controls9").Text[0] - 65.0f) * 0.1f;
 		float primeyness = GetParent().GetNode<TextEdit>("Controls10").Text[0] - 65.0f;
 		int[] delays;
-		delays = new int[37];
-		int[] rotated;
-		rotated = new int[37];
+		delays = new int[17];
 		float most = 0.0f;
 		float doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
 		int iterations = GetParent().GetNode<TextEdit>("Iterations").Text.ToInt();
@@ -301,10 +298,10 @@ public partial class search6 : Button
 			float greenAmt = 0.0f;
 			float redAmt = 0.0f;
 			float blueAmt = 0.0f;
-			for (int entries = 0; entries < 37; entries++)
+			for (int entries = 0; entries < 17; entries++)
 			{
 				int select = (int) GD.Randi();
-				select %= begins[(int)(roomsize*120)]; //>> int(24-roomsize) //240
+				select %= begins[(int)(roomsize*120)];
 				select = (int)Math.Abs(select);
 				//GD.Print(select);
 				//less shift means increasing amounts of randomness, which will help kickstart things
@@ -340,114 +337,39 @@ public partial class search6 : Button
 				else
 					delays[entries] = select; //use the number directly if not using history
 				
-				if (delays[entries] < 3) { 
-					select = (int) GD.Randi(); 
-					select %= begins[(int)(roomsize*120)]; 
-					select = (int)Math.Abs(select); 
-					delays[entries] = select + 1; 
+				if (delays[entries] < 3)
+				{
+					select = (int) GD.Randi();
+					select %= begins[(int)(roomsize*120)];
+					select = (int)Math.Abs(select);
+					delays[entries] = select + 1;
 				}
 			}
 			doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
-			float brightness = 0.001f;
+			float brightness = 0.2f;
 			most = 0.0f;
 			int longest = 0;
 			int shortest = 999999999;
 			//do primary matrix calculation
 			dispDelays = new float[arraySize];
-			for (int a = 1; a < 7; a++)
+			for (int a = 1; a < 5; a++)
 			{
-				for (int b = 7; b < 13; b++)
+				for (int b = 5; b < 9; b++)
 				{
-					for (int c = 13; c < 19; c++)
+					for (int c = 9; c < 13; c++)
 					{
-						for (int d = 19; d < 25; d++)
+						for (int d = 13; d < 17; d++)
 						{
-							for (int e = 25; e < 31; e++)
-							{
-								for (int f = 31; f < 37; f++)
-								{
-									int totalV = Math.Abs(delays[a] + delays[b] + delays[c] + delays[d] + delays[e] + delays[f]);
-									longest = Math.Max(longest, totalV);
-									shortest = Math.Min(shortest, totalV);
-									if (totalV > dispDelays.Length-1) totalV = 1;
-									dispDelays[totalV] += brightness;
-									//green is how much the stacked echoes stack
-								}
-							}
+							int totalV = Math.Abs(delays[a] + delays[b] + delays[c] + delays[d]); 
+							longest = Math.Max(longest, totalV);
+							shortest = Math.Min(shortest, totalV);
+							if (totalV > dispDelays.Length-1) totalV = 1;
+							dispDelays[totalV] += brightness;
+							//green is how much the stacked echoes stack
 						}
 					}
 				}
 			}
-
-			//rotate
-			rotated[1] = delays[31];
-			rotated[2] = delays[25];
-			rotated[3] = delays[19];
-			rotated[4] = delays[13];
-			rotated[5] = delays[7];
-			rotated[6] = delays[1];
-
-			rotated[7] = delays[32];
-			rotated[8] = delays[26];
-			rotated[9] = delays[20];
-			rotated[10] = delays[14];
-			rotated[11] = delays[8];
-			rotated[12] = delays[2];
-
-			rotated[13] = delays[33];
-			rotated[14] = delays[27];
-			rotated[15] = delays[21];
-			rotated[16] = delays[15];
-			rotated[17] = delays[9];
-			rotated[18] = delays[3];
-
-			rotated[19] = delays[34];
-			rotated[20] = delays[28];
-			rotated[21] = delays[22];
-			rotated[22] = delays[16];
-			rotated[23] = delays[10];
-			rotated[24] = delays[4];
-
-			rotated[25] = delays[35];
-			rotated[26] = delays[29];
-			rotated[27] = delays[23];
-			rotated[28] = delays[17];
-			rotated[29] = delays[11];
-			rotated[30] = delays[5];
-
-			rotated[31] = delays[36];
-			rotated[32] = delays[30];
-			rotated[33] = delays[24];
-			rotated[34] = delays[18];
-			rotated[35] = delays[12];
-			rotated[36] = delays[6];
-			//do primary matrix calculation
-			for (int a = 1; a < 7; a++)
-			{
-				for (int b = 7; b < 13; b++)
-				{
-					for (int c = 13; c < 19; c++)
-					{
-						for (int d = 19; d < 25; d++)
-						{
-							for (int e = 25; e < 31; e++)
-							{
-								for (int f = 31; f < 37; f++)
-								{
-									int totalV = Math.Abs(rotated[a] + rotated[b] + rotated[c] + rotated[d] + rotated[e] +
-									             rotated[f]);
-									longest = Math.Max(longest, totalV);
-									shortest = Math.Min(shortest, totalV);
-									if (totalV > dispDelays.Length-1) totalV = 1;
-									dispDelays[totalV] += brightness;
-									//green is how much the stacked echoes stack
-								}
-							}
-						}
-					}
-				}
-			}
-
 			float greenPeak = 1.0f; //never 0 because this is our reference and we'll divide by it
 			float greenRMS = 1.0f;
 			float trackRMS = 0.0f;
@@ -482,8 +404,7 @@ public partial class search6 : Button
 					greenUnBrt += 1.0f;
 					unprimeCount += dispDelays[t];
 				}
-
-				dispDelays[t] /= (adjustShape[t] - (float) (Math.Sin(((float) t / (float) (longest / 14.0f)))));
+				dispDelays[t] /= adjustShape[t] - (float)Math.Sin(t / (longest / 14.0f));
 				most = Math.Max(dispDelays[t] * arraySize * adjustGreen[t], most);
 				//end of green 'bloom/density' calculation in which
 				//lowest is best. Green is normally the highest proportion of score.
@@ -503,11 +424,11 @@ public partial class search6 : Button
 			//careful of getting weird bad values somehow
 			for (int t = 1; t < Math.Min(arraySize, 2667); t++)
 			{
-				if ((int) begins[t] < arraySize)
-				{
-					if (dispDelays[(int) begins[t]] > 0.0f)
+				if (begins[t] < arraySize) //what if, calculate begins[t] max size less than arraySize?
+				{ //OPTIMIZE for not running ALL the primes. Also applies to 6x6
+					if (dispDelays[begins[t]] > 0.0f)
 					{
-						most -= (dispDelays[t] * adjustGreen[t] * primeyness);
+						most -= dispDelays[t] * adjustGreen[t] * primeyness;
 						primeCount += dispDelays[t] * 100.0f;
 						greenBrt += 1.0f;
 						greenUnBrt -= 1.0f;
@@ -548,22 +469,21 @@ public partial class search6 : Button
 					//using Red to weight fiercely against long initial delay
 					//we'll never get here unless we're hitting an actual echo
 					//so final run to end of arraySize doesn't count
-					biggestZeroRun += zeroRun*zeroRun*0.00036f;
+					biggestZeroRun += zeroRun*zeroRun*0.00016f;
 					zeroRun = 0;
 				}
 			}
 
 			most += biggestZeroRun; //correct for giant spaces in sparser delays
-			
+
 			//here's the thing though: what we should do is measure every departure from the previous
 			//spacings, in a 'slew measuring' way, because the evenest distribution will be best.
 			for (int t = 2; t < arraySize - 1; t++)
 			{
-				most +=
-					(float) (Math.Abs(spacings[t] - spacings[t - 1]) * adjustRed[t] *
-					         (zeroTotal / (arraySize * Math.Sqrt(arraySize))));
-				redAmt += (float) (Math.Abs(spacings[t] - spacings[t - 1]) * adjustRed[t] *
-				                   (zeroTotal / (arraySize * Math.Sqrt(arraySize))));
+				float tryThis = (float)(Math.Abs(spacings[t] - spacings[t - 1]) * adjustRed[t] *
+				                 (zeroTotal / (arraySize * Math.Sqrt(arraySize))));
+				most += tryThis;
+				redAmt += tryThis;
 			}
 
 			if (float.IsNaN(most)) most = 9999999999.9f;
@@ -577,17 +497,17 @@ public partial class search6 : Button
 				angleChange[t] = (dispDelays[t] - dispDelays[t - 1]);
 				angleChange[t] -= (dispDelays[t - 1] - dispDelays[t - 2]);
 				angleChange[t] *= angleChange[t];
-				angleChange[t] *= 128.0f;
+				angleChange[t] *= 8.0f;
 				most += (angleChange[t] * adjustBlue[t]);
 				blueAmt += (angleChange[t] * adjustBlue[t]);
 			}
 
-			//most += greenRMS*2.0f; //let's try weighting against high RMS vs peak
-			
+			most += greenRMS*2.0f; //let's try weighting against high RMS vs peak
+
 			if (float.IsNaN(most)) most = 9999999999.9f;
 
 			float milliseconds = (float) ((shortest + longest) / 2.0) / 44.1f;
-			most *= ((1.0f - greennessTotal) + (greenAvg * greennessTotal));
+			most *= (1.0f - greennessTotal) + (greenAvg * greennessTotal);
 			most += ((shortest * shortest) / (milliseconds * 2.0f)) * forceEarly;
 			most /= (longest * primeCount);
 
@@ -596,7 +516,6 @@ public partial class search6 : Button
 			GetParent().GetNode<TextEdit>("Iterations").Text = desiredIterations.ToString();
 
 			//and lastly, we're gonna multiply the whole 'most' by the number of bytes it takes to compress it
-			most *= sizeOfZip;
 			most *= sizeOfZip;
 
 			if (most > doPrintout)
@@ -618,41 +537,41 @@ public partial class search6 : Button
 				GetParent().GetNode<TextEdit>("TextEdit2").Text = delays[2].ToString();
 				GetParent().GetNode<TextEdit>("TextEdit3").Text = delays[3].ToString();
 				GetParent().GetNode<TextEdit>("TextEdit4").Text = delays[4].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit5").Text = delays[5].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit6").Text = delays[6].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit7").Text = delays[7].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit8").Text = delays[8].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit9").Text = delays[9].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit10").Text = delays[10].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit11").Text = delays[11].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit12").Text = delays[12].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit13").Text = delays[13].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit14").Text = delays[14].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit15").Text = delays[15].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit16").Text = delays[16].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit17").Text = delays[17].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit18").Text = delays[18].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit19").Text = delays[19].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit20").Text = delays[20].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit21").Text = delays[21].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit22").Text = delays[22].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit23").Text = delays[23].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit24").Text = delays[24].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit25").Text = delays[25].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit26").Text = delays[26].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit27").Text = delays[27].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit28").Text = delays[28].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit29").Text = delays[29].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit30").Text = delays[30].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit31").Text = delays[31].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit32").Text = delays[32].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit33").Text = delays[33].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit34").Text = delays[34].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit35").Text = delays[35].ToString();
-				GetParent().GetNode<TextEdit>("TextEdit36").Text = delays[36].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit5").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit6").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit7").Text = delays[5].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit8").Text = delays[6].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit9").Text = delays[7].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit10").Text = delays[8].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit11").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit12").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit13").Text = delays[9].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit14").Text = delays[10].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit15").Text = delays[11].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit16").Text = delays[12].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit17").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit18").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit19").Text = delays[13].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit20").Text = delays[14].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit21").Text = delays[15].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit22").Text = delays[16].ToString();
+				GetParent().GetNode<TextEdit>("TextEdit23").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit24").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit25").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit26").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit27").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit28").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit29").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit30").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit31").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit32").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit33").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit34").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit35").Text = "";
+				GetParent().GetNode<TextEdit>("TextEdit36").Text = "";
 				//let's try only updating those text boxes when we actually need to
 
-				for (int entries = 0; entries < 37; entries++)
+				for (int entries = 0; entries < 17; entries++)
 				{
 					musk[entries] = llm[entries];
 					llm[entries] = poo[entries];
@@ -740,13 +659,42 @@ public partial class search6 : Button
 				GetParent().GetNode<RichTextLabel>("RichTextLabel2").Text = (int) (shortest / 44.1f) + " to " +
 				                                                            (int) (longest / 44.1f) + " ms, " +
 				                                                            seats + " seat " + venue;
+				
+				
+				/*Dictionary current_date_time = Time.GetDatetimeDictFromSystem();
+				String bignum = delays[3] + delays[4] + delays[5] + "";
+				Int64 asLong = (Int64) (bignum.ToFloat() * 6.18f);
+				String suffix = "seat" + $"{asLong:X}";
+				suffix = suffix + " on " + current_date_time["year"];
+				suffix = suffix + "-" + current_date_time["month"];
+				suffix = suffix + "-" + current_date_time["day"];
+				String taps = "const int d4A = " + delays[1] + "; ";
+				taps = taps + "const int d4B = " + delays[2] + "; ";
+				taps = taps + "const int d4C = " + delays[3] + "; ";
+				taps = taps + "const int d4D = " + delays[4] + "; ";
+				taps = taps + "const int d4E = " + delays[5] + "; ";
+				taps = taps + "const int d4F = " + delays[6] + "; ";
+				taps = taps + "const int d4G = " + delays[7] + "; ";
+				taps = taps + "const int d4H = " + delays[8] + "; ";
+				taps = taps + "const int d4I = " + delays[9] + "; ";
+				taps = taps + "const int d4J = " + delays[10] + "; ";
+				taps = taps + "const int d4K = " + delays[11] + "; ";
+				taps = taps + "const int d4L = " + delays[12] + "; ";
+				taps = taps + "const int d4M = " + delays[13] + "; ";
+				taps = taps + "const int d4N = " + delays[14] + "; ";
+				taps = taps + "const int d4O = " + delays[15] + "; ";
+				taps = taps + "const int d4P = " + delays[16] + "; //";
+				taps = taps + (int)(shortest / 44.1) + " to " + (int)(longest / 44.1) + " ms, " + seats + " seat " +
+				       venue + "  \n// " + seats + suffix + "\n\n";
+				String result = GetParent().GetNode<TextEdit>("Code").Text;
+				result = result.Substring(Math.Max(result.Length-1500,0));
+				GetParent().GetNode<TextEdit>("Code").Text = result + taps;*/
+				//creating a cropped list of the most recent high scores to further evaluate
 				GetParent().GetNode<TextureRect>("TextureRect").Scale = new Vector2(1.0f, 1.0f);
 				GetParent().GetNode<TextureRect>("TextureRect").Texture = ImageTexture.CreateFromImage(display);
 			}
 		}
-
-		//GetParent().GetNode<Button>("halt6").EmitSignal("pressed", true);
-		GetParent().GetNode<Button>("halt6")._Pressed();
-		GetParent().GetNode<Timer>("Timer6").Paused = false;
+		GetParent().GetNode<Button>("haltGodot")._Pressed();
+		GetParent().GetNode<Timer>("TimerGodot").Paused = false;
 	}
 }
