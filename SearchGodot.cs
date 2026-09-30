@@ -198,6 +198,8 @@ public partial class SearchGodot : Button
 	private int since = 0;
 	private int best = 0;
 	private int changes = 0;
+	private float doPrintout = 999999.999f;
+	private float actualFloor = 999999.999f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -282,7 +284,7 @@ public partial class SearchGodot : Button
 		int[] delays;
 		delays = new int[17];
 		float most = 0.0f;
-		float doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
+		//float doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
 		int iterations = GetParent().GetNode<TextEdit>("Iterations").Text.ToInt();
 		total += iterations;
 		since += iterations;
@@ -518,7 +520,7 @@ public partial class SearchGodot : Button
 			//and lastly, we're gonna multiply the whole 'most' by the number of bytes it takes to compress it
 			most *= sizeOfZip;
 
-			if (most > doPrintout)
+			if (most > doPrintout*1.618f)
 			{
 				//we want the lowest number, so this part is failure to beat the best
 				//since we are not in the zone, let's also tune the seat number
@@ -531,7 +533,51 @@ public partial class SearchGodot : Button
 			}
 			else
 			{
-				doPrintout = most;
+				if (most * 1.618f < actualFloor) //we have actually hit a new very highest score!
+				{
+					actualFloor = most * 1.618f;
+					int printSeats = (int) ((milliseconds / 2.9) * (milliseconds / 2.9));
+					Dictionary current_date_time = Time.GetDatetimeDictFromSystem();
+					String bignum = delays[3] + delays[4] + delays[5] + "";
+					Int64 asLong = (Int64) (bignum.ToFloat() * 6.18f);
+					String suffix = printSeats + "seat" + $"{asLong:X}";
+					suffix = suffix + " on " + current_date_time["year"];
+					suffix = suffix + "-" + current_date_time["month"];
+					suffix = suffix + "-" + current_date_time["day"];
+					suffix = suffix + " settings ";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls1").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls2").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls3").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls4").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls5").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls6").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls7").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls8").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls9").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls10").Text[0];
+
+					String taps = "const int d4A = " + delays[1] + "; ";
+					taps = taps + "const int d4B = " + delays[2] + "; ";
+					taps = taps + "const int d4C = " + delays[3] + "; ";
+					taps = taps + "const int d4D = " + delays[4] + "; ";
+					taps = taps + "const int d4E = " + delays[5] + "; ";
+					taps = taps + "const int d4F = " + delays[6] + "; ";
+					taps = taps + "const int d4G = " + delays[7] + "; ";
+					taps = taps + "const int d4H = " + delays[8] + "; ";
+					taps = taps + "const int d4I = " + delays[9] + "; ";
+					taps = taps + "const int d4J = " + delays[10] + "; ";
+					taps = taps + "const int d4K = " + delays[11] + "; ";
+					taps = taps + "const int d4L = " + delays[12] + "; ";
+					taps = taps + "const int d4M = " + delays[13] + "; ";
+					taps = taps + "const int d4N = " + delays[14] + "; ";
+					taps = taps + "const int d4O = " + delays[15] + "; ";
+					taps = taps + "const int d4P = " + delays[16] + "; \n// ";
+					taps = taps + suffix + "\n\n";
+					GetParent().GetNode<TextEdit>("Code").Text = taps;
+					//creating a cropped list of the most recent high scores to further evaluate
+				}
+				if (most < doPrintout) doPrintout = most;
+				else doPrintout = MathF.Min((most+doPrintout)*0.5f,actualFloor);
 				fireRedraw = true;
 				GetParent().GetNode<TextEdit>("TextEdit1").Text = delays[1].ToString();
 				GetParent().GetNode<TextEdit>("TextEdit2").Text = delays[2].ToString();
@@ -660,36 +706,6 @@ public partial class SearchGodot : Button
 				                                                            (int) (longest / 44.1f) + " ms, " +
 				                                                            seats + " seat " + venue;
 				
-				
-				/*Dictionary current_date_time = Time.GetDatetimeDictFromSystem();
-				String bignum = delays[3] + delays[4] + delays[5] + "";
-				Int64 asLong = (Int64) (bignum.ToFloat() * 6.18f);
-				String suffix = "seat" + $"{asLong:X}";
-				suffix = suffix + " on " + current_date_time["year"];
-				suffix = suffix + "-" + current_date_time["month"];
-				suffix = suffix + "-" + current_date_time["day"];
-				String taps = "const int d4A = " + delays[1] + "; ";
-				taps = taps + "const int d4B = " + delays[2] + "; ";
-				taps = taps + "const int d4C = " + delays[3] + "; ";
-				taps = taps + "const int d4D = " + delays[4] + "; ";
-				taps = taps + "const int d4E = " + delays[5] + "; ";
-				taps = taps + "const int d4F = " + delays[6] + "; ";
-				taps = taps + "const int d4G = " + delays[7] + "; ";
-				taps = taps + "const int d4H = " + delays[8] + "; ";
-				taps = taps + "const int d4I = " + delays[9] + "; ";
-				taps = taps + "const int d4J = " + delays[10] + "; ";
-				taps = taps + "const int d4K = " + delays[11] + "; ";
-				taps = taps + "const int d4L = " + delays[12] + "; ";
-				taps = taps + "const int d4M = " + delays[13] + "; ";
-				taps = taps + "const int d4N = " + delays[14] + "; ";
-				taps = taps + "const int d4O = " + delays[15] + "; ";
-				taps = taps + "const int d4P = " + delays[16] + "; //";
-				taps = taps + (int)(shortest / 44.1) + " to " + (int)(longest / 44.1) + " ms, " + seats + " seat " +
-				       venue + "  \n// " + seats + suffix + "\n\n";
-				String result = GetParent().GetNode<TextEdit>("Code").Text;
-				result = result.Substring(Math.Max(result.Length-1500,0));
-				GetParent().GetNode<TextEdit>("Code").Text = result + taps;*/
-				//creating a cropped list of the most recent high scores to further evaluate
 				GetParent().GetNode<TextureRect>("TextureRect").Scale = new Vector2(1.0f, 1.0f);
 				GetParent().GetNode<TextureRect>("TextureRect").Texture = ImageTexture.CreateFromImage(display);
 			}

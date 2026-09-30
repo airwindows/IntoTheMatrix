@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.IO;
 using System.IO.Compression;
+using Godot.Collections;
 
 public partial class search6 : Button
 {
@@ -196,8 +197,10 @@ public partial class search6 : Button
 	private int total = 0;
 	private int since = 0;
 	private int best = 0;
-
 	private int changes = 0;
+	private float doPrintout = 999999.999f;
+	private float actualFloor = 999999.999f;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -285,7 +288,7 @@ public partial class search6 : Button
 		int[] rotated;
 		rotated = new int[37];
 		float most = 0.0f;
-		float doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
+		//float doPrintout = GetParent().GetNode<RichTextLabel>("prevScoreTwo").Text.ToFloat();
 		int iterations = GetParent().GetNode<TextEdit>("Iterations").Text.ToInt();
 		total += iterations;
 		since += iterations;
@@ -597,9 +600,8 @@ public partial class search6 : Button
 
 			//and lastly, we're gonna multiply the whole 'most' by the number of bytes it takes to compress it
 			most *= sizeOfZip;
-			most *= sizeOfZip;
 
-			if (most > doPrintout)
+			if (most > doPrintout*1.618f)
 			{
 				//we want the lowest number, so this part is failure to beat the best
 				//since we are not in the zone, let's also tune the seat number
@@ -612,7 +614,70 @@ public partial class search6 : Button
 			}
 			else
 			{
-				doPrintout = most;
+				if (most * 1.618f < actualFloor)
+				{
+					actualFloor = most * 1.618f;
+					int printSeats = (int) ((milliseconds / 2.9) * (milliseconds / 2.9));
+					Dictionary current_date_time = Time.GetDatetimeDictFromSystem();
+					String bignum = delays[3] + delays[4] + delays[5] + "";
+					Int64 asLong = (Int64) (bignum.ToFloat() * 6.18f);
+					String suffix = printSeats + "seat" + $"{asLong:X}";
+					suffix = suffix + " on " + current_date_time["year"];
+					suffix = suffix + "-" + current_date_time["month"];
+					suffix = suffix + "-" + current_date_time["day"];
+					suffix = suffix + " settings ";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls1").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls2").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls3").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls4").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls5").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls6").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls7").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls8").Text[0]+"-";
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls9").Text[0];
+					suffix = suffix + GetParent().GetNode<TextEdit>("Controls10").Text[0];
+					String taps = "const int d6A = " + delays[1] + "; ";
+					taps = taps + "const int d6B = " + delays[2] + "; ";
+					taps = taps + "const int d6C = " + delays[3] + "; ";
+					taps = taps + "const int d6D = " + delays[4] + "; ";
+					taps = taps + "const int d6E = " + delays[5] + "; ";
+					taps = taps + "const int d6F = " + delays[6] + "; ";
+					taps = taps + "const int d6G = " + delays[7] + "; ";
+					taps = taps + "const int d6H = " + delays[8] + "; ";
+					taps = taps + "const int d6I = " + delays[9] + "; ";
+					taps = taps + "const int d6J = " + delays[10] + "; ";
+					taps = taps + "const int d6K = " + delays[11] + "; ";
+					taps = taps + "const int d6L = " + delays[12] + "; ";
+					taps = taps + "const int d6M = " + delays[13] + "; ";
+					taps = taps + "const int d6N = " + delays[14] + "; ";
+					taps = taps + "const int d6O = " + delays[15] + "; ";
+					taps = taps + "const int d6P = " + delays[16] + "; ";
+					taps = taps + "const int d6Q = " + delays[17] + "; ";
+					taps = taps + "const int d6R = " + delays[18] + "; ";
+					taps = taps + "const int d6S = " + delays[19] + "; ";
+					taps = taps + "const int d6T = " + delays[20] + "; ";
+					taps = taps + "const int d6U = " + delays[21] + "; ";
+					taps = taps + "const int d6V = " + delays[22] + "; ";
+					taps = taps + "const int d6W = " + delays[23] + "; ";
+					taps = taps + "const int d6X = " + delays[24] + "; ";
+					taps = taps + "const int d6Y = " + delays[25] + "; ";
+					taps = taps + "const int d6ZA = " + delays[26] + "; ";
+					taps = taps + "const int d6ZB = " + delays[27] + "; ";
+					taps = taps + "const int d6ZC = " + delays[28] + "; ";
+					taps = taps + "const int d6ZD = " + delays[29] + "; ";
+					taps = taps + "const int d6ZE = " + delays[30] + "; ";
+					taps = taps + "const int d6ZF = " + delays[31] + "; ";
+					taps = taps + "const int d6ZG = " + delays[32] + "; ";
+					taps = taps + "const int d6ZH = " + delays[33] + "; ";
+					taps = taps + "const int d6ZI = " + delays[34] + "; ";
+					taps = taps + "const int d6ZJ = " + delays[35] + "; ";
+					taps = taps + "const int d6ZK = " + delays[36] + "; ";
+					taps = taps + "\n#define SIXBYSIX true // " + suffix + "\n\n";
+					GetParent().GetNode<TextEdit>("Code").Text = taps;
+					//creating a cropped list of the most recent high scores to further evaluate
+				}
+				if (most < doPrintout) doPrintout = most;
+				else doPrintout = MathF.Min((most+doPrintout)*0.5f,actualFloor);
 				fireRedraw = true;
 				GetParent().GetNode<TextEdit>("TextEdit1").Text = delays[1].ToString();
 				GetParent().GetNode<TextEdit>("TextEdit2").Text = delays[2].ToString();
