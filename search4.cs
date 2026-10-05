@@ -210,6 +210,8 @@ public partial class search4 : Button
 	{
 		GetParent().GetNode<Button>("search6").Disabled = true;
 		GetParent().GetNode<Button>("halt6").Disabled = true;
+		GetParent().GetNode<Button>("searchmono6").Disabled = true;
+		GetParent().GetNode<Button>("haltmono6").Disabled = true;
 		GetParent().GetNode<Button>("search5").Disabled = true;
 		GetParent().GetNode<Button>("halt5").Disabled = true;
 		GetParent().GetNode<Button>("search3").Disabled = true;
@@ -556,8 +558,8 @@ public partial class search4 : Button
 			desiredIterations = Math.Abs(desiredIterations) + 1;
 			GetParent().GetNode<TextEdit>("Iterations").Text = desiredIterations.ToString();
 
-			//and lastly, we're gonna multiply the whole 'most' by the number of bytes it takes to compress it
-			most *= sizeOfZip;
+			//and lastly, we're gonna divide the whole 'most' by the number of bytes it takes to compress it
+			most /= sizeOfZip; //because SMALLER is better
 
 			if (most > doPrintout*1.618f)
 			{

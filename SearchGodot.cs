@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using Godot.Collections;
 
 public partial class SearchGodot : Button
@@ -192,6 +193,8 @@ public partial class SearchGodot : Button
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int[] musk = 
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+	private int[] sortGA = {0, 0, 0, 0};
 	
 	private Image display;
 	private int total = 0;
@@ -210,6 +213,8 @@ public partial class SearchGodot : Button
 	{
 		GetParent().GetNode<Button>("search6").Disabled = true;
 		GetParent().GetNode<Button>("halt6").Disabled = true;
+		GetParent().GetNode<Button>("searchmono6").Disabled = true;
+		GetParent().GetNode<Button>("haltmono6").Disabled = true;
 		GetParent().GetNode<Button>("search5").Disabled = true;
 		GetParent().GetNode<Button>("halt5").Disabled = true;
 		GetParent().GetNode<Button>("search4").Disabled = true;
@@ -517,8 +522,8 @@ public partial class SearchGodot : Button
 			desiredIterations = Math.Abs(desiredIterations) + 1;
 			GetParent().GetNode<TextEdit>("Iterations").Text = desiredIterations.ToString();
 
-			//and lastly, we're gonna multiply the whole 'most' by the number of bytes it takes to compress it
-			most *= sizeOfZip;
+			//and lastly, we're gonna divide the whole 'most' by the number of bytes it takes to compress it
+			most /= sizeOfZip; //because SMALLER is better
 
 			if (most > doPrintout*1.618f)
 			{
@@ -535,6 +540,19 @@ public partial class SearchGodot : Button
 			{
 				if (most * 1.618f < actualFloor) //we have actually hit a new very highest score!
 				{
+					sortGA[0] = delays[1]; sortGA[1] = delays[2]; sortGA[2] = delays[3]; sortGA[3] = delays[4];
+					sortGA = sortGA.OrderDescending().ToArray();
+					delays[1] = sortGA[0]; delays[2] = sortGA[1]; delays[3] = sortGA[2]; delays[4] = sortGA[3];
+					sortGA[0] = delays[5]; sortGA[1] = delays[6]; sortGA[2] = delays[7]; sortGA[3] = delays[8];
+					sortGA = sortGA.OrderDescending().ToArray();
+					delays[5] = sortGA[0]; delays[6] = sortGA[1]; delays[7] = sortGA[2]; delays[8] = sortGA[3];
+					sortGA[0] = delays[9]; sortGA[1] = delays[10]; sortGA[2] = delays[11]; sortGA[3] = delays[12];
+					sortGA = sortGA.OrderDescending().ToArray();
+					delays[9] = sortGA[0]; delays[10] = sortGA[1]; delays[11] = sortGA[2]; delays[12] = sortGA[3];
+					sortGA[0] = delays[13]; sortGA[1] = delays[14]; sortGA[2] = delays[15]; sortGA[3] = delays[16];
+					sortGA = sortGA.OrderDescending().ToArray();
+					delays[13] = sortGA[0]; delays[14] = sortGA[1]; delays[15] = sortGA[2]; delays[16] = sortGA[3];
+					
 					actualFloor = most * 1.618f;
 					int printSeats = (int) ((milliseconds / 2.9) * (milliseconds / 2.9));
 					Dictionary current_date_time = Time.GetDatetimeDictFromSystem();

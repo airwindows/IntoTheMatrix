@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://cmcnq4521xsex" path="res://SearchGodot.cs" id="9_4gl0g"]
 [ext_resource type="Script" uid="uid://x3qmhnnbt0nr" path="res://halt_godot.gd" id="11_dmrr3"]
 [ext_resource type="Script" uid="uid://4xtx4u5hnkyy" path="res://copy.gd" id="12_56rdx"]
+[ext_resource type="Script" uid="uid://cektoolkouh7h" path="res://searchmono6.cs" id="12_wt4bg"]
+[ext_resource type="Script" uid="uid://3vhp4pe8f5yl" path="res://haltmono6.gd" id="13_bbu1w"]
 
 [node name="BasicRoot" type="Node2D" unique_id=567699717]
 
@@ -289,7 +291,7 @@ offset_left = 34.0
 offset_top = 193.0
 offset_right = 63.0
 offset_bottom = 227.0
-text = "X"
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -300,7 +302,7 @@ offset_left = 66.0
 offset_top = 193.0
 offset_right = 95.0
 offset_bottom = 227.0
-text = "X"
+text = "F"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -311,7 +313,7 @@ offset_left = 127.0
 offset_top = 193.0
 offset_right = 157.0
 offset_bottom = 227.0
-text = "C"
+text = "D"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -322,7 +324,7 @@ offset_left = 159.0
 offset_top = 193.0
 offset_right = 188.0
 offset_bottom = 227.0
-text = "B"
+text = "D"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -344,7 +346,7 @@ offset_left = 251.0
 offset_top = 193.0
 offset_right = 280.0
 offset_bottom = 227.0
-text = "D"
+text = "B"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -377,7 +379,7 @@ offset_left = 422.0
 offset_top = 193.0
 offset_right = 451.0
 offset_bottom = 227.0
-text = "D"
+text = "C"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -388,7 +390,7 @@ offset_left = 501.0
 offset_top = 193.0
 offset_right = 530.0
 offset_bottom = 227.0
-text = "Q"
+text = "U"
 context_menu_enabled = false
 emoji_menu_enabled = false
 script = ExtResource("1_dwka6")
@@ -399,7 +401,7 @@ offset_left = 262.0
 offset_top = 132.0
 offset_right = 309.0
 offset_bottom = 167.0
-text = "9000"
+text = "900"
 script = ExtResource("2_dpy4t")
 metadata/_edit_use_anchors_ = true
 
@@ -416,7 +418,7 @@ offset_left = 551.0
 offset_top = 61.0
 offset_right = 601.0
 offset_bottom = 97.0
-text = "9000"
+text = "900"
 context_menu_enabled = false
 shortcut_keys_enabled = false
 selecting_enabled = false
@@ -444,15 +446,15 @@ wrap_mode = 1
 [node name="search6" type="Button" parent="." unique_id=1544256307]
 offset_left = 10.0
 offset_top = 247.0
-offset_right = 80.0
+offset_right = 65.0
 offset_bottom = 278.0
 text = "6x6"
 script = ExtResource("4_56rdx")
 
 [node name="halt6" type="Button" parent="." unique_id=251111918]
-offset_left = 84.0
+offset_left = 70.0
 offset_top = 247.0
-offset_right = 132.0
+offset_right = 112.0
 offset_bottom = 278.0
 text = "stop"
 script = ExtResource("3_dwka6")
@@ -474,36 +476,52 @@ text = "stop"
 script = ExtResource("3_h5e0k")
 
 [node name="search4" type="Button" parent="." unique_id=397342345]
-offset_left = 157.0
+offset_left = 130.0
 offset_top = 248.0
-offset_right = 225.0
+offset_right = 178.0
 offset_bottom = 279.0
 text = "4x4"
 script = ExtResource("8_56rdx")
 
 [node name="halt4" type="Button" parent="." unique_id=952735414]
-offset_left = 230.0
+offset_left = 184.0
 offset_top = 248.0
-offset_right = 278.0
+offset_right = 226.0
 offset_bottom = 279.0
 text = "stop"
 script = ExtResource("5_dpy4t")
 
 [node name="searchGodot" type="Button" parent="." unique_id=62561240]
-offset_left = 296.0
+offset_left = 383.0
 offset_top = 248.0
-offset_right = 416.0
+offset_right = 468.0
 offset_bottom = 279.0
-text = "Godot 4x4"
+text = "mono 4x4"
 script = ExtResource("9_4gl0g")
 
 [node name="haltGodot" type="Button" parent="." unique_id=1688931668]
-offset_left = 421.0
+offset_left = 476.0
 offset_top = 248.0
 offset_right = 520.0
 offset_bottom = 279.0
-text = "Godot stop"
+text = "stop"
 script = ExtResource("11_dmrr3")
+
+[node name="searchmono6" type="Button" parent="." unique_id=1736174349]
+offset_left = 239.0
+offset_top = 248.0
+offset_right = 324.0
+offset_bottom = 279.0
+text = "mono 6x6"
+script = ExtResource("12_wt4bg")
+
+[node name="haltmono6" type="Button" parent="." unique_id=16175564]
+offset_left = 330.0
+offset_top = 248.0
+offset_right = 374.0
+offset_bottom = 279.0
+text = "stop"
+script = ExtResource("13_bbu1w")
 
 [node name="search3" type="Button" parent="." unique_id=1231294828]
 offset_left = 1024.0
@@ -701,6 +719,9 @@ wait_time = 0.001
 [node name="TimerGodot" type="Timer" parent="." unique_id=938589045]
 wait_time = 0.001
 
+[node name="Timermono6" type="Timer" parent="." unique_id=602212806]
+wait_time = 0.001
+
 [node name="Timer5" type="Timer" parent="." unique_id=789629694]
 wait_time = 0.001
 
@@ -725,5 +746,6 @@ ignore_time_scale = true
 [connection signal="timeout" from="Timer3" to="search3" method="_pressed"]
 [connection signal="timeout" from="Timer4" to="search4" method="_Pressed"]
 [connection signal="timeout" from="TimerGodot" to="searchGodot" method="_Pressed"]
+[connection signal="timeout" from="Timermono6" to="searchmono6" method="_Pressed"]
 [connection signal="timeout" from="Timer5" to="search5" method="_pressed"]
 [connection signal="timeout" from="Timer6" to="search6" method="_Pressed"]

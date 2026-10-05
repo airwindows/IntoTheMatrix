@@ -210,6 +210,8 @@ func _pressed():
 	get_parent().get_node("halt3").disabled = false
 	get_parent().get_node("searchGodot").disabled = false
 	get_parent().get_node("haltGodot").disabled = false
+	get_parent().get_node("searchmono6").disabled = false
+	get_parent().get_node("haltmono6").disabled = false
 	var halt: String = get_parent().get_node("totalIterations").text
 	if (get_parent().get_node("Generating").button_pressed && !halt.contains("Finished")):
 		get_parent().get_node("Timer6").paused = false

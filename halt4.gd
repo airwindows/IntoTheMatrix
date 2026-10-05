@@ -113,6 +113,8 @@ func _pressed():
 	#get_parent().get_node("Code").text = taps
 	get_parent().get_node("search6").disabled = false
 	get_parent().get_node("halt6").disabled = false
+	get_parent().get_node("searchmono6").disabled = false
+	get_parent().get_node("haltmono6").disabled = false
 	get_parent().get_node("search5").disabled = false
 	get_parent().get_node("halt5").disabled = false
 	get_parent().get_node("search3").disabled = false
