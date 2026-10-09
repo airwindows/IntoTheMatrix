@@ -460,10 +460,10 @@ text = "stop"
 script = ExtResource("3_dwka6")
 
 [node name="search5" type="Button" parent="." unique_id=1840444244]
-offset_left = 652.0
-offset_top = 353.0
-offset_right = 702.0
-offset_bottom = 384.0
+offset_left = 854.0
+offset_top = 373.0
+offset_right = 904.0
+offset_bottom = 404.0
 text = "5x5"
 script = ExtResource("2_upf03")
 
@@ -558,10 +558,10 @@ autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="prevScoreTwo" type="RichTextLabel" parent="." unique_id=1587738720]
-offset_left = 696.0
-offset_top = 14.0
-offset_right = 917.0
-offset_bottom = 38.0
+offset_left = 13.0
+offset_top = 167.0
+offset_right = 234.0
+offset_bottom = 191.0
 text = "999999999999.9"
 scroll_active = false
 autowrap_mode = 0
@@ -620,17 +620,17 @@ offset_bottom = 367.0
 text = "this 5x5 and 3x3 still work if you want them"
 
 [node name="displayPrimes" type="RichTextLabel" parent="." unique_id=962744059]
-offset_left = 998.0
-offset_top = 8.0
-offset_right = 1050.0
-offset_bottom = 32.0
+offset_left = 954.0
+offset_top = 13.0
+offset_right = 1006.0
+offset_bottom = 37.0
 text = "0"
 
 [node name="RichTextLabel19" type="RichTextLabel" parent="." unique_id=1591001545]
-offset_left = 922.0
-offset_top = 8.0
-offset_right = 989.0
-offset_bottom = 32.0
+offset_left = 878.0
+offset_top = 13.0
+offset_right = 945.0
+offset_bottom = 37.0
 text = "PrimeX:"
 horizontal_alignment = 2
 

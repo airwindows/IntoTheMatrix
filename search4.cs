@@ -472,7 +472,7 @@ public partial class search4 : Button
 					if (dispDelays[begins[t]] > 0.0f)
 					{
 						most -= dispDelays[t] * adjustGreen[t] * primeyness;
-						primeCount += dispDelays[t] * 100.0f;
+						primeCount += dispDelays[t] * 256.0f;
 						greenBrt += 1.0f;
 						greenUnBrt -= 1.0f;
 					}
@@ -517,7 +517,7 @@ public partial class search4 : Button
 				}
 			}
 
-			most += biggestZeroRun; //correct for giant spaces in sparser delays
+			most += (float) Math.Sqrt(biggestZeroRun); //correct for giant spaces in sparser delays
 
 			//here's the thing though: what we should do is measure every departure from the previous
 			//spacings, in a 'slew measuring' way, because the evenest distribution will be best.
@@ -545,7 +545,7 @@ public partial class search4 : Button
 				blueAmt += (angleChange[t] * adjustBlue[t]);
 			}
 
-			most += greenRMS*2.0f; //let's try weighting against high RMS vs peak
+			most += greenRMS; //let's try weighting against high RMS vs peak
 
 			if (float.IsNaN(most)) most = 9999999999.9f;
 
@@ -560,8 +560,9 @@ public partial class search4 : Button
 
 			//and lastly, we're gonna divide the whole 'most' by the number of bytes it takes to compress it
 			most /= sizeOfZip; //because SMALLER is better
+			most /= sizeOfZip; //because SMALLER is better
 
-			if (most > doPrintout*1.618f)
+			if (most > doPrintout*1.382f)
 			{
 				//we want the lowest number, so this part is failure to beat the best
 				//since we are not in the zone, let's also tune the seat number
@@ -574,9 +575,9 @@ public partial class search4 : Button
 			}
 			else
 			{
-				if (most * 1.618f < actualFloor) //we have actually hit a new very highest score!
+				if (most * 1.382f < actualFloor) //we have actually hit a new very highest score!
 				{
-					actualFloor = most * 1.618f;
+					actualFloor = most * 1.382f;
 					int printSeats = (int) ((milliseconds / 2.9) * (milliseconds / 2.9));
 					Dictionary current_date_time = Time.GetDatetimeDictFromSystem();
 					String bignum = delays[3] + delays[4] + delays[5] + "";

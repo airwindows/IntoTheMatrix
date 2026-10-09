@@ -446,7 +446,7 @@ public partial class searchmono6 : Button
 					if (dispDelays[(int) begins[t]] > 0.0f)
 					{
 						most -= (dispDelays[t] * adjustGreen[t] * primeyness);
-						primeCount += dispDelays[t] * 100.0f;
+						primeCount += dispDelays[t] * 256.0f;
 						greenBrt += 1.0f;
 						greenUnBrt -= 1.0f;
 					}
@@ -491,7 +491,7 @@ public partial class searchmono6 : Button
 				}
 			}
 
-			most += biggestZeroRun; //correct for giant spaces in sparser delays
+			most += (float) Math.Sqrt(biggestZeroRun); //correct for giant spaces in sparser delays
 			
 			//here's the thing though: what we should do is measure every departure from the previous
 			//spacings, in a 'slew measuring' way, because the evenest distribution will be best.
@@ -520,7 +520,7 @@ public partial class searchmono6 : Button
 				blueAmt += (angleChange[t] * adjustBlue[t]);
 			}
 
-			//most += greenRMS*2.0f; //let's try weighting against high RMS vs peak
+			most += greenRMS; //let's try weighting against high RMS vs peak
 			
 			if (float.IsNaN(most)) most = 9999999999.9f;
 
@@ -535,8 +535,9 @@ public partial class searchmono6 : Button
 
 			//and lastly, we're gonna divide the whole 'most' by the number of bytes it takes to compress it
 			most /= sizeOfZip; //because SMALLER is better
+			most /= sizeOfZip; //because SMALLER is better
 
-			if (most > doPrintout*1.618f)
+			if (most > doPrintout*1.382f)
 			{
 				//we want the lowest number, so this part is failure to beat the best
 				//since we are not in the zone, let's also tune the seat number
@@ -549,7 +550,7 @@ public partial class searchmono6 : Button
 			}
 			else
 			{
-				if (most * 1.618f < actualFloor)
+				if (most * 1.382f < actualFloor)
 				{
 					sortGA[0] = delays[1]; sortGA[1] = delays[2]; sortGA[2] = delays[3]; sortGA[3] = delays[4]; sortGA[4] = delays[5]; sortGA[5] = delays[6];
 					sortGA = sortGA.OrderDescending().ToArray();
@@ -575,7 +576,7 @@ public partial class searchmono6 : Button
 					sortGA = sortGA.OrderDescending().ToArray();
 					delays[31] = sortGA[0]; delays[32] = sortGA[1]; delays[33] = sortGA[2]; delays[34] = sortGA[3]; delays[35] = sortGA[4]; delays[36] = sortGA[5];
 					
-					actualFloor = most * 1.618f;
+					actualFloor = most * 1.382f;
 					int printSeats = (int) ((milliseconds / 2.9) * (milliseconds / 2.9));
 					Dictionary current_date_time = Time.GetDatetimeDictFromSystem();
 					String bignum = delays[3] + delays[4] + delays[5] + "";
@@ -631,7 +632,7 @@ public partial class searchmono6 : Button
 					taps = taps + "const int d6ZI = " + delays[34] + "; ";
 					taps = taps + "const int d6ZJ = " + delays[35] + "; ";
 					taps = taps + "const int d6ZK = " + delays[36] + "; ";
-					taps = taps + "\n#define SIXBYSIX true // " + suffix + "\n\n";
+					taps = taps + "\n#define SIXBYSIXMONO true // " + suffix + "\n\n";
 					GetParent().GetNode<TextEdit>("Code").Text = taps;
 					//creating a cropped list of the most recent high scores to further evaluate
 				}
